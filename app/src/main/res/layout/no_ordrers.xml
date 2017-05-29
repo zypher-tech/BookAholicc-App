@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/no_order_image"
+        android:layout_width="100dp"
+        android:layout_marginLeft="4dp"
+        android:layout_height="100dp"
+        app:srcCompat="@mipmap/shopping_cart"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/no_order_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/no_order_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:text="No Previous Orders!" />
+
+   <FrameLayout
+       android:layout_width="match_parent"
+        android:id="@+id/no_orders_root_frame"
+       android:layout_height="match_parent"
+       android:layout_below="@+id/no_order_text">
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:id="@+id/no_order_loading_frame"
+           android:layout_height="match_parent">
+
+           <ProgressBar
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               android:id="@+id/no_orders_loading_indicator"
+               android:layout_alignParentTop="true"
+               android:layout_centerHorizontal="true"
+               android:layout_marginTop="80dp" />
+
+           <TextView
+               android:text="Getting Books You may Like"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:id="@+id/no_orderindicator_text"
+
+               android:layout_below="@+id/no_orders_loading_indicator"
+               android:layout_alignParentEnd="true"
+               android:layout_marginEnd="84dp"
+               android:layout_marginTop="19dp" />
+
+
+       </RelativeLayout>
+
+   </FrameLayout>
+
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+
+    android:layout_margin="4dp"
+    android:layout_height="80dp">
+    <ImageView
+        android:layout_width="80dp"
+        app:srcCompat = "@mipmap/bookaholic"
+        android:layout_height="match_parent"
+        android:id="@+id/no_item_p_image" />
+
+    <TextView
+        android:id="@+id/no_p_name"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Product Name"
+        android:layout_toStartOf="@+id/no_add_button"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/no_item_p_image" />
+
+    <Button
+        android:id="@+id/no_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Button"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/no_order_genre_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/no_p_name"
+        android:layout_toEndOf="@+id/no_item_p_image"
+        android:text="@string/crime_mystery" />
+
+    <TextView
+        android:id="@+id/no_rate_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/no_order_genre_text"
+        android:layout_toEndOf="@+id/no_item_p_image"
+        android:text="112/ 2 Weeks" />
+
+</RelativeLayout>

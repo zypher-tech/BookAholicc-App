@@ -1,8 +1,10 @@
 package com.bookaholicc;
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,11 +16,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.bookaholicc.Fragments.CartFragment;
+import com.bookaholicc.Fragments.CategoriesFragment;
+import com.bookaholicc.Fragments.HomeFragement;
+import com.bookaholicc.Fragments.NotificationsFragment;
+import com.bookaholicc.Fragments.ProfileFragment;
+import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.OnTabReselectListener;
+import com.roughike.bottombar.OnTabSelectListener;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, OnTabSelectListener, OnTabReselectListener {
 
 
     @BindView(R.id.toolbar)
@@ -52,7 +63,16 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        setUpBottomar();
+        showMainFrag();
     }
+
+
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -109,5 +129,70 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+
+    private void setUpBottomar() {
+        BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+        bottomBar.setOnTabSelectListener(this);
+        bottomBar.setOnTabReselectListener(this);
+        bottomBar.setLongPressHintsEnabled(true);
+
+
+    }
+
+
+
+    private void showMainFrag() {
+        getSupportFragmentManager().
+                beginTransaction()
+                .replace(R.id.frag_holder_main,new HomeFragement())
+                .commit();
+    }
+
+
+    @Override
+    public void onTabSelected(@IdRes int tabId) {
+        Fragment mFragment = null;
+        String transactionString = "none";
+        switch (tabId){
+            case R.id.tab_home:
+                mFragment = new HomeFragement();
+                transactionString = "home";
+
+                break;
+            case R.id.tab_categories:
+                mFragment  = new CategoriesFragment();
+                transactionString = "cat";
+                break;
+            case R.id.tab_notifications:
+                mFragment = new NotificationsFragment();
+                transactionString = "noti";
+                break;
+            case R.id.tab_profile:
+                mFragment = new ProfileFragment();
+                transactionString = "profile";
+                break;
+            case R.id.tab_cart:
+                mFragment = new CartFragment();
+                transactionString = "cart";
+                break;
+            default:
+                return;
+
+        }
+
+        getSupportFragmentManager().
+                beginTransaction()
+                .replace(R.id.frag_holder_main,mFragment)
+                .addToBackStack(transactionString)
+                .commit();
+
+    }
+
+    @Override
+    public void onTabReSelected(@IdRes int tabId) {
+
     }
 }

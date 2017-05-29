@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/order_root_frame"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:id="@+id/order_frame"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/orders_loading_indicator"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="80dp" />
+
+            <TextView
+                android:text="Getting Orders , please Wait"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/indicator_text"
+
+                android:layout_below="@+id/orders_loading_indicator"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="84dp"
+                android:layout_marginTop="19dp" />
+
+
+        </RelativeLayout>
+
+
+
+
+    </FrameLayout>
+</FrameLayout>

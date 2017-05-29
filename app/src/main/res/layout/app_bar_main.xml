@@ -18,26 +18,32 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            app:layout_scrollFlags="exitUntilCollapsed|scroll|snap"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
 
             app:popupTheme="@style/AppTheme.PopupOverlay">
             <ImageView
                 android:layout_width="match_parent"
-                android:paddingRight="8dp"
+                android:paddingRight="16dp"
+
                 app:srcCompat ="@mipmap/bookaholic"
                 android:layout_height="match_parent" />
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <include layout="@layout/content_main"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+        />
 
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:elevation="12dp"
+
         app:bb_behavior="shy"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"

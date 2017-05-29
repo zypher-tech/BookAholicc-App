@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <!--Name-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:orientation="horizontal"
+
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/acc_uname_res"
+            android:layout_width="0dp"
+
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            app:srcCompat="@drawable/ic_avatar"
+            />
+        <TextView
+            android:id="@+id/account_user_name"
+            android:layout_width="0dp"
+            android:textSize="22sp"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.9"
+            android:text="Nandha Kumar" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/material_grey400"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        />
+
+    <!--Phone Number-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:orientation="horizontal"
+
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/acc_phone_res"
+            android:layout_width="0dp"
+
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            app:srcCompat="@drawable/ic_phone_black_24dp"
+            />
+        <TextView
+            android:id="@+id/account_phonenumber"
+            android:layout_width="0dp"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.9"
+            android:text="9688612122" />
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:background="@color/material_grey400"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        />
+    <!--Password-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:orientation="horizontal"
+
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/acc_email_res"
+            android:layout_width="0dp"
+
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            app:srcCompat="@drawable/ic_menu_send" />
+
+        <TextView
+            android:id="@+id/account_email"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.9"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp"
+            android:text="nandhakumar1411@gmail.com"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/material_grey400"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        />
+
+    <include layout="@layout/profile_view_fragment"/>
+
+
+</LinearLayout>
