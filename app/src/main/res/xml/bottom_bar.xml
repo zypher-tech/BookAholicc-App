@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_home"
+        icon="@drawable/ic_home"
+        barColorWhenSelected="#36353F"
+        title="Home" />
+    <tab
+        id="@+id/tab_categories"
+        icon="@drawable/ic_list"
+        barColorWhenSelected="#36353F"
+        title="Categories" />
+    <tab
+        id="@+id/tab_notifications"
+        icon="@drawable/ic_notifications_none_black_24px"
+        barColorWhenSelected="#36353F"
+        title="Notifications" />
+    <tab
+        id="@+id/tab_profile"
+        icon="@drawable/ic_avatar"
+        barColorWhenSelected="#36353F"
+        title="Profile" />
+    <tab
+        id="@+id/tab_cart"
+        icon="@drawable/ic_cart"
+        barColorWhenSelected="#36353F"
+        title="Cart" />
+</tabs>
