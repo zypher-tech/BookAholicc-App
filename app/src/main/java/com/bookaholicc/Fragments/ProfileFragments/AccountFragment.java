@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bookaholicc.R;
+import com.bookaholicc.utils.BundleKey;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -40,6 +42,7 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
     private Context mContext;
     private MapView mMapView;
     private GoogleMap googleMap;
+    private boolean isMapStarted = false;
 
 
 
@@ -53,6 +56,7 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Nullable
@@ -62,9 +66,29 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
         //Infalting Views
         View view = LayoutInflater.from(mContext).inflate(R.layout.account_frag, container, false);
         ButterKnife.bind(this, view);
-        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+
+
+
+        if (savedInstanceState == null){
+            //New Map
+            SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager()
+                    .findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
+            isMapStarted = true;
+        }
+        else{
+            if (isMapStarted){
+                //Map Is Already Started
+
+            }else {
+                SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager()
+                        .findFragmentById(R.id.map);
+                mapFragment.getMapAsync(this);
+                isMapStarted = true;
+            }
+        }
+
+
 
 
 //
@@ -116,6 +140,7 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putBoolean(BundleKey.IS_MAP_STARTED,isMapStarted);
     }
 
     @Override
@@ -133,12 +158,14 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
         super.onDetach();
     }
 
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         if (mContext != null){
             mContext = null;
         }
+
     }
 
     @Override
@@ -153,6 +180,6 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Log.d(TAG, "onMapReady: ");
+
     }
 }

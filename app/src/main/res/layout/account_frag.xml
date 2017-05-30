@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:orientation="vertical"
 
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+   >
 
 
 
@@ -26,15 +32,34 @@
             android:layout_weight="0.1"
             app:srcCompat="@drawable/ic_avatar"
             />
-        <TextView
-            android:id="@+id/account_user_name"
+        <RelativeLayout
             android:layout_width="0dp"
-            android:textSize="22sp"
-            android:gravity="center_vertical"
+
             android:paddingLeft="12dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.9"
-            android:text="Nandha Kumar" />
+            android:layout_weight="0.9">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Name"
+
+                android:layout_marginTop="11dp"
+                android:id="@+id/acct_name_text"
+                android:layout_height="wrap_content"
+
+
+                style ="@style/account_top_text"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Nandha Kumar"
+
+
+                android:id="@+id/acct_name_value"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/acct_name_text"
+                style="@style/account_value_text"
+                 />
+        </RelativeLayout>
 
 
     </LinearLayout>
@@ -66,15 +91,31 @@
             android:layout_weight="0.1"
             app:srcCompat="@drawable/ic_phone_black_24dp"
             />
-        <TextView
-            android:id="@+id/account_phonenumber"
+        <RelativeLayout
             android:layout_width="0dp"
-            android:textSize="20sp"
-            android:gravity="center_vertical"
+
             android:paddingLeft="12dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.9"
-            android:text="9688612122" />
+            android:layout_weight="0.9">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Phone Number"
+                style ="@style/account_top_text"
+                android:layout_marginTop="11dp"
+                android:id="@+id/acct_phone_text"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="9688612122"
+
+                style="@style/account_value_text"
+                android:id="@+id/acct_phone_value"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/acct_phone_text"
+                />
+        </RelativeLayout>
 
 
     </LinearLayout>
@@ -104,15 +145,31 @@
             android:layout_weight="0.1"
             app:srcCompat="@drawable/ic_menu_send" />
 
-        <TextView
-            android:id="@+id/account_email"
+        <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.9"
-            android:gravity="center_vertical"
+
             android:paddingLeft="12dp"
-            android:text="nandhakumar1411@gmail.com"
-            android:textSize="18sp" />
+            android:layout_height="match_parent"
+            android:layout_weight="0.9">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Email"
+                style ="@style/account_top_text"
+                android:layout_marginTop="11dp"
+                android:id="@+id/acct_email_text"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="nandhakumar1411@gmail.com"
+
+                style="@style/account_value_text"
+                android:id="@+id/acct_email_value"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/acct_email_text"
+               />
+        </RelativeLayout>
 
 
     </LinearLayout>
@@ -128,3 +185,5 @@
 
 
 </LinearLayout>
+
+</ScrollView>

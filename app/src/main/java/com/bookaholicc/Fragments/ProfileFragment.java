@@ -44,7 +44,7 @@ import static android.provider.MediaStore.*;
 public class ProfileFragment extends android.support.v4.app.Fragment {
 
 
-    public static String TAG = "BOOKAHOLIC PROFILE FRAG";
+    public static String TAG = "PROFILE FRAG :";
 
     //The Main Views
     @BindView(R.id.profile_collapsing_toolbar)
@@ -53,8 +53,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
     TabLayout mTabLayout;
     @BindView(R.id.profile_pager)
     ViewPager mPager;
-    @BindView(R.id.profile_pager_holder)
-    LinearLayout mPagerHolder;
+
 
 
     //The Views inside Collapsing Toolbar
@@ -64,14 +63,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
     ImageView mProfileImage;
     @BindView(R.id.profile_name)
     TextView mName;
-    @BindView(R.id.imageView2)
-    ImageView imageView2;
-    @BindView(R.id.profile_location)
-    TextView mLocation;
-    @BindView(R.id.imageView10)
-    ImageView imageView10;
-    @BindView(R.id.profile_phone_number)
-    TextView mPhoneNumber;
+
     private Context mContext;
 
     DataStore mStore;
@@ -106,7 +98,8 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "onActivityResult: ");
+
         if (requestCode == 101 && resultCode == RESULT_OK && null != data) {
 
             try {
@@ -135,7 +128,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
 
 
                 Log.d(TAG, "onActivityResult: Loading Image");
-                Picasso.with(mContext).load(picturePath).resize(150, 150).centerCrop().into(mProfileImage);
+               mProfileImage.setImageBitmap(bitmap);
                 //set The Back Ground Image Too
                 Bitmap b = BlurBuilder.blur(mContext, bitmap);
                 setBackGroundImage(b);
@@ -144,6 +137,9 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
                 Log.d(TAG, "onActivityResult: Exception in Setting Picture : " + e.getLocalizedMessage());
             }
         }
+        super.onActivityResult(requestCode, resultCode, data);
+
+
     }
 
     //The Picks image and Result is Obtained in OnActivity Result
@@ -151,14 +147,17 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
         Intent i = new Intent(
                 Intent.ACTION_PICK,
                 Images.Media.EXTERNAL_CONTENT_URI);
+        if (getActivity() != null){
 
-        getActivity().startActivityForResult(i, 101);
+            getActivity().startActivityForResult(i, 101);
+        }
     }
 
     private void setUpPager() {
         ProfileAdapter mAdapter = new ProfileAdapter(getChildFragmentManager());
         mPager.setAdapter(mAdapter);
         mTabLayout.setupWithViewPager(mPager);
+        mPager.setOffscreenPageLimit(2);
     }
 
     @Override

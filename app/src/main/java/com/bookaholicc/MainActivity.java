@@ -1,10 +1,12 @@
 package com.bookaholicc;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,6 +27,8 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnTabSelectListener, OnTabReselectListener {
 
 
+    private static final String TAG = "MAIN: ";
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 //    @BindView(R.id.search_card)
@@ -70,9 +75,21 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        Log.d(TAG, "onActivityResult: ");
+        super.onActivityResult(requestCode, resultCode, data);
+        Fragment fragments = getSupportFragmentManager().findFragmentByTag("profile");
+        if(fragments != null){
 
+            fragments.onActivityResult(requestCode, resultCode, data);
 
+        }
+        else{
+            Log.d(TAG, "onActivityResult: Null Fragment");
+        }
+    }
 
     @Override
     public void onBackPressed() {
@@ -185,7 +202,8 @@ public class MainActivity extends AppCompatActivity
 
         getSupportFragmentManager().
                 beginTransaction()
-                .replace(R.id.frag_holder_main,mFragment)
+                .replace(R.id.frag_holder_main,mFragment,transactionString)
+
                 .addToBackStack(transactionString)
                 .commit();
 

@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 25
@@ -36,9 +35,9 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.3.1'
 
     testCompile 'junit:junit:4.12'
-    compile 'com.google.android.gms:play-services-maps:9.0.0'
-    compile 'com.google.android.gms:play-services-base:9.0.0'
-    compile 'com.google.android.gms:play-services-location:9.0.0'
+    compile 'com.google.android.gms:play-services-maps:10.0.1'
+    compile 'com.google.android.gms:play-services-base:10.0.1'
+    compile 'com.google.android.gms:play-services-location:10.0.1'
 
     compile 'com.github.mcginty:material-colors:1.1.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
@@ -53,3 +52,4 @@ dependencies {
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.2.1'
 }
+apply plugin: 'com.google.gms.google-services'

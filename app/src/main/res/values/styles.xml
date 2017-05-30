@@ -25,4 +25,19 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+    <style name="account_top_text">
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Body1</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_alignParentTop">true</item>
+       <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+    <style name="account_value_text">
+
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>
