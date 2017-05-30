@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    android:id="@+id/pager_holder"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.bookaholicc.CustomUI.NavigationTabStrip
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        app:nts_color="@color/my_black"
+        android:id="@+id/nav_strip"
+        android:layout_gravity="center"
+        app:nts_corners_radius="4dp"
+        app:nts_factor="0.5"
+        app:nts_gravity="bottom"
+
+        app:nts_type="point"
+
+
+
+        app:nts_weight="1dp"
+        app:nts_animation_duration="300"
+        app:nts_active_color="@color/my_black"
+        app:nts_inactive_color="#c4c4c4"/>
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:id="@+id/main_pager"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+</LinearLayout>

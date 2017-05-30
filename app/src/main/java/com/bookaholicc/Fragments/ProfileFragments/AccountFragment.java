@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.bookaholicc.R;
 import com.bookaholicc.utils.BundleKey;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -41,10 +42,9 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
     private static final String TAG = "BK ACCOUNT FRAG: ";
     private Context mContext;
     private MapView mMapView;
-    private GoogleMap googleMap;
+
     private boolean isMapStarted = false;
-
-
+    private GoogleMap map;
 
 
     @Override
@@ -67,26 +67,42 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
         View view = LayoutInflater.from(mContext).inflate(R.layout.account_frag, container, false);
         ButterKnife.bind(this, view);
 
+        MapView mapView = (MapView) view.findViewById(R.id.map);
 
 
-        if (savedInstanceState == null){
-            //New Map
-            SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager()
-                    .findFragmentById(R.id.map);
-            mapFragment.getMapAsync(this);
-            isMapStarted = true;
-        }
-        else{
-            if (isMapStarted){
-                //Map Is Already Started
 
-            }else {
-                SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager()
-                        .findFragmentById(R.id.map);
-                mapFragment.getMapAsync(this);
-                isMapStarted = true;
-            }
-        }
+        mapView.onCreate(savedInstanceState);
+
+        // Gets to GoogleMap from the MapView and does initialization stuff
+         mapView.getMapAsync(this);
+
+
+
+        // Needs to call MapsInitializer before doing any CameraUpdateFactory calls
+        MapsInitializer.initialize(this.getActivity());
+
+
+
+
+
+//        if (savedInstanceState == null){
+//            //New Map
+//            SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager()
+//                    .findFragmentById(R.id.map);
+//            mapFragment.getMapAsync(this);
+//            isMapStarted = true;
+//        }
+//        else{
+//            if (isMapStarted){
+//                //Map Is Already Started
+//
+//            }else {
+//                SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager()
+//                        .findFragmentById(R.id.map);
+//                mapFragment.getMapAsync(this);
+//                isMapStarted = true;
+//            }
+//        }
 
 
 
@@ -180,6 +196,10 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
+        //Get The Lat lng
+        //Get hte Address ,Make Marker & Update
+        // Updates the location and zoom of the MapView
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(12.97,77.59), 12);
+        googleMap.animateCamera(cameraUpdate);
     }
 }

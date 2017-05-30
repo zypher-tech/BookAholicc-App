@@ -21,18 +21,10 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:id="@+id/profile_collapsing_toolbar"
             app:expandedTitleMarginEnd="64dp"
+            app:layout_collapseMode="parallax"
             app:expandedTitleMarginStart="48dp"
             android:layout_height="250dp">
-            <android.support.design.widget.TabLayout
-                android:layout_width="match_parent"
-                app:tabSelectedTextColor="@color/my_black"
-                app:tabIndicatorColor="@color/my_black"
-                app:layout_collapseMode="pin"
-                android:layout_gravity="bottom"
-                android:id="@+id/profile_tab"
-                android:layout_height="?attr/actionBarSize">
 
-            </android.support.design.widget.TabLayout>
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -48,7 +40,7 @@
                         />
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        app:layout_collapseMode="parallax"
+
                         android:layout_height="match_parent">
 
 
@@ -72,6 +64,20 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="20dp"
                             android:id="@+id/profile_name" />
+
+                        <android.support.design.widget.TabLayout
+                            android:layout_width="match_parent"
+                            app:tabSelectedTextColor="@color/my_black"
+                            app:tabIndicatorColor="@color/my_black"
+                            app:layout_collapseMode="pin"
+                            android:layout_gravity="bottom"
+                            android:layout_below="@id/profile_image"
+                            android:id="@+id/profile_tab"
+                            app:layout_scrollFlags="snap"
+                            android:layout_marginTop="16dp"
+                            android:layout_height="?attr/actionBarSize">
+
+                        </android.support.design.widget.TabLayout>
 
 
 
