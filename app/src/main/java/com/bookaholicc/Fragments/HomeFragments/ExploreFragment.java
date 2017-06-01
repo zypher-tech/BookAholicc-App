@@ -7,20 +7,45 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.bookaholicc.Adapters.ViewpagerAdapters.ListAdapters.HorizontalAdapter;
+import com.bookaholicc.Adapters.ViewpagerAdapters.MainFragmentAdapter;
+import com.bookaholicc.Fragments.HomeFragement;
+import com.bookaholicc.Model.GenreModel;
+import com.bookaholicc.Model.Product;
+import com.bookaholicc.Network.AppRequestQueue;
 import com.bookaholicc.R;
+import com.bookaholicc.utils.APIUtils;
 
+import org.json.JSONObject;
+
+import java.util.List;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by nandhu on 30/5/17.
+ * Showed By {@link HomeFragement}
+ * provided by {@link MainFragmentAdapter}
  */
 
-public class ExploreFragment extends Fragment {
+public class ExploreFragment extends Fragment implements Response.ErrorListener, Response.Listener<JSONObject> {
 
     private Context mContext;
     private View mView;
 
+    @BindView(R.id.explore_root_frame)
+    FrameLayout mRootView;
+
+
+    @BindView(R.id.adding_layout)
+    LinearLayout mAddingLayout;
 
 
     @Override
@@ -45,9 +70,33 @@ public class ExploreFragment extends Fragment {
 
 
 
+        //Hit THe Webservice
+        //Show the Products
+
+
+        if (cacheDataExists()){
+            //SHow the Data
+        }
+        else{
+            makeExploreRequest();
+        }
+
+
+
+
 
 
         return mView;
+    }
+
+    private boolean cacheDataExists() {
+        return false;
+    }
+
+    private void makeExploreRequest() {
+        JsonObjectRequest mObjectRequest = new JsonObjectRequest(APIUtils.HOME_ENDPOINT_POPULAR,null,this,this);
+        AppRequestQueue mRequestQueue =   AppRequestQueue.getInstance(mContext);
+        mRequestQueue.addToRequestQue(mObjectRequest);
     }
 
     @Override
@@ -91,5 +140,36 @@ public class ExploreFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+
+        List<GenreModel> modelist = parseData(response);
+        showView(modelist);
+
+    }
+
+    /** this has Lots of Products within them , for all Genres we have to Add
+     * indvidual container view , prepare Adapter and Show it Views and Listen for More Button Events*/
+
+    private void showView(List<GenreModel> modelist) {
+        for (GenreModel model:modelist){
+            //Add View , prpare Adapter
+            String genreName = model.getGenreName();
+            String genreId = model.getGenreId();
+            List<Product> mList = model.getProductList();
+            HorizontalAdapter mAdapter = new HorizontalAdapter(mContext,mList,this);
+        }
+
+    }
+
+    private List<GenreModel> parseData(JSONObject response) {
+        return null;
     }
 }

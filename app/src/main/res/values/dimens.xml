@@ -6,4 +6,23 @@
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="padding_normal">4dp</dimen>
+    <dimen name="z_card">4dp</dimen>
+    <dimen name="spacing_normal">16dp</dimen>
+
+
+
+
+
+
+
+    <dimen name="z_app_bar">4dp</dimen>
+
+    <dimen name="z_fab">6dp</dimen>
+    <dimen name="touch_raise">6dp</dimen>
+    <dimen name="touched_app_bar">8dp</dimen>
+    <dimen name="z_fab_over_touchable_app_bar">9dp</dimen>
+
+    <dimen name="fab_size">56dp</dimen>
+    <dimen name="fab_radius">28dp</dimen>
+
 </resources>

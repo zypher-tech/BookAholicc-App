@@ -49,9 +49,6 @@ public class HomeFragement extends Fragment {
 
 
         setUpPager();
-
-
-
         return v;
     }
 

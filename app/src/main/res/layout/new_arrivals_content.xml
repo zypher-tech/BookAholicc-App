@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+
+    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/new_arrivals_swiper"
+        android:id="@+id/new_arrivals_top_container"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/new_arrivals_list"
+        android:layout_below="@+id/new_arrivals_top_container">
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>
+
+</ScrollView>

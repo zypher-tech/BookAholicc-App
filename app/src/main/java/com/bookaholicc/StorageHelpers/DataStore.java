@@ -63,6 +63,7 @@ public class DataStore {
     private static final String IS_LOGGED_IN = "LOGIN";
     private static final String RECYCLER_VIEW_GRID = "GRID";
     private static final String IS_PHONE_NUMBER_PRESENT = "PHONE";
+    private static final String IS_NEW_ARRIVALS_DATA_PRESENT = "NEW_ARRIVALS";
 
 
 
@@ -293,5 +294,14 @@ public class DataStore {
 
     public boolean isPhoneNumberPresent() {
         return mSharedPrefrences.getBoolean(IS_PHONE_NUMBER_PRESENT,false);
+    }
+
+    public boolean isNewArrivalsDataPresent() {
+        return mSharedPrefrences.getBoolean(IS_NEW_ARRIVALS_DATA_PRESENT,false);
+    }
+
+    public void setNewArrivalsDataPresent(){
+        editor.putBoolean(IS_NEW_ARRIVALS_DATA_PRESENT,true);
+        editor.apply();
     }
 }
