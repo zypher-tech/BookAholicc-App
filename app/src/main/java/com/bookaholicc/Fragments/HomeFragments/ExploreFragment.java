@@ -4,11 +4,15 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -20,6 +24,7 @@ import com.bookaholicc.Model.GenreModel;
 import com.bookaholicc.Model.Product;
 import com.bookaholicc.Network.AppRequestQueue;
 import com.bookaholicc.R;
+import com.bookaholicc.StorageHelpers.CartHandler;
 import com.bookaholicc.utils.APIUtils;
 
 import org.json.JSONObject;
@@ -35,7 +40,7 @@ import butterknife.ButterKnife;
  * provided by {@link MainFragmentAdapter}
  */
 
-public class ExploreFragment extends Fragment implements Response.ErrorListener, Response.Listener<JSONObject> {
+public class ExploreFragment extends Fragment implements Response.ErrorListener, Response.Listener<JSONObject>,HorizontalAdapter.Horizontalcallback {
 
     private Context mContext;
     private View mView;
@@ -73,6 +78,7 @@ public class ExploreFragment extends Fragment implements Response.ErrorListener,
         //Hit THe Webservice
         //Show the Products
 
+/*
 
         if (cacheDataExists()){
             //SHow the Data
@@ -81,6 +87,13 @@ public class ExploreFragment extends Fragment implements Response.ErrorListener,
             makeExploreRequest();
         }
 
+*/
+
+        List<GenreModel> models = CartHandler.getInstance(mContext).getExlporeData();
+        for (GenreModel model : models) {
+
+            showView(model);
+        }
 
 
 
@@ -151,25 +164,45 @@ public class ExploreFragment extends Fragment implements Response.ErrorListener,
     public void onResponse(JSONObject response) {
 
         List<GenreModel> modelist = parseData(response);
-        showView(modelist);
+        for (GenreModel model : modelist) {
+            showView(model);
 
+        }
     }
 
     /** this has Lots of Products within them , for all Genres we have to Add
      * indvidual container view , prepare Adapter and Show it Views and Listen for More Button Events*/
 
-    private void showView(List<GenreModel> modelist) {
-        for (GenreModel model:modelist){
+    private void showView(GenreModel cModel) {
+
             //Add View , prpare Adapter
-            String genreName = model.getGenreName();
-            String genreId = model.getGenreId();
-            List<Product> mList = model.getProductList();
+            String genreName = cModel.getGenreName();
+            String genreId = cModel.getGenreId();
+            List<Product> mList = cModel.getProductList();
             HorizontalAdapter mAdapter = new HorizontalAdapter(mContext,mList,this);
+            View cardView =LayoutInflater.from(mContext).inflate(R.layout.explore_card,mRootView,false);
+
+
+            RecyclerView mListView = (RecyclerView) cardView.findViewById(R.id.explore_list);
+            TextView mGenreText  = (TextView) cardView.findViewById(R.id.explore_card_title);
+            Button moreButton = (Button) cardView.findViewById(R.id.explore_button);
+            mListView.setAdapter(mAdapter);
+            mListView.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,true));
+            mGenreText.setText(genreName);
+
+        mAddingLayout.addView(cardView);
+
+
         }
 
-    }
+
 
     private List<GenreModel> parseData(JSONObject response) {
         return null;
+    }
+
+    @Override
+    public void productClicked(int pid, int genreId) {
+
     }
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bookaholicc.CustomUI.WhitenyBooksFont;
 import com.bookaholicc.Model.Product;
@@ -42,6 +43,8 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ho
 
     @Override
     public void onBindViewHolder(final HorizontalAdapter.HorizaontalItem holder, int position) {
+        holder.mProductName.setText(mList.get(position).getProductName());
+
 
 
     }
@@ -59,18 +62,18 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ho
     public static class HorizaontalItem extends RecyclerView.ViewHolder {
         ImageView mProductImage;
         WhitenyBooksFont mProductName;
-        WhitenyBooksFont mAuthorName;
-        WhitenyBooksFont mPriceText;
-        WhitenyBooksFont mCompleteDuration;
+
+        TextView mPriceText;
+
 
         public HorizaontalItem(View itemView) {
             super(itemView);
 
-            mProductImage = (ImageView) itemView.findViewById(R.id.p_item_image);
-            mProductName = (WhitenyBooksFont) itemView.findViewById(R.id.p_item_pname);
-            mAuthorName = (WhitenyBooksFont) itemView.findViewById(R.id.p_item_addn_info);
-            mPriceText = (WhitenyBooksFont) itemView.findViewById(R.id.p_item_price);
-            mCompleteDuration = (WhitenyBooksFont) itemView.findViewById(R.id.p_item_com_duration);
+            mProductImage = (ImageView) itemView.findViewById(R.id.h_p_item_image);
+            mProductName = (WhitenyBooksFont) itemView.findViewById(R.id.h_p_item_name);
+
+            mPriceText = (TextView) itemView.findViewById(R.id.h_p_item_price_text);
+
         }
     }
 

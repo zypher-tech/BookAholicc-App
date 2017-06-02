@@ -8,18 +8,17 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,11 +26,9 @@ import com.bookaholicc.Adapters.ViewpagerAdapters.ProfileAdapter;
 import com.bookaholicc.R;
 import com.bookaholicc.StorageHelpers.DataStore;
 import com.bookaholicc.utils.BlurBuilder;
-import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import jp.wasabeef.picasso.transformations.BlurTransformation;
 
 import static android.app.Activity.RESULT_OK;
 import static android.provider.MediaStore.*;
@@ -88,11 +85,31 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
             }
         });
 
+        if (isSignedIn()) {
 
-        setUpPager();
+            setUpPager();
+        } else {
+            showLoginOrSignUpPage();
+        }
+
+
 
 
         return v;
+    }
+
+    private boolean isSignedIn() {
+        if (mStore==null){
+            mStore = DataStore.getStorageInstance(mContext);
+        }
+        return mStore.isLoggedIn();
+    }
+
+    private void showLoginOrSignUpPage() {
+        Fragment mNameFragment = new RegistrationFirstFragement();
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frag_holder_main,mNameFragment,"login");
     }
 
 

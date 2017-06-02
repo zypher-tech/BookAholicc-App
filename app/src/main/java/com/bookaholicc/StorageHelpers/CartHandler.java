@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.bookaholicc.Model.CartModel;
+import com.bookaholicc.Model.GenreModel;
 import com.bookaholicc.Model.Product;
 
 import java.util.ArrayList;
@@ -158,5 +159,15 @@ public class CartHandler  {
         //save the Updated List;
         mDataStore.saveCartList(mCartProducts);
 
+    }
+
+    public List<GenreModel> getExlporeData() {
+        List<GenreModel> model = new ArrayList<>(5);
+        model.add(new GenreModel("Company & Business","45",CartHandler.getInstance(mContext).getMockProducts()));
+        model.add(new GenreModel("Life Sciences","45",CartHandler.getInstance(mContext).getMockProducts()));
+        model.add(new GenreModel("Crime & Mystery","45",CartHandler.getInstance(mContext).getMockProducts()));
+        model.add(new GenreModel("GRE & GMAT","45",CartHandler.getInstance(mContext).getMockProducts()));
+        model.add(new GenreModel("Fitness & Health","45",CartHandler.getInstance(mContext).getMockProducts()));
+        return model;
     }
 }

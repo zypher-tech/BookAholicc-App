@@ -1,50 +1,58 @@
 package com.bookaholicc.Fragments.ProfileFragments;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.bookaholicc.Adapters.ViewpagerAdapters.ProfileAdapter;
+import com.bookaholicc.Fragments.ProfileFragment;
 import com.bookaholicc.R;
+import com.bookaholicc.StorageHelpers.DataStore;
 import com.bookaholicc.utils.BundleKey;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by nandhu on 23/5/17.
- * The Fragment used in {@link com.bookaholicc.Fragments.ProfileFragment}
- *
- * provided by {@link com.bookaholicc.Adapters.ViewpagerAdapters.ProfileAdapter}
+ * The Fragment used in {@link ProfileFragment}
+ * <p>
+ * provided by {@link ProfileAdapter}
  */
 
 public class AccountFragment extends Fragment implements OnMapReadyCallback {
 
 
     private static final String TAG = "BK ACCOUNT FRAG: ";
+    @BindView(R.id.acct_name_value)
+    TextView mUserName;
+    @BindView(R.id.acct_phone_value)
+    TextView mPhoneNumber;
+    @BindView(R.id.acct_email_value)
+    TextView mEmail;
+    @BindView(R.id.map)
+    MapView mMap;
+    @BindView(R.id.pv_delivery_container)
+    RelativeLayout mMapCard;
     private Context mContext;
     private MapView mMapView;
 
     private boolean isMapStarted = false;
     private GoogleMap map;
+    DataStore mStore;
 
 
     @Override
@@ -57,6 +65,14 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+
+    }
+
+    private void showLoginOrSignUpPage() {
+
+
+
+
     }
 
     @Nullable
@@ -70,19 +86,19 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
         MapView mapView = (MapView) view.findViewById(R.id.map);
 
 
-
         mapView.onCreate(savedInstanceState);
 
         // Gets to GoogleMap from the MapView and does initialization stuff
-         mapView.getMapAsync(this);
-
+        mapView.getMapAsync(this);
 
 
         // Needs to call MapsInitializer before doing any CameraUpdateFactory calls
         MapsInitializer.initialize(this.getActivity());
 
 
-
+        if (mStore == null) {
+            mStore = DataStore.getStorageInstance(mContext);
+        }
 
 
 //        if (savedInstanceState == null){
@@ -103,8 +119,6 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
 //                isMapStarted = true;
 //            }
 //        }
-
-
 
 
 //
@@ -138,10 +152,34 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
 //        });
 
 
-
-
         return view;
     }
+
+    private boolean isSignedIn() {
+        return mStore.isLoggedIn();
+    }
+
+    private void populateValues() {
+
+        if (mStore != null){
+            if (mPhoneNumber != null){
+                mPhoneNumber.setText(mStore.getPhoneNumber());
+            }
+            else{
+
+            }
+
+            if (mUserName != null){
+                mUserName.setText(mStore.getUserName());
+            }
+            if (mEmail != null){
+                mEmail.setText(mStore.getEmail());
+            }
+        }
+
+
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -156,12 +194,20 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean(BundleKey.IS_MAP_STARTED,isMapStarted);
+        outState.putBoolean(BundleKey.IS_MAP_STARTED, isMapStarted);
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        if (mStore == null) {
+            mStore = DataStore.getStorageInstance(mContext);
+        }
+
+
+
+
+
     }
 
     @Override
@@ -178,7 +224,7 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mContext != null){
+        if (mContext != null) {
             mContext = null;
         }
 
@@ -199,7 +245,9 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
         //Get The Lat lng
         //Get hte Address ,Make Marker & Update
         // Updates the location and zoom of the MapView
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(12.97,77.59), 12);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(12.97, 77.59), 12);
         googleMap.animateCamera(cameraUpdate);
     }
+
+
 }

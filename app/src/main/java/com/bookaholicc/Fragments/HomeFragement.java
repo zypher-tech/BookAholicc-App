@@ -34,7 +34,7 @@ public class HomeFragement extends Fragment {
     MainFragmentAdapter mAdapter;
 
 
-    String[] pageTitles = {"New Arrival's", "What's Popular", "Offers"};
+    String[] pageTitles = {"New Arrival's", "Explore", "Exam Corner"};
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

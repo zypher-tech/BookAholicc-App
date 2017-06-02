@@ -64,6 +64,9 @@ public class DataStore {
     private static final String RECYCLER_VIEW_GRID = "GRID";
     private static final String IS_PHONE_NUMBER_PRESENT = "PHONE";
     private static final String IS_NEW_ARRIVALS_DATA_PRESENT = "NEW_ARRIVALS";
+    private static final String FIRST_NAME = "FIRST_NAME";
+    private static final String LAST_NAME = "LAST_NAME";
+
 
 
 
@@ -274,6 +277,11 @@ public class DataStore {
 //    }
 
 
+
+    /** A Flag Which is tracked if user is Logged In Or Not
+     * todo : save the logged in Flag
+     * By Default , it is Negative, since people can roam around  without signing in,
+     * */
     public boolean isLoggedIn() {
         return mSharedPrefrences.getBoolean(IS_LOGGED_IN,false);
     }
@@ -302,6 +310,20 @@ public class DataStore {
 
     public void setNewArrivalsDataPresent(){
         editor.putBoolean(IS_NEW_ARRIVALS_DATA_PRESENT,true);
+        editor.apply();
+    }
+
+    public String getEmail() {
+        return mSharedPrefrences.getString(EMAIL_ID_TAG,null);
+    }
+
+    public void setFirstName(String vFirstName) {
+        editor.putString(FIRST_NAME,vFirstName);
+        editor.apply();
+    }
+
+    public void setLastName(String vLastName) {
+        editor.putString(LAST_NAME,vLastName);
         editor.apply();
     }
 }

@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:layout_width="125dp" android:layout_height="wrap_content">
+<com.bookaholicc.CustomUI.ForegroundRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="8dp"
+    android:foreground="?android:selectableItemBackground"
+    android:stateListAnimator="@animator/raise"
+    android:layout_marginRight="8dp"
+    android:layout_width="125dp"
+    android:layout_height="wrap_content">
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="100dp"
         android:src="@mipmap/fifa"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:id="@+id/h_p_item_image"
-        android:layout_height="160dp" />
+        android:layout_height="160dp"
+        android:layout_alignEnd="@+id/h_p_item_name"
+        android:layout_alignParentStart="true" />
     <com.bookaholicc.CustomUI.WhitenyBooksFont
         android:layout_width="wrap_content"
         android:text="The BookAholic"
@@ -14,7 +23,7 @@
         android:id="@+id/h_p_item_name"
         android:layout_marginTop="4dp"
         android:textSize="14sp"
-        android:gravity="center"
+
         android:layout_marginBottom="4dp"
         android:ellipsize="end"
         android:maxLines="1"
@@ -24,4 +33,17 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true" />
 
-</RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/h_p_item_price_text"
+        android:text="35/2 Weeks"
+        android:textSize="10sp"
+        android:layout_marginBottom="4dp"
+        android:layout_alignLeft="@id/h_p_item_name"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/h_p_item_name"
+        android:layout_alignParentStart="true" />
+
+
+</com.bookaholicc.CustomUI.ForegroundRelativeLayout>

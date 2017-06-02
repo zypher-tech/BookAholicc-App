@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:id="@+id/reg_fi_tip"
+        android:hint="First Name"
+        android:layout_marginTop="80dp"
+        style="@style/tip_default"
+        android:layout_height="60dp">
+        <EditText
+            android:id="@+id/first_name_box"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            style="@style/edit_box"
+
+
+            android:inputType="textPersonName"
+          />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+   <android.support.design.widget.TextInputLayout
+       android:layout_width="match_parent"
+       android:id="@+id/reg_lastname_tip"
+       android:hint="Last Name"
+       android:layout_marginTop="20dp"
+       style="@style/tip_default"
+       android:layout_below="@id/reg_fi_tip"
+       android:layout_height="60dp">
+       <EditText
+           android:id="@+id/pass_box"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           style="@style/edit_box"
+           android:inputType="textPassword" />
+   </android.support.design.widget.TextInputLayout>
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:text="@string/tc"
+        android:layout_above="@id/login_submit_button"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/login_submit_button"
+        android:text="Submit"
+        android:textColor="@color/material_white"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        style="@style/login_button"
+        android:layout_height="60dp" />
+</RelativeLayout>

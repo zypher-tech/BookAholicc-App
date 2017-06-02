@@ -1,4 +1,4 @@
-package com.bookaholicc.Fragments.HomeFragments;
+package com.bookaholicc.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,42 +13,40 @@ import com.bookaholicc.R;
 import butterknife.ButterKnife;
 
 /**
- * Created by nandhu on 30/5/17.
+ * Created by nandhu on 2/6/17.
+ * Called after Name has been Obtaiend
+ * Reoistration always follows Name, Email & Optional things
+ *
  */
 
-public class ExamFragment extends Fragment {
-
+public class EmailFragment extends Fragment{
 
     private Context mContext;
-    private View mView;
-
-
+    View mView ;
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-            mContext = context;
-
-    }
-
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = LayoutInflater.from(mContext).inflate(R.layout.exam_fragment,container,false);
+        mView = LayoutInflater.from(mContext).inflate(R.layout.email_fragment,container,false);
         ButterKnife.bind(this,mView);
-
-
-
-
-        return mView;
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+
 
     @Override
     public void onDestroy() {
@@ -74,18 +72,19 @@ public class ExamFragment extends Fragment {
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override

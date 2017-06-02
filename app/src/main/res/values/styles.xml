@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/material_grey600</item>
         <item name="drawerArrowStyle">@style/DrawerIcon</item>
 
     </style>
@@ -38,6 +39,30 @@
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
         <item name="android:layout_marginTop">4dp</item>
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="tip_default">
+        <item name="android:layout_marginLeft">32dp</item>
+        <item name="android:layout_marginRight">32dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/tip_ronded_corners</item>
+    </style>
+
+    <style name="login_button">
+        <item name="android:layout_marginLeft">32dp</item>
+        <item name="android:layout_marginRight">32dp</item>
+        <item name="android:background">@drawable/button_rounded</item>
+    </style>
+
+    <style name="edit_box">
+        <item name="android:background">@null</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginTop">4dp
+        </item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:gravity">center
+        </item>
     </style>
 
 </resources>
