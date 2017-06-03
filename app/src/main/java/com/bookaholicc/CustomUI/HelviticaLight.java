@@ -29,7 +29,7 @@ public class HelviticaLight extends TextView {
     }
 
     private void applyCustomFont(Context context) {
-        Typeface customFont = FontCache.getTypeface("fonts/grand_hotel.otf", context);
+        Typeface customFont = FontCache.getTypeface("fonts/HelveticaNeue.ttf", context);
         setTypeface(customFont);
     }
 }

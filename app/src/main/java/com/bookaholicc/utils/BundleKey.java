@@ -16,8 +16,11 @@ public class BundleKey {
     public static final String ARG_PRODCUT_STRING = "P_STRING";
     public static final String ARG_SHOW_PRODUCT = "PROD";
     public static final String IS_MAP_STARTED = "MAP_STARTED";
+    public static final java.lang.String ARG_LAST_NAME = "LAST_NAME";
+
 
 
 
     public static String[] RETUNR_STRINGS = {"2 Days","4 Days" , "6 Days"};
+    public static java.lang.String ARG_FIRST_NAME = "FIRST_NAME" ;
 }

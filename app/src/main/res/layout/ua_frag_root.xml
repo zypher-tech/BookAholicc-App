@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:weightSum="1"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_weight="0.7"
+        android:id="@+id/ua_root"
+        android:layout_height="0dp">
+        <ImageView
+            android:layout_width="match_parent"
+            app:srcCompat = "@mipmap/bookaholic"
+            android:id="@+id/ua_image"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_weight="0.15"
+        android:text="Log In"
+        android:textSize="22sp"
+        android:id="@+id/ua_login_button"
+        android:background="@color/material_greenA200"
+        android:textAllCaps="false"
+        android:layout_height="0dp">
+    </Button>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_weight="0.15"
+        android:text="Sign Up"
+        android:id="@+id/ua_signup_button"
+        android:textSize="22sp"
+        android:background="@drawable/signup_button_ripple"
+        android:textColor="@color/material_white"
+        android:textAllCaps="false"
+
+        android:layout_height="0dp">
+
+    </Button>
+
+
+</LinearLayout>

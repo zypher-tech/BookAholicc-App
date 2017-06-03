@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.bookaholicc.Fragments.HomeFragments.ExamFragment;
+import com.bookaholicc.Fragments.HomeFragments.OffersFragment;
 import com.bookaholicc.Fragments.HomeFragments.ExploreFragment;
 import com.bookaholicc.Fragments.HomeFragments.NewArrivalsFragment;
 /**
@@ -36,7 +36,7 @@ public class MainFragmentAdapter extends FragmentStatePagerAdapter{
                 return  mExplore;
 
             case 2:
-                ExamFragment mExam = new ExamFragment();
+                OffersFragment mExam = new OffersFragment();
                 return  mExam;
 
             default:

@@ -1,30 +1,67 @@
-package com.bookaholicc.Fragments;
+package com.bookaholicc.Fragments.UserAboarding;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.bookaholicc.Model.Tags;
 import com.bookaholicc.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by nandhu on 29/5/17.
- * Notifications
+ * Created by nandhu on 2/6/17.
+ *
+ * This Fragment Collects Some Preferences about the user
+ * And Displays Books According to The Exam
+ * todo: add Preference Like Appy geek Rotatble View
  *
  */
 
-public class NotificationsFragment extends android.support.v4.app.Fragment {
+public class UserPrefFragment extends Fragment implements View.OnClickListener {
+
+    private View mView;
     private Context mContext;
-    private View v;
+
+
+    @BindView(R.id.up_confirm_button)
+    Button confirmButton ;
+
+
+
+    private UserPrefsCallback mCallback;
+
+    public UserPrefsCallback getmCallback() {
+        return mCallback;
+    }
+
+    public void setmCallback(UserPrefsCallback mCallback) {
+        this.mCallback = mCallback;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        mView = LayoutInflater.from(mContext).inflate(R.layout.user_pref_fragment, container, false);
+        ButterKnife.bind(this, mView);
+        //Setup the Rotatable View
+
+
+        return mView;
+
     }
 
     @Override
@@ -37,13 +74,7 @@ public class NotificationsFragment extends android.support.v4.app.Fragment {
         super.onSaveInstanceState(outState);
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = LayoutInflater.from(mContext).inflate(R.layout.home_fragment, container, false);
-        ButterKnife.bind(this, v);
-        return v;
-    }
+
 
     @Override
     public void onDestroy() {
@@ -63,14 +94,16 @@ public class NotificationsFragment extends android.support.v4.app.Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        if (confirmButton != null){
+            confirmButton.setOnClickListener(this);
+        }
     }
-
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mContext = context;
     }
+
     @Override
     public void onDetach() {
         super.onDetach();
@@ -92,12 +125,20 @@ public class NotificationsFragment extends android.support.v4.app.Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onClick(View view) {
+        if (view.getId() == R.id.up_confirm_button){
+
+
+
+
+
+
+        }
+
     }
 
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
+    public interface UserPrefsCallback{
+        void prefsRegsitered(Tags tag);
+        void noPrefsRegistered();
     }
 }

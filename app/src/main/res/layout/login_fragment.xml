@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="match_parent"
+        android:text="Welcome,Have a booky Day!"
+        android:id="@+id/login_top_text"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+
+        android:textSize="22sp"
+        android:textColor="@color/my_black"
+        android:layout_height="wrap_content" />
+
+
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:text="E-MAIL ADDRESS"
+        android:textStyle="bold"
+        android:id="@+id/login_email_text"
+        android:layout_below="@id/login_top_text"
+        android:layout_marginTop="48dp"
+        android:layout_marginLeft="24dp"
+        android:textColor="@color/material_black"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_alignLeft="@id/login_email_text"
+        android:layout_marginRight="24dp"
+        android:id="@+id/login_email_editbox"
+        android:layout_marginTop="6dp"
+        android:layout_below="@+id/login_email_text"
+        android:layout_height="40dp" />
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:text="PASSWORD"
+        android:textStyle="bold"
+        android:id="@+id/login_pass_text"
+        android:layout_below="@id/login_email_editbox"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        android:textColor="@color/material_black"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_alignLeft="@id/login_email_text"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="6dp"
+        android:id="@+id/login_pass_editbox"
+        android:layout_below="@+id/login_pass_text"
+        android:layout_height="40dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:textAllCaps="false"
+        android:layout_below="@id/login_pass_editbox"
+        android:layout_marginTop="96dp"
+        android:background="@drawable/signup_button_ripple"
+        android:textColor="@color/material_white"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:text="Done"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

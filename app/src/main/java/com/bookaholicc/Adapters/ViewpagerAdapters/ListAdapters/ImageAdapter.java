@@ -9,15 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bookaholicc.Fragments.HomeFragments.ExamFragment;
+import com.bookaholicc.Fragments.HomeFragments.OffersFragment;
 import com.bookaholicc.Model.Combo;
 import com.bookaholicc.R;
+import com.bookaholicc.utils.ScreenUtil;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 /**
  * Created by nandhu on 1/6/17.
- * The Adapter used in {@link ExamFragment}
+ * The Adapter used in {@link OffersFragment}
  * It Provides st Images separated by a margin
  */
 
@@ -45,7 +47,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageHolder>
 
     @Override
     public void onBindViewHolder(ImageHolder holder, int position) {
-        holder.mImageView.setImageDrawable(ContextCompat.getDrawable(mContext,R.mipmap.fifaa));
+        Picasso.with(mContext)
+                .load(R.mipmap.fifaa)
+                .into(holder.mImageView);
 
 
     }

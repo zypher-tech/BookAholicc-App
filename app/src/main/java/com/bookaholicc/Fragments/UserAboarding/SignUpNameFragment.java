@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.bookaholicc.Fragments.UserAboarding.EmailFragment;
 import com.bookaholicc.R;
-import com.bookaholicc.StorageHelpers.DataStore;
 import com.bookaholicc.utils.StringValidator;
 
 import butterknife.BindView;
@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
  * showed in Cart & profile
  */
 
-public class RegistrationFirstFragement extends Fragment implements View.OnClickListener {
+public class SignUpNameFragment extends Fragment implements View.OnClickListener {
 
 
     View mView;
@@ -32,9 +32,22 @@ public class RegistrationFirstFragement extends Fragment implements View.OnClick
     TextInputLayout mFirstName;
     @BindView(R.id.reg_lastname_tip)
     TextInputLayout mLastName;
-    @BindView(R.id.login_submit_button)
+    @BindView(R.id.name_submit_button)
     Button mSubmitButton;
     private Context mContext;
+
+
+    /*A Callback Which Delivers The result to Activity*/
+    private SignUpCallback mCallback;
+
+
+    public SignUpCallback getmCallback() {
+        return mCallback;
+    }
+
+    public void setmCallback(SignUpCallback mCallback) {
+        this.mCallback = mCallback;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,6 +96,9 @@ public class RegistrationFirstFragement extends Fragment implements View.OnClick
     @Override
     public void onStop() {
         super.onStop();
+        if (mCallback != null){
+            mCallback.noSignUp();
+        }
     }
 
     @Override
@@ -108,7 +124,7 @@ public class RegistrationFirstFragement extends Fragment implements View.OnClick
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.login_submit_button){
+        if (view.getId() == R.id.name_submit_button){
             //Button Clicked
             showEmailPassPage();
         }
@@ -126,12 +142,7 @@ public class RegistrationFirstFragement extends Fragment implements View.OnClick
                 //Correct UserName
                 if (StringValidator.CheckUserName(vLastName)){
                     //Last name is Also Correct
-                   EmailFragment mFragment  = new EmailFragment();
-
-
-                    getActivity().getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.frag_holder_main,mNameFragment,"login");
+                  mCallback.showEmailFragment(vFirstName,vLastName);
                 }
                 else{
                     Snackbar.make(mView,"Enter Last Name",Snackbar.LENGTH_SHORT).show();
@@ -141,6 +152,11 @@ public class RegistrationFirstFragement extends Fragment implements View.OnClick
             Snackbar.make(mView,"Enter First Name",Snackbar.LENGTH_SHORT).show();
         }
 
+    }
+
+    public interface SignUpCallback{
+        void showEmailFragment(String firstName,String lastName);
+        void noSignUp();
     }
 
 

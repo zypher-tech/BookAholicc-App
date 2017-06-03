@@ -15,9 +15,24 @@ public class Combo
     private String comboImage;
     private String comboDescriptio;
     private String comboPrice;
-    private List<mProductDescription> mListofproducts;
+    private int mCid;
+    private List<MiniProductDescription> mListofproducts;
 
-    public Combo(String comboId, String comboName, String comboImage, String comboDescriptio, String comboPrice, List<mProductDescription> mListofproducts) {
+
+    public Combo(String comboId, String comboName, String comboDescriptio, String comboPrice, int mCid) {
+        this.comboId = comboId;
+        this.comboName = comboName;
+        this.comboImage = comboImage;
+        this.comboDescriptio = comboDescriptio;
+        this.comboPrice = comboPrice;
+        this.mCid = mCid;
+    }
+
+
+
+
+
+    public Combo(String comboId, String comboName, String comboImage, String comboDescriptio, String comboPrice, List<MiniProductDescription> mListofproducts) {
         this.comboId = comboId;
         this.comboName = comboName;
         this.comboImage = comboImage;
@@ -66,11 +81,11 @@ public class Combo
         this.comboPrice = comboPrice;
     }
 
-    public List<mProductDescription> getmListofproducts() {
+    public List<MiniProductDescription> getMockupDescription() {
         return mListofproducts;
     }
 
-    public void setmListofproducts(List<mProductDescription> mListofproducts) {
+    public void setmListofproducts(List<MiniProductDescription> mListofproducts) {
         this.mListofproducts = mListofproducts;
     }
 }

@@ -52,12 +52,6 @@ public class APIUtils {
 
 
 
-
-
-
-
-
-
-
-
+    /*REGISTER API - Provide first name , last name , email , password*/
+    public static final String  REGISTER_API = "";
 }

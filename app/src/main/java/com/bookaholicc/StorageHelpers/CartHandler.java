@@ -4,8 +4,10 @@ import android.content.Context;
 import android.util.Log;
 
 import com.bookaholicc.Model.CartModel;
+import com.bookaholicc.Model.Combo;
 import com.bookaholicc.Model.GenreModel;
 import com.bookaholicc.Model.Product;
+import com.bookaholicc.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -169,5 +171,14 @@ public class CartHandler  {
         model.add(new GenreModel("GRE & GMAT","45",CartHandler.getInstance(mContext).getMockProducts()));
         model.add(new GenreModel("Fitness & Health","45",CartHandler.getInstance(mContext).getMockProducts()));
         return model;
+    }
+
+    public List<Combo> getMockCombo() {
+        List<Combo> mList = new ArrayList<>(5);
+        mList.add(new Combo("45","Com 1","Combo Description","455", R.mipmap.fifaa));
+        mList.add(new Combo("45","Com 1","Combo Description","155", R.mipmap.fifaa));
+        mList.add(new Combo("45","Com 1","Combo Description","132", R.mipmap.fifaa));
+        mList.add(new Combo("45","Com 1","Combo Description","455", R.mipmap.fifaa));
+        return mList;
     }
 }

@@ -5,13 +5,13 @@ package com.bookaholicc.Model;
  * The Small Product Description used in {@link Combo}
  */
 
-public class mProductDescription {
+public class MiniProductDescription {
     private String productName;
     private String pid;
     private String productImage;
 
 
-    public mProductDescription(String productName, String pid, String productImage) {
+    public MiniProductDescription(String productName, String pid, String productImage) {
         this.productName = productName;
         this.pid = pid;
         this.productImage = productImage;

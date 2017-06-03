@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bookaholicc.Activitiy.UserAboardingActivity;
 import com.bookaholicc.Adapters.ViewpagerAdapters.ProfileAdapter;
 import com.bookaholicc.R;
 import com.bookaholicc.StorageHelpers.DataStore;
@@ -106,10 +107,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
     }
 
     private void showLoginOrSignUpPage() {
-        Fragment mNameFragment = new RegistrationFirstFragement();
-        getActivity().getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.frag_holder_main,mNameFragment,"login");
+        startActivity(new Intent(mContext, UserAboardingActivity.class));
     }
 
 

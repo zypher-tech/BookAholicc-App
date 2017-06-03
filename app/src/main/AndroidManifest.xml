@@ -22,6 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activitiy.SplashActivity"
+            android:exported="true"/>
+        <activity android:name=".Activitiy.UserAboardingActivity"
+            android:theme="@style/ua_activity_style"
+            android:exported="true"/>
 
 
         <meta-data

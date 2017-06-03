@@ -1,26 +1,37 @@
-package com.bookaholicc.Fragments;
+package com.bookaholicc.Fragments.UserAboarding;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.bookaholicc.Activitiy.UserAboardingActivity;
+import com.bookaholicc.Model.User;
 import com.bookaholicc.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by nandhu on 29/5/17.
- * Notifications
- *
+ * Created by nandhu on 3/6/17.
+ * THe Fragment Must SHow in SHared Manned
+ * Uses Email & pass,
+ * Branches out to Forgot Password, OTP SMS, Question page
  */
 
-public class NotificationsFragment extends android.support.v4.app.Fragment {
+public class LoginFragment extends Fragment{
+
+
+    private View mView ;
     private Context mContext;
-    private View v;
+
+
+
+    public LoginCallback mCallback;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,14 +51,19 @@ public class NotificationsFragment extends android.support.v4.app.Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = LayoutInflater.from(mContext).inflate(R.layout.home_fragment, container, false);
-        ButterKnife.bind(this, v);
-        return v;
+        mView = LayoutInflater.from(mContext).inflate(R.layout.login_fragment,container,false);
+        ButterKnife.bind(this,mView);
+
+
+        return mView;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (mContext != null){
+            mContext = null;
+        }
     }
 
     @Override
@@ -65,15 +81,20 @@ public class NotificationsFragment extends android.support.v4.app.Fragment {
         super.onResume();
     }
 
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         mContext = context;
+        mCallback = (LoginCallback) context;
     }
+
     @Override
     public void onDetach() {
         super.onDetach();
+        if (mCallback != null) {
+
+            mCallback = null;
+        }
     }
 
     @Override
@@ -86,18 +107,14 @@ public class NotificationsFragment extends android.support.v4.app.Fragment {
         super.onPause();
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void setLoginCallback(LoginCallback loginCallback) {
+        this.mCallback = loginCallback;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-    }
+    public interface LoginCallback{
+        void loggedIn(User u);
+        void notLoggedIn();
+        void inCorrectLoginDetails();
 
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
     }
 }
