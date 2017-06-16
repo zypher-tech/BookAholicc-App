@@ -63,6 +63,8 @@ public class ExploreFragment extends Fragment implements Response.ErrorListener,
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
 
 

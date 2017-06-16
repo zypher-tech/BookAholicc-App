@@ -10,35 +10,22 @@ import java.util.List;
 public class Combo
 {
 
+
+
     private String comboId;
     private String comboName;
-    private String comboImage;
-    private String comboDescriptio;
-    private String comboPrice;
-    private int mCid;
-    private List<MiniProductDescription> mListofproducts;
+    private String comoDesc;
+    private String imageURL;
+    private String pricing;
+    private String duration;
 
-
-    public Combo(String comboId, String comboName, String comboDescriptio, String comboPrice, int mCid) {
+    public Combo(String comboId, String comBoName,String comoDesc, String imageURL, String pricing, String duration) {
         this.comboId = comboId;
-        this.comboName = comboName;
-        this.comboImage = comboImage;
-        this.comboDescriptio = comboDescriptio;
-        this.comboPrice = comboPrice;
-        this.mCid = mCid;
-    }
-
-
-
-
-
-    public Combo(String comboId, String comboName, String comboImage, String comboDescriptio, String comboPrice, List<MiniProductDescription> mListofproducts) {
-        this.comboId = comboId;
-        this.comboName = comboName;
-        this.comboImage = comboImage;
-        this.comboDescriptio = comboDescriptio;
-        this.comboPrice = comboPrice;
-        this.mListofproducts = mListofproducts;
+        this.comboName = comBoName;
+        this.comoDesc = comoDesc;
+        this.imageURL = imageURL;
+        this.pricing = pricing;
+        this.duration = duration;
     }
 
     public String getComboId() {
@@ -49,43 +36,35 @@ public class Combo
         this.comboId = comboId;
     }
 
-    public String getComboName() {
-        return comboName;
+    public String getComoDesc() {
+        return comoDesc;
     }
 
-    public void setComboName(String comboName) {
-        this.comboName = comboName;
+    public void setComoDesc(String comoDesc) {
+        this.comoDesc = comoDesc;
     }
 
-    public String getComboImage() {
-        return comboImage;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setComboImage(String comboImage) {
-        this.comboImage = comboImage;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
-    public String getComboDescriptio() {
-        return comboDescriptio;
+    public String getPricing() {
+        return pricing;
     }
 
-    public void setComboDescriptio(String comboDescriptio) {
-        this.comboDescriptio = comboDescriptio;
+    public void setPricing(String pricing) {
+        this.pricing = pricing;
     }
 
-    public String getComboPrice() {
-        return comboPrice;
+    public String getDuration() {
+        return duration;
     }
 
-    public void setComboPrice(String comboPrice) {
-        this.comboPrice = comboPrice;
-    }
-
-    public List<MiniProductDescription> getMockupDescription() {
-        return mListofproducts;
-    }
-
-    public void setmListofproducts(List<MiniProductDescription> mListofproducts) {
-        this.mListofproducts = mListofproducts;
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 }

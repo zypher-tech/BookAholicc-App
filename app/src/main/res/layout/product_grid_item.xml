@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_margin="1dp"
+    android:layout_width="match_parent"
+    android:background="?selectableItemBackground"
+    android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:elevation="16dp"
+
+
+                android:layout_height="170dp"
+                android:id="@+id/p_item_image"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentStart="true" />
+
+            <com.bookaholicc.CustomUI.WhitenyBooksFont
+                android:text="The Innovators Dillema"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:textSize="16sp"
+                android:maxLines="1"
+                android:textStyle="bold"
+                android:layout_below="@+id/p_item_image"
+                android:gravity="left|center_vertical"
+                android:textColor="@color/material_black"
+                android:typeface="sans"
+                android:layout_marginLeft="12dp"
+
+
+
+                android:id="@+id/p_item_pname"
+
+                />
+
+            <com.bookaholicc.CustomUI.WhitenyBooksFont
+                android:text="Yuval Noah Harrari"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_below="@+id/p_item_pname"
+                android:textSize="12sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/cardview_dark_background"
+
+
+                android:gravity="left|center_vertical"
+                android:layout_alignLeft="@id/p_item_pname"
+                android:layout_alignStart="@+id/p_item_pname"
+                android:id="@+id/p_item_addn_info" />
+
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:text="\u20B9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/my_black"
+        android:id="@+id/p_grid_rs_text"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@id/p_item_addn_info"
+        android:layout_alignStart="@+id/p_item_image" />
+
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:text="35/2 Weeks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/my_black"
+        android:id="@+id/p_item_price"
+        android:layout_marginLeft="8dp"
+        android:gravity="left|center_vertical"
+        android:ellipsize="end"
+        android:textSize="18sp"
+        android:layout_below="@+id/p_item_addn_info"
+        android:layout_alignBottom="@+id/p_grid_rs_text"
+        android:layout_toEndOf="@+id/p_grid_rs_text"
+        android:layout_toStartOf="@+id/p_item_com_duration" />
+
+
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:text="16h"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/p_item_price"
+        android:layout_alignEnd="@+id/p_item_image"
+        android:id="@+id/p_item_com_duration"
+        android:textSize="16sp"
+        android:layout_alignTop="@+id/p_item_price" />
+
+
+
+</RelativeLayout>
+

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <com.bookaholicc.CustomUI.ForegroundRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:foreground="?android:selectableItemBackground"
+         android:stateListAnimator="@animator/raise"
+        android:paddingTop="@dimen/padding_normal"
+        android:paddingEnd="@dimen/padding_normal"
+        android:paddingBottom="@dimen/spacing_normal"
+        android:elevation="@dimen/z_card"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+                android:layout_width="120dp"
+                android:src="@mipmap/bookaholic"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:elevation="16dp"
+                android:layout_height="150dp"
+                android:id="@+id/p_item_image"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="Jeffery Archer"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_below="@+id/p_item_pname"
+                android:textSize="14sp"
+            android:textColor="@color/cardview_dark_background"
+
+            android:maxLines="1"
+            android:gravity="left|center_vertical"
+            android:layout_alignLeft="@id/p_item_pname"
+            android:layout_alignStart="@+id/p_item_pname"
+            android:id="@+id/p_item_addn_info" />
+
+        <TextView
+            android:text="The Blue Ocean Strategy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="left|center_vertical"
+            android:textColor="@color/cardview_dark_background"
+            android:typeface="serif"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="12dp"
+
+
+            android:id="@+id/p_item_pname"
+
+            android:layout_alignTop="@+id/p_item_image"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/p_item_image" />
+
+        <TextView
+            android:text="\u20B9"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_marginRight="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/p_item_price"
+            android:layout_toStartOf="@+id/p_item_price"
+            android:id="@+id/p_list_rupee_text"
+            android:layout_below="@+id/p_item_addn_info" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:id="@+id/p_list_div"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/my_black"
+            android:layout_below="@id/p_item_price"
+            android:layout_marginRight="16dp"
+            android:layout_alignStart="@+id/p_item_addn_info" />
+
+
+            <!--<include layout="@layout/product_container_icons"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="60dp"-->
+                <!--android:layout_below="@id/p_list_div"-->
+                <!--android:layout_alignStart="@+id/p_list_div"-->
+                <!--android:layout_alignBottom="@+id/p_item_image"-->
+                <!--android:layout_alignEnd="@+id/p_item_price" />-->
+
+        <TextView
+            android:text="16h"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/p_item_com_duration"
+            android:textSize="16sp"
+            android:layout_above="@+id/p_list_div"
+            android:layout_alignStart="@+id/p_item_addn_info" />
+
+        <TextView
+            android:text="35/day"
+            android:textColor="@color/cardview_dark_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/p_item_price"
+            android:textSize="20sp"
+            android:layout_below="@+id/p_item_addn_info"
+            android:layout_alignEnd="@+id/p_list_div" />
+
+    </com.bookaholicc.CustomUI.ForegroundRelativeLayout>
+
