@@ -10,7 +10,7 @@ import java.util.List;
  *
  */
 
-class Order  {
+public class Order  {
 
     private boolean isAccepted;
     private List<MiniProduct> mList;

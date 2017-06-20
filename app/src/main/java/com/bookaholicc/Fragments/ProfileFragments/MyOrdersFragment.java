@@ -127,8 +127,8 @@ public class MyOrdersFragment extends Fragment implements NoOrderAdapter.NoOrder
                     mNoOrdersRootFrame.removeAllViews();
                     View ListView = View.inflate(mContext,R.layout.recyler_view,mNoOrdersRootFrame);
                     RecyclerView mList = (RecyclerView) ListView.findViewById(R.id.list);
-                    List<Product> mListProducts = CartHandler.getInstance(mContext).getMockProducts();
-                    NoOrderAdapter mListAdapter = new NoOrderAdapter(mContext, mListProducts,this);
+//                    List<Product> mListProducts = CartHandler.getInstance(mContext).getMockProducts();
+//                    NoOrderAdapter mListAdapter = new NoOrderAdapter(mContext, mListProducts,this);
                 }
 
             }

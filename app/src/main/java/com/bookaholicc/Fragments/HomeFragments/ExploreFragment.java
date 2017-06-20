@@ -91,11 +91,11 @@ public class ExploreFragment extends Fragment implements Response.ErrorListener,
 
 */
 
-        List<GenreModel> models = CartHandler.getInstance(mContext).getExlporeData();
-        for (GenreModel model : models) {
-
-            showView(model);
-        }
+//        List<GenreModel> models = CartHandler.getInstance(mContext).getExlporeData();
+//        for (GenreModel model : models) {
+//
+//            showView(model);
+//        }
 
 
 

@@ -42,6 +42,7 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
     }
 
     public void makeRequests(){
+        Log.d(TAG, "making Request");
         JsonObjectRequest mRequest = new JsonObjectRequest(Request.Method.POST, APIUtils.HOME_API,null,this,this);
         AppRequestQueue mRequestQueue = AppRequestQueue.getInstance(mContext);
         if (mRequestQueue != null){
@@ -65,7 +66,9 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
 
         try {
             JSONArray mProductsArray = response.getJSONArray("products");
-            JSONArray mComboArray  = response.getJSONArray("products");
+            JSONArray mComboArray  = response.getJSONArray("combos");
+            Log.d(TAG, "onResponse: Products Array "+mProductsArray.toString());
+            Log.d(TAG, "onResponse: Combo Array "+mComboArray.toString());
             List<Product> mProductsList = getProductListFromJson(mProductsArray);
             List<Combo> mCombosList = getComboListFromJson(mComboArray);
 
@@ -76,7 +79,7 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
             }
         }
         catch (Exception e){
-            Log.d(TAG, "onResponse: Exception in Parsing home");
+            Log.d(TAG, "onResponse: Exception in Parsing home "+e.getLocalizedMessage());
         }
 
     }
@@ -85,20 +88,36 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
 
         //Make Sure not more than 7
         int productCount = mComboArray.length();
+        Log.d(TAG, "getComboListFromJson: ArrY Size: "+productCount);
         List<Combo> mList = new ArrayList<>(productCount);
         try {
             for (int i = 0; i < productCount; i++) {
-                JSONObject pObj = null;
-                // Get the Oject Turn It to String
-                pObj = mComboArray.getJSONObject(i);
 
-                //Got the Object , get String Push it to List
-                mList.add(new Combo(pObj.getString(APIUtils.COMBO_ID),
-                            pObj.getString(APIUtils.COMBO_NAME),
-                        pObj.getString(APIUtils.COMBO_DESC),
-                        pObj.getString(APIUtils.C_IMAGE_URL),
-                        pObj.getString(APIUtils.OUR_PRICE),
-                        pObj.getString((APIUtils.DURATION))));
+                // Get the Oject Turn It to String
+                JSONObject pObj = null;
+                pObj = mComboArray.getJSONObject(i);
+                Log.d(TAG, "getComboListFromJson: Singel Object "+pObj);
+                if (pObj != null){
+
+                    //Got the Object , get String Push it to List
+                    try {
+                        mList.add(new Combo(pObj.getInt(APIUtils.COMBO_ID),
+                                pObj.getString(APIUtils.COMBO_NAME),
+                                pObj.getString(APIUtils.COMBO_DESC),
+                                pObj.getString(APIUtils.C_IMAGE_URL),
+                                pObj.getInt(APIUtils.OUR_PRICE),
+                                pObj.getString((APIUtils.DURATION))));
+                    }
+                    catch (Exception e){
+                        Log.d(TAG, "Exception in getting JSON from Combo "+e.getLocalizedMessage());
+                        continue;
+                    }
+                }
+                else{
+                    Log.d(TAG, "getComboListFromJson: Product Null at Index "+i);
+                }
+
+
 
             }
             return mList;
@@ -116,36 +135,50 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
         List<Product> mList = new ArrayList<>(productCount);
         try {
             for (int i = 0; i < productCount; i++) {
-                JSONObject pObj = null;
-               // Get the Oject Turn It to String
-                pObj = mProductsArray.getJSONObject(i);
+                if (mProductsArray.getJSONObject(i) != null) {
+                    JSONObject pObj = null;
+                    // Get the Oject Turn It to String
+                    pObj = mProductsArray.getJSONObject(i);
+                    Log.d(TAG, "getProductListFromJson Product Json " + pObj);
+                    if (pObj != null) {
+                        //Got the Object , get String Push it to List
+                        try {
 
-                //Got the Object , get String Push it to List
-                mList.add(new Product(pObj.getString(APIUtils.PID),
-                        pObj.getString(APIUtils.PRODUCT_NAME),
-                        pObj.getString(APIUtils.PRODUCT_DESC),
-                        pObj.getString(APIUtils.AUTHOR_NAME),
-                        pObj.getString(APIUtils.PUBLISHER_NAME),
-                        pObj.getString(APIUtils.MRP),
-                        pObj.getString(APIUtils.IS_TOP_RATED),
-                        pObj.getString(APIUtils.IS_BEST_SELLER),
-                        pObj.getString(APIUtils.BOOK_SUMMARY),
-                        pObj.getString(APIUtils.BASE_CATEGORY),
-                        pObj.getString(APIUtils.SUB_CATEGORY),
-                        pObj.getString(APIUtils.OUR_PRICE),
-                        pObj.getString(APIUtils.DURATION),
-                        pObj.getString(APIUtils.IMAGE_URL))   // Construct of Product
-                );
+                            mList.add(new Product(pObj.getString(APIUtils.PID),
+                                    pObj.getString(APIUtils.PRODUCT_NAME),
+                                    pObj.getString(APIUtils.PRODUCT_DESC),
+                                    pObj.getString(APIUtils.AUTHOR_NAME),
+                                    pObj.getString(APIUtils.PUBLISHER_NAME),
+                                    pObj.getString(APIUtils.MRP),
+                                    pObj.getString(APIUtils.IS_TOP_RATED),
+                                    pObj.getString(APIUtils.IS_BEST_SELLER),
+                                    pObj.getString(APIUtils.BOOK_SUMMARY),
+                                    pObj.getString(APIUtils.BASE_CATEGORY),
+                                    pObj.getString(APIUtils.SUB_CATEGORY),
+                                    "45",
+                                   "2 Weeks",
+                                    pObj.getString(APIUtils.IMAGE_URL))   // Construct of Product
+                            );
+                        } catch (Exception e) {
+                            Log.d(TAG, "getProductListFromJson:Exception "+e.getLocalizedMessage());
+                            continue;
+                        }
+                    } else {
+                        continue;
+                    }
 
-                // Combo List
-
+                } else {
+                    continue;
+                }
 
             }
+            //Product Has Been Obtained and Put in List
             return mList;
         }
          catch (Exception e) {
             e.printStackTrace();
              Log.d(TAG, "getProductListFromJson: "+e.getLocalizedMessage());
+
         }
         return null;
     }

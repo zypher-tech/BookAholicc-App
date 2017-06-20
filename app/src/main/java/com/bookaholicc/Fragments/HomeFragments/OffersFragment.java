@@ -75,8 +75,8 @@ public class OffersFragment extends Fragment implements Response.ErrorListener, 
 //        }
 //
 
-        List<Combo> Mlist = CartHandler.getInstance(mContext).getMockCombo();
-        setViewValues(Mlist);
+//        List<Combo> Mlist = CartHandler.getInstance(mContext).getMockCombo();
+//        setViewValues(Mlist);
 
 
         return mView;

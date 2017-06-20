@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.bookaholicc.R.attr.layoutManager;
+import static com.bookaholicc.R.attr.logo;
 
 
 /**
@@ -54,7 +56,7 @@ public class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArri
     private View mView;
     @BindView(R.id.new_arrivals_root)
     FrameLayout mRootFrame;
-
+    private String TAG = "BK NEW ARRIVALS";
 
 
     @Override
@@ -78,6 +80,7 @@ public class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArri
         ButterKnife.bind(this,mView);
 
 
+        Log.d(TAG, "onCreateView: Inside NEw Arrivals");
         //Hit the Webservice;
         //Show the Results
         //Unitll Then SHow Loading results
@@ -85,12 +88,14 @@ public class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArri
         if (HomePageDataHandler.isRequestMade()){
                 // Request Made
 
+
         }
         else{
 
             //No Request Made
+
             mDataHandler.makeRequests();
-            HomePageDataHandler.setIsRequestMade(true);
+
 
         }
 /*

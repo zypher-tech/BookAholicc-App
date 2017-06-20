@@ -104,13 +104,7 @@ public class CartHandler  {
     }
 
 
-    public List<Product> getMockProducts(){
-        ArrayList<Product> mockList = new ArrayList<>(15);
-        for (int i =0;i<15;i++){
-            mockList.add(new Product(i,"Product Id "+i,"This is Product Summary",4,"nu",35,"2 Weeks",458,5,false,false,0));
-        }
-        return mockList;
-    }
+
 
 
 
@@ -123,19 +117,6 @@ public class CartHandler  {
      *
      * */
 
-    public boolean isChecked(Product p) {
-        mCartProducts = getProducts();
-        if (mCartProducts == null){
-            return false;
-        }
-        for (int i = 0; i<mCartProducts.size(); i++){
-            CartModel model = mCartProducts.get(i);
-            if (p.getPid() == model.getPid()){
-                return true;
-            }
-        }
-        return false;
-    }
 
 
     public void removeProduct(Product p) {
@@ -150,7 +131,7 @@ public class CartHandler  {
 
 
         for (int i = 0; i< mCartProducts.size(); i++){
-            CartModel model = mCartProducts.get(i);
+            Product model = mCartProducts.get(i);
             // same Product Id exists , remove that product;
             if (p.getPid() == model.getPid()){
                  mCartProducts.remove(i);
@@ -163,22 +144,5 @@ public class CartHandler  {
 
     }
 
-    public List<GenreModel> getExlporeData() {
-        List<GenreModel> model = new ArrayList<>(5);
-        model.add(new GenreModel("Company & Business","45",CartHandler.getInstance(mContext).getMockProducts()));
-        model.add(new GenreModel("Life Sciences","45",CartHandler.getInstance(mContext).getMockProducts()));
-        model.add(new GenreModel("Crime & Mystery","45",CartHandler.getInstance(mContext).getMockProducts()));
-        model.add(new GenreModel("GRE & GMAT","45",CartHandler.getInstance(mContext).getMockProducts()));
-        model.add(new GenreModel("Fitness & Health","45",CartHandler.getInstance(mContext).getMockProducts()));
-        return model;
-    }
 
-    public List<Combo> getMockCombo() {
-        List<Combo> mList = new ArrayList<>(5);
-        mList.add(new Combo("45","Com 1","Combo Description","455", R.mipmap.fifaa));
-        mList.add(new Combo("45","Com 1","Combo Description","155", R.mipmap.fifaa));
-        mList.add(new Combo("45","Com 1","Combo Description","132", R.mipmap.fifaa));
-        mList.add(new Combo("45","Com 1","Combo Description","455", R.mipmap.fifaa));
-        return mList;
-    }
 }

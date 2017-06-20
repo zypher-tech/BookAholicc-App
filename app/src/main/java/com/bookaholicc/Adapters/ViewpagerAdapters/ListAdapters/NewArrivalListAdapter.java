@@ -13,6 +13,7 @@ import com.bookaholicc.CustomUI.WhitenyBooksFont;
 import com.bookaholicc.Fragments.HomeFragments.NewArrivalsFragment;
 import com.bookaholicc.Model.Product;
 import com.bookaholicc.R;
+import com.bookaholicc.utils.ScreenUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -49,8 +50,18 @@ public class NewArrivalListAdapter extends RecyclerView.Adapter<NewArrivalListAd
 
     @Override
     public void onBindViewHolder(final NewArrivalListItem holder, int position) {
+        //First Set the image
+        Picasso.with(mContext)
+                .load(mList.get(position).getImageURL())
+                .resize(ScreenUtil.getScreenWidth(mContext),ScreenUtil.getScreenHeight(mContext))
+                .priority(Picasso.Priority.NORMAL)
+                .centerCrop()
+                .into(holder.mProductImage);
 
-
+        holder.mAuthorName.setText(mList.get(position).getAuthorName());
+        holder.mProductName.setText(mList.get(position).getProductName());
+        holder.mPriceText.setText(mList.get(position).getOru_price());
+        holder.mCompleteDuration.setText(mList.get(position).getDuration());
     }
 
 

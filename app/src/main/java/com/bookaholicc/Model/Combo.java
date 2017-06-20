@@ -1,7 +1,5 @@
 package com.bookaholicc.Model;
 
-import java.util.List;
-
 /**
  * Created by nandhu on 1/6/17.
  * The Single Model of a Combo , is Constantly Updatable
@@ -11,29 +9,41 @@ public class Combo {
 
 
 
-    private String comboId;
+    private int comboId;
     private String comboName;
     private String comoDesc;
     private String imageURL;
-    private String pricing;
+    private int pricing;
     private String duration;
 
     public Combo(String comboId, String comBoName,String comoDesc, String imageURL, String pricing, String duration) {
+
+    }
+
+    public Combo(int comboId, String comBoName, String comoDesc, String imageURL, int price, String duration) {
+
         this.comboId = comboId;
         this.comboName = comBoName;
         this.comoDesc = comoDesc;
         this.imageURL = imageURL;
-        this.pricing = pricing;
+        this.pricing = price;
         this.duration = duration;
     }
 
 
+    public String getComboName() {
+        return comboName;
+    }
 
-    public String getComboId() {
+    public void setComboName(String comboName) {
+        this.comboName = comboName;
+    }
+
+    public int getComboId() {
         return comboId;
     }
 
-    public void setComboId(String comboId) {
+    public void setComboId(int comboId) {
         this.comboId = comboId;
     }
 
@@ -53,11 +63,11 @@ public class Combo {
         this.imageURL = imageURL;
     }
 
-    public String getPricing() {
+    public int getPricing() {
         return pricing;
     }
 
-    public void setPricing(String pricing) {
+    public void setPricing(int pricing) {
         this.pricing = pricing;
     }
 

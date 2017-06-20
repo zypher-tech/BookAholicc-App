@@ -62,9 +62,9 @@ public class NoOrderAdapter extends RecyclerView.Adapter<NoOrderAdapter.NoOrderP
         holder.mAddtoCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mCallback != null){
-                    mCallback.addToCart(pos,mList.get(pos).getPid());
-                }
+//                if (mCallback != null){
+//                    mCallback.addToCart(pos,mList.get(pos).getPid());
+//                }
             }
         });
 

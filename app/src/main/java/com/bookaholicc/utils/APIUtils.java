@@ -30,7 +30,7 @@ public class APIUtils {
 
 
     /*CATEGORIES */
-    public static final String HOME_API = "";
+    public static final String HOME_API = "https://us-central1-bookaholic-786.cloudfunctions.net/home";
 
         //The Keys Assciated with that time
     public static final String PID = "pid";

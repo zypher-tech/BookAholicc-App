@@ -34,10 +34,12 @@ public class SwipeAdapterNewArrivals extends PagerAdapter {
     private List<Product> mList;
     private Context mContext;
     private ComboInterface mCallback ;
-    @Override
-    public int getCount() {
-        return mList.size();
-    }
+
+
+
+
+
+
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
@@ -48,6 +50,13 @@ public class SwipeAdapterNewArrivals extends PagerAdapter {
     public void destroyItem(ViewGroup container, int position, Object object) {
 
         (container).removeView((View) object);
+    }
+
+    @Override
+    public int getCount() {
+
+            return mList.size();
+
     }
 
     @Override
