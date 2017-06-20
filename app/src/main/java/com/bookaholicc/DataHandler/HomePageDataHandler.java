@@ -127,7 +127,6 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
                         pObj.getString(APIUtils.AUTHOR_NAME),
                         pObj.getString(APIUtils.PUBLISHER_NAME),
                         pObj.getString(APIUtils.MRP),
-
                         pObj.getString(APIUtils.IS_TOP_RATED),
                         pObj.getString(APIUtils.IS_BEST_SELLER),
                         pObj.getString(APIUtils.BOOK_SUMMARY),
@@ -158,6 +157,14 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
         this.mCallback = null;
         this.mContext = null;
 
+    }
+
+    public static boolean isRequestMade() {
+        return isRequestMade;
+    }
+
+    public static void setIsRequestMade(boolean isRequestMade) {
+        HomePageDataHandler.isRequestMade = isRequestMade;
     }
 
     public interface homeDataCallbacks{

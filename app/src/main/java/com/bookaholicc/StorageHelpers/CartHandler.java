@@ -24,7 +24,7 @@ import java.util.List;
 public class CartHandler  {
 
     private static final String TAG = "CART_HANDLER";
-    private List<CartModel> mCartProducts;
+    private List<Product> mCartProducts;
 
     private Context mContext =  null;
     private DataStore mDataStore  = null;
@@ -50,7 +50,7 @@ public class CartHandler  {
     *
 
     * */
-    public boolean addProductToCart(CartModel p ){
+    public boolean addProductToCart(Product p ){
        //Firt Chekc whether user have Already Saved some Products
 
 
@@ -66,7 +66,7 @@ public class CartHandler  {
         //Check Whether The Cart Has Already the Same Product
         for (int i = 0; i< mCartProducts.size(); i++){
 
-            CartModel model = mCartProducts.get(i);
+            Product model = mCartProducts.get(i);
             if (p.getPid() == model.getPid()){
                 //model Already exists
                 Log.d(TAG, "addProductToCart: product alrady Exists so not added");
@@ -96,7 +96,7 @@ public class CartHandler  {
     }
 
 
-    public  List<CartModel> getProducts(){
+    public  List<Product> getProducts(){
         if(mDataStore == null){
             mDataStore = DataStore.getStorageInstance(mContext);
         }

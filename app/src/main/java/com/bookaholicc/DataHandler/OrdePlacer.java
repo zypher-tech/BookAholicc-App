@@ -7,6 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bookaholicc.Model.Order;
 import com.bookaholicc.Model.Product;
 import com.bookaholicc.Network.AppRequestQueue;
 import com.bookaholicc.utils.APIUtils;
@@ -14,7 +15,6 @@ import com.bookaholicc.utils.APIUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +86,10 @@ public class OrdePlacer implements Response.ErrorListener, Response.Listener<JSO
     @Override
     public void onErrorResponse(VolleyError error) {
 
+        if (mCallback != null){
+            mCallback.noOrderPlaced();
+        }
+
     }
 
     @Override
@@ -137,6 +141,7 @@ public class OrdePlacer implements Response.ErrorListener, Response.Listener<JSO
         catch (Exception e){
             Log.d(TAG, "ParseOrder: "+e.getLocalizedMessage());
         }
+        return null;
     }
 
 

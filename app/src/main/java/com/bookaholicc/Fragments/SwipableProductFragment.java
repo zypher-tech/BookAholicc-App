@@ -1,4 +1,4 @@
-package com.strictlyindian.rentsmart.Fragments;
+package com.bookaholicc.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,23 +17,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 
+import com.bookaholicc.Adapters.ViewpagerAdapters.ListAdapters.ImageAdapter;
+import com.bookaholicc.CustomUI.InkPageIndicator;
+import com.bookaholicc.Model.Combo;
+import com.bookaholicc.Model.Product;
+import com.bookaholicc.Model.ProductImage;
+import com.bookaholicc.R;
+import com.bookaholicc.StorageHelpers.CartHandler;
+import com.bookaholicc.StorageHelpers.DataStore;
+import com.bookaholicc.utils.BundleKey;
+import com.bookaholicc.utils.GListener;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
-import com.squareup.picasso.Picasso;
-import com.strictlyindian.rentsmart.Adapters.ComboAdapter;
-import com.strictlyindian.rentsmart.Adapters.ImageAdapter;
-import com.strictlyindian.rentsmart.CustomUI.InkPageIndicator;
-import com.strictlyindian.rentsmart.Model.Product;
-import com.strictlyindian.rentsmart.Model.ProductImage;
-import com.strictlyindian.rentsmart.R;
-import com.strictlyindian.rentsmart.utils.BundleKey;
-import com.strictlyindian.rentsmart.utils.GListener;
 
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +52,7 @@ import static android.content.ContentValues.TAG;
  *
  */
 
-public class SwipableProductFragment extends Fragment  implements GListener.Callbacks, ImageAdapter.ImageInterface {
+public class SwipableProductFragment extends Fragment  implements GListener.Callbacks,  ImageAdapter.ImageCallback {
 
 
     private static final int LOGIN_REQUEST_CODE = 2255;
@@ -75,10 +80,16 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
     @BindView(R.id.tsLikesCounter)
     TextSwitcher mSwithcer;
 
+
+
     //The heart button
     @BindView(R.id.like_button)
     LikeButton mLikeButton;
     private Context mContext;
+    //ADd to Cart
+
+    @BindView(R.id.vp_add_to_cart)
+    Button mAddtoCart;
 
 
     private static SwipableProductFragment mFragemt = null;
@@ -98,62 +109,76 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
         final GestureDetector mGdt = new GestureDetector(mContext,new GListener(this));
 
 
+        if (getArguments() != null){
+            //Arguments--> JSON ---> Model
+            Type type = new TypeToken<List<Product>>(){}.getType();
+            Gson gson = new Gson();
+            String Json = getArguments().getString(BundleKey.ARG_PRODUCT);
+            Product p = gson.fromJson(Json, type);
+        }
 
-        Log.d(TAG, "setting Trans Name : "+getArguments().getString(BundleKey.TRANS_NAME));
 
 
-
-        List<ProductImage> mList = populateImages();
-
-        ImageAdapter mAdapter = new ImageAdapter(mContext, mList ,this);
-        imagePager.setAdapter(mAdapter);
-        mPagerIndicator.setViewPager(imagePager);
-
-        mLikeButton.setOnLikeListener(new OnLikeListener() {
+        mAddtoCart.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void liked(LikeButton likeButton) {
-                mSwithcer.setText("124");
-            }
-
-            @Override
-            public void unLiked(LikeButton likeButton) {
-                mSwithcer.setText("123");
+            public void onClick(View view) {
+                addtoCart();
             }
         });
 
-
-        v.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                Log.d(TAG, "onTouch: v");
-                return false;
-            }
-        });
-
-        mRoot.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                mGdt.onTouchEvent(motionEvent);
-                return true;
-            }
-        });
-//        mList.setLayoutManager(new LinearLayoutManager(mContext));
-
-//        View  c =  getLayoutInflater(savedInstanceState).inflate(R.layout.product_container_icons,mList,true);
 
 
         return v;
+
+
+//
+//
+//
+//
+//
+//        List<Combo> mList = populateImages();
+//
+//        ImageAdapter mAdapter = new ImageAdapter(mContext, mList ,this);
+//        imagePager.setAdapter(mAdapter);
+//        mPagerIndicator.setViewPager(imagePager);
+//
+//        mLikeButton.setOnLikeListener(new OnLikeListener() {
+//            @Override
+//            public void liked(LikeButton likeButton) {
+//                mSwithcer.setText("124");
+//            }
+//
+//            @Override
+//            public void unLiked(LikeButton likeButton) {
+//                mSwithcer.setText("123");
+//            }
+//        });
+//
+//
+//        v.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                Log.d(TAG, "onTouch: v");
+//                return false;
+//            }
+//        });
+//
+//        mRoot.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                mGdt.onTouchEvent(motionEvent);
+//                return true;
+//            }
+//        });
+////        mList.setLayoutManager(new LinearLayoutManager(mContext));
+//
+////        View  c =  getLayoutInflater(savedInstanceState).inflate(R.layout.product_container_icons,mList,true);
+//
+//
+//        return v;
     }
 
-    private List<ProductImage> populateImages() {
-        List<ProductImage> mImages = new ArrayList<>();
-        mImages.add(new ProductImage(R.mipmap.fifa));
-        mImages.add(new ProductImage(R.mipmap.godofwar));
-        mImages.add(new ProductImage(R.mipmap.sapiens));
-        mImages.add(new ProductImage(R.mipmap.ac2));
-        return  mImages;
 
-            }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -218,23 +243,14 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
     }
 
 
-    public static SwipableProductFragment newInstance(Product product) {
-        Bundle b = new Bundle();
-        Gson gs = new Gson();
-        String productJson = gs.toJson(product);
-        b.putString(BundleKey.ARG_PRODUCT, productJson);
-        if (mFragemt == null) {
-            mFragemt = new SwipableProductFragment();
-        }
-        mFragemt.setArguments(b);
-        return mFragemt;
-    }
+
 
     @Override
     public void addtoCart() {
-        Log.d(TAG, "addtoCart: ");
-        Animation maAnimationUtils = AnimationUtils.loadAnimation(mContext,R.anim.cart_pulldown);
-        mRoot.startAnimation(maAnimationUtils);
+
+        //Change Button Behaviour
+
+        CartHandler.getInstance(mContext).addProductToCart(p);
 
     }
 
@@ -243,8 +259,13 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
 
     }
 
+//    @Override
+//    public void imageClicked(ProductImage p) {
+//
+//    }
+
     @Override
-    public void imageClicked(ProductImage p) {
+    public void imageClicked(int pid) {
 
     }
 }

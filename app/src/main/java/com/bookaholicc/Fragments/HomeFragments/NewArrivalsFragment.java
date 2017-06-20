@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -20,7 +21,9 @@ import com.bookaholicc.Adapters.ViewpagerAdapters.ListAdapters.NewArrivalListAda
 import com.bookaholicc.Adapters.ViewpagerAdapters.MainFragmentAdapter;
 import com.bookaholicc.Adapters.ViewpagerAdapters.SwipeAdapterNewArrivals;
 import com.bookaholicc.CustomUI.InkPageIndicator;
+import com.bookaholicc.DataHandler.HomePageDataHandler;
 import com.bookaholicc.Fragments.HomeFragement;
+import com.bookaholicc.Model.Combo;
 import com.bookaholicc.Model.Product;
 import com.bookaholicc.R;
 import com.bookaholicc.StorageHelpers.CartHandler;
@@ -44,7 +47,7 @@ import static com.bookaholicc.R.attr.layoutManager;
  * provided by {@link MainFragmentAdapter}
  */
 
-public class NewArrivalsFragment extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener, SwipeAdapterNewArrivals.ComboInterface, NewArrivalListAdapter.NewArrvialsListCallback {
+public class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArrivals.ComboInterface, NewArrivalListAdapter.NewArrvialsListCallback, HomePageDataHandler.homeDataCallbacks {
 
 
     private Context mContext;
@@ -78,7 +81,18 @@ public class NewArrivalsFragment extends Fragment implements Response.Listener<J
         //Hit the Webservice;
         //Show the Results
         //Unitll Then SHow Loading results
+        HomePageDataHandler mDataHandler = new HomePageDataHandler(getContext(),this);
+        if (HomePageDataHandler.isRequestMade()){
+                // Request Made
 
+        }
+        else{
+
+            //No Request Made
+            mDataHandler.makeRequests();
+            HomePageDataHandler.setIsRequestMade(true);
+
+        }
 /*
 
         if (cachedResultsExists()){
@@ -99,31 +113,12 @@ public class NewArrivalsFragment extends Fragment implements Response.Listener<J
         return mView;
     }
 
-    private void inflateBottom(View mInfaltedView, List<Product> mListforBottom) {
-
-
-    }
-
-    private void infalteTop(View mInfaltedView, List<Product> mListForTop) {
-
-
-    }
-
-    private void makeRequestAndStoreCache() {
-        JsonObjectRequest mNewArrivalsRequest = new JsonObjectRequest(APIUtils.HOME_ENDPOINT_NEW_ARRIALS,
-                null,this,this);
-    }
-
-    private boolean cachedResultsExists() {
-        DataStore mStore = DataStore.getStorageInstance(mContext);
-        return mStore.isNewArrivalsDataPresent();
-    }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         if (mContext != null){
             mContext = null;
+
         }
     }
 
@@ -143,44 +138,10 @@ public class NewArrivalsFragment extends Fragment implements Response.Listener<J
 
 
 
-        List<Product> mListForTop = CartHandler.getInstance(mContext).getMockProducts();
-        List<Product> mListforBottom = CartHandler.getInstance(mContext).getMockProducts();
-
-        View mInfaltedView = View.inflate(mContext,R.layout.new_arrivals_content,mRootFrame);
-        infalteTop(mInfaltedView,mListForTop);
-        /*-----------------------*/
-
-
-
-        InkPageIndicator mIndicator = (InkPageIndicator) mInfaltedView.findViewById(R.id.indicator);
-
-        SwipeAdapterNewArrivals mAdapter1 = new SwipeAdapterNewArrivals(mListForTop,mContext,this);
-        ViewPager mTopPager = (ViewPager) mInfaltedView.findViewById(R.id.home_top_pager);
-        if (mTopPager != null) {
-
-            mTopPager.setAdapter(mAdapter1);
-        }
-        if (mIndicator != null && mTopPager != null && mTopPager.isShown()) {
-
-            mIndicator.setViewPager(mTopPager);
-        }
-        /*----------------*/
-        RecyclerView mListView = (RecyclerView) mInfaltedView.findViewById(R.id.new_arrivals_list);
-        mListView.setLayoutManager(new GridLayoutManager(mContext,2));
 
 
 
 
-
-        if (mListView != null && mListView.isShown()){
-            NewArrivalListAdapter mAdapter = new NewArrivalListAdapter(mContext,mListforBottom,this);
-            mListView.setAdapter(mAdapter);
-            mListView.setNestedScrollingEnabled(false);
-            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mContext, GridLayoutManager.VERTICAL);
-            mListView.addItemDecoration(dividerItemDecoration);
-
-
-        }
     }
 
     @Override
@@ -211,15 +172,6 @@ public class NewArrivalsFragment extends Fragment implements Response.Listener<J
      *
      * */
 
-    @Override
-    public void onResponse(JSONObject response) {
-
-    }
-
-    @Override
-    public void onErrorResponse(VolleyError error) {
-
-    }
 
     @Override
     public void ComboproductClicked(Product p) {
@@ -228,6 +180,54 @@ public class NewArrivalsFragment extends Fragment implements Response.Listener<J
 
     @Override
     public void addToCart(int pos, int pid) {
+
+    }
+
+    @Override
+    public void dataLoaded(List<Product> mProductsList, List<Combo> mComboList) {
+        View mInfaltedView = null;
+        if (mRootFrame != null & mRootFrame.isShown()){
+
+             mInfaltedView = View.inflate(mContext,R.layout.new_arrivals_content,mRootFrame);
+        }
+
+
+        /*-----------------------*/
+
+
+
+        InkPageIndicator mIndicator = (InkPageIndicator) mInfaltedView.findViewById(R.id.indicator);
+
+        SwipeAdapterNewArrivals mAdapter1 = new SwipeAdapterNewArrivals(mProductsList,mContext,this);
+        ViewPager mTopPager = (ViewPager) mInfaltedView.findViewById(R.id.home_top_pager);
+        if (mTopPager != null) {
+
+            mTopPager.setAdapter(mAdapter1);
+        }
+        if (mIndicator != null && mTopPager != null && mTopPager.isShown()) {
+
+            mIndicator.setViewPager(mTopPager);
+        }
+        /*-------PREPARING FOR BOTTOM LIST---------*/
+        RecyclerView mListView = (RecyclerView) mInfaltedView.findViewById(R.id.new_arrivals_list);
+        mListView.setLayoutManager(new GridLayoutManager(mContext,2));
+
+
+
+
+
+        if (mListView != null && mListView.isShown()){
+            NewArrivalListAdapter mAdapter = new NewArrivalListAdapter(mContext,mProductsList,this);
+            mListView.setAdapter(mAdapter);
+            mListView.setNestedScrollingEnabled(false);
+            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mContext, GridLayoutManager.VERTICAL);
+            mListView.addItemDecoration(dividerItemDecoration);
+        }
+    }
+
+    @Override
+    public void noDataLoaded() {
+        Toast.makeText(mContext,"No Order Placed, Try Again..",Toast.LENGTH_LONG).show();
 
     }
 }

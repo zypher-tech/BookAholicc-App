@@ -184,6 +184,7 @@
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
             android:text="Cart"
             android:layout_height="60dp"
+            android:id="@+id/vp_add_to_cart"
             android:layout_below="@+id/vp_about_book_text_vale"
             android:layout_alignParentStart="true" />
 

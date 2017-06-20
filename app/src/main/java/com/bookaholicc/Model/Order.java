@@ -1,6 +1,6 @@
-package com.bookaholicc.DataHandler;
+package com.bookaholicc.Model;
 
-import com.bookaholicc.Model.MiniProductDescription;
+import com.bookaholicc.DataHandler.MiniProduct;
 
 import java.security.Timestamp;
 import java.util.List;

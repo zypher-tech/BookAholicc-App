@@ -1,4 +1,4 @@
-package com.strictlyindian.rentsmart.Adapters;
+package com.bookaholicc.Adapters.ViewpagerAdapters.ListAdapters;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,16 +6,18 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.bookaholicc.Fragments.SwipableProductFragment;
+import com.bookaholicc.Model.Product;
+import com.bookaholicc.utils.BundleKey;
 import com.google.gson.Gson;
-import com.strictlyindian.rentsmart.Fragments.SwipableProductFragment;
-import com.strictlyindian.rentsmart.Model.Product;
-import com.strictlyindian.rentsmart.utils.BundleKey;
+
+
 
 import java.util.List;
 
 /**
  * Created by nandhu on 18/3/17.
-// * This Adapter Provides {@link com.strictlyindian.rentsmart;
+// * This Adapter Provides
  * with a product from
  *
  *
@@ -40,12 +42,12 @@ public class ProductSwipeAdapter extends FragmentStatePagerAdapter{
 
         Bundle b = new Bundle();
         Gson gs = new Gson();
+
+        // Initiliaze the Fragment with Individual Fragments
         String productJson = gs.toJson(mProductList.get(position));
         b.putString(BundleKey.ARG_PRODUCT, productJson);
         SwipableProductFragment mFragment = new SwipableProductFragment();
         mFragment.setArguments(b);
-
-
         return mFragment;
 
     }

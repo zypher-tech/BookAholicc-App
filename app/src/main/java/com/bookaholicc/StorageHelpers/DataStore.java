@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.bookaholicc.DataHandler.MiniProduct;
 import com.bookaholicc.Model.CartModel;
+import com.bookaholicc.Model.Product;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -238,17 +240,17 @@ public class DataStore {
 
 
 
-    public List<CartModel> getCartProducts() {
-        Type type = new TypeToken<List<CartModel>>(){}.getType();
+    public List<Product> getCartProducts() {
+        Type type = new TypeToken<List<Product>>(){}.getType();
         Gson gson = new Gson();
-        List<CartModel> cartList = gson.fromJson(mSharedPrefrences.getString(CART_LIST_STRING,null), type);
+        List<Product> cartList = gson.fromJson(mSharedPrefrences.getString(CART_LIST_STRING,null), type);
         if (cartList == null){
             return null;
         }
         return cartList;
     }
 
-    public void saveCartList(List<CartModel> mCartProducts) {
+    public void saveCartList(List<Product> mCartProducts) {
         Gson gson = new Gson();
 
         String cart_list_string = gson.toJson(mCartProducts);
@@ -325,5 +327,13 @@ public class DataStore {
     public void setLastName(String vLastName) {
         editor.putString(LAST_NAME,vLastName);
         editor.apply();
+    }
+
+    public void addtoCart(Product p) {
+        MiniProduct m = new MiniProduct(p.getProductName(),p.getPid(),p.getImageURL());
+        Gson gs = new Gson();
+        String pStringToPush = gs.toJson(m);
+
+
     }
 }

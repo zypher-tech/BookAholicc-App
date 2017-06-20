@@ -1,4 +1,4 @@
-package com.strictlyindian.rentsmart.CustomUI;
+package com.bookaholicc.Activitiy;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -13,14 +13,17 @@ import android.util.Log;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 
+import com.bookaholicc.Adapters.ViewpagerAdapters.ListAdapters.ProductSwipeAdapter;
+import com.bookaholicc.Model.Product;
+import com.bookaholicc.R;
+import com.bookaholicc.StorageHelpers.CartHandler;
+import com.bookaholicc.utils.BlurBuilder;
+import com.bookaholicc.utils.BundleKey;
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
-import com.strictlyindian.rentsmart.Adapters.ProductSwipeAdapter;
-import com.strictlyindian.rentsmart.Model.Product;
-import com.strictlyindian.rentsmart.R;
-import com.strictlyindian.rentsmart.StorageHelpers.CartHandler;
-import com.strictlyindian.rentsmart.utils.BlurBuilder;
-import com.strictlyindian.rentsmart.utils.BundleKey;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import butterknife.BindView;
@@ -55,28 +58,19 @@ public class ViewProductActivity extends AppCompatActivity {
 
 
         //Get THe Product List
-//
-//        Type type = new TypeToken<List<Product>>(){}.getType();
-//        Gson gson = new Gson();
-//        String Json = getIntent().getStringExtra(BundleKey.ARG_PRODUCT_LIST);
-//        List<Product> cartList = gson.fromJson(Json,type);
-//        Log.d(TAG, String.format("Pid of First Product %d", cartList.get(0).getPid()));
-//        Log.d(TAG, "onCreate: size of products "+cartList.size());
 
-        if (getIntent() != null){
-            String trns = getIntent().getStringExtra(BundleKey.TRANS_NAME);
-            Log.d(TAG, "onCreate: trans Name: "+trns);
-            mBackDropImage.setTransitionName(trns);
-            Bitmap b = drawableToBitmap(ContextCompat.getDrawable(this, R.mipmap.godofwar));
-            Bitmap b1 = BlurBuilder.blur(this,b);
-            mBackDropImage.setImageBitmap(b1);
-            mBackDropImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        }
-        mProductsList = CartHandler.getInstance(this).getMockProducts();
+        Type type = new TypeToken<List<Product>>(){}.getType();
+        Gson gson = new Gson();
+        String Json = getIntent().getStringExtra(BundleKey.ARG_PRODUCT_LIST);
+        List<Product> productList = gson.fromJson(Json, type);
+        Log.d(TAG, String.format("Pid of First Product %d", productList.get(0).getPid()));
+        Log.d(TAG, "onCreate: size of products " + productList.size());
+
+
+
+
         //set up the Adapter
         mAdapter = new ProductSwipeAdapter(getSupportFragmentManager(), this, mProductsList);
-
-
         //set it to Adapter
         mPager.setAdapter(mAdapter);
         mPager.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -99,7 +93,24 @@ public class ViewProductActivity extends AppCompatActivity {
         });
 
 
+
+
+
     }
+//        if (getIntent() != null){
+//            String trns = getIntent().getStringExtra(BundleKey.TRANS_NAME);
+//            Log.d(TAG, "onCreate: trans Name: "+trns);
+//            mBackDropImage.setTransitionName(trns);
+//            Bitmap b = drawableToBitmap(ContextCompat.getDrawable(this, R.mipmap.fifa));
+//            Bitmap b1 = BlurBuilder.blur(this,b);
+//            mBackDropImage.setImageBitmap(b1);
+//            mBackDropImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//        }
+//        mProductsList = CartHandler.getInstance(this).getMockProducts();
+//
+//
+//
+
 
 
     public static Bitmap drawableToBitmap (Drawable drawable) {
