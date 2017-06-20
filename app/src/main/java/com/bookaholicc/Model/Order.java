@@ -13,7 +13,7 @@ import java.util.List;
 class Order  {
 
     private boolean isAccepted;
-    private List<MiniProductDescription> mList;
+    private List<MiniProduct> mList;
     private boolean orderStatus;
     private  int orderId;
     private int amount;
@@ -32,7 +32,7 @@ class Order  {
     private Timestamp returnedAt;
     private Timestamp returnCondtion;
 
-    public Order(List<MiniProductDescription> mList, int amount, int userId, String firstName, String lastName, String phoneNumber, double orderLat, double orderLon) {
+    public Order(List<MiniProduct> mList, int amount, int userId, String firstName, String lastName, String phoneNumber, double orderLat, double orderLon) {
         this.mList = mList;
         this.amount = amount;
         this.userId = userId;

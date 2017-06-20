@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+   <FrameLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <ImageView
+           android:layout_width="match_parent"
+           android:id="@+id/vp_backdrop_image"
+           android:layout_height="match_parent" />
+       <com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:id="@+id/vp_pager"
+           android:alpha="0.75"
+           app:icvp_center_page_scale_offset="30dp"
+           app:icvp_max_page_scale="0.8"
+           app:icvp_medium_scaled="true"
+           app:icvp_min_page_scale="0.5"
+           app:icvp_min_page_scale_offset="5dp"
+           app:icvp_scroll_duration="500"/>
+   </FrameLayout>
+
+
+
+</android.support.design.widget.CoordinatorLayout>
