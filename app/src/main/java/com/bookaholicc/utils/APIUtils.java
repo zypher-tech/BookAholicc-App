@@ -84,6 +84,7 @@ public class APIUtils {
 
     /*REGISTER API - Provide first name , last name , email , password*/
     public static final String  REGISTER_API = "";
+    public static final String PHONE_NUMBER = "phoneNumber";
     public static String OUR_PRICE = "ourPrice";
     public static String DURATION="duration";
     public static String IMAGE_URL ="imageURL";
@@ -92,4 +93,12 @@ public class APIUtils {
     public static String C_IMAGE_URL = "imageURL";
     public static String COMBO_DESC = "comboDescription";
 
+    public static String FIRST_NAME = "firstName";
+    public static String PRODUCTS_KEYWORD = "products";
+    public static String ORDER_LAT = "orderLat";
+    public static String ORDER_LON = "orderLon";
+    public static String AMOUNT = "amount";
+    public static String IS_ACCEPTED = "isAccepted";
+    public static String ORDER_ID = "orderId";
+    public static String ORDER_ACCEPTED = "orderInsertedAt";
 }

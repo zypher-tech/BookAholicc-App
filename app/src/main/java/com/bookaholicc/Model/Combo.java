@@ -7,8 +7,7 @@ import java.util.List;
  * The Single Model of a Combo , is Constantly Updatable
  */
 
-public class Combo
-{
+public class Combo {
 
 
 
@@ -27,6 +26,8 @@ public class Combo
         this.pricing = pricing;
         this.duration = duration;
     }
+
+
 
     public String getComboId() {
         return comboId;

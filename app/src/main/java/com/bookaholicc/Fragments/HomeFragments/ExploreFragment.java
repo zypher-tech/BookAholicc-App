@@ -192,7 +192,7 @@ public class ExploreFragment extends Fragment implements Response.ErrorListener,
             mListView.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,true));
             mGenreText.setText(genreName);
 
-        mAddingLayout.addView(cardView);
+               mAddingLayout.addView(cardView);
 
 
         }

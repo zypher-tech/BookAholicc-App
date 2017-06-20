@@ -9,7 +9,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bookaholicc.Model.Combo;
 import com.bookaholicc.Model.Product;
+import com.bookaholicc.Network.AppRequestQueue;
 import com.bookaholicc.utils.APIUtils;
+import com.google.android.gms.common.api.Api;
 import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
@@ -32,17 +34,20 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
     private Context mContext;
     private static boolean isRequestMade = false;
     private homeDataCallbacks mCallback ;
-    public HomePageDataHandler(Context mContext){
+    public HomePageDataHandler(Context mContext,homeDataCallbacks mCallback){
 
+        this.mCallback = mCallback;
         this.mContext = mContext;
-
-
 
     }
 
     public void makeRequests(){
         JsonObjectRequest mRequest = new JsonObjectRequest(Request.Method.POST, APIUtils.HOME_API,null,this,this);
+        AppRequestQueue mRequestQueue = AppRequestQueue.getInstance(mContext);
+        if (mRequestQueue != null){
+            mRequestQueue.addToRequestQue(mRequest);
 
+        }
     }
 
     @Override
@@ -63,6 +68,12 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
             JSONArray mComboArray  = response.getJSONArray("products");
             List<Product> mProductsList = getProductListFromJson(mProductsArray);
             List<Combo> mCombosList = getComboListFromJson(mComboArray);
+
+
+            //Tell Data is loaded
+            if (mCallback != null){
+                mCallback.dataLoaded(mProductsList,mCombosList);
+            }
         }
         catch (Exception e){
             Log.d(TAG, "onResponse: Exception in Parsing home");
@@ -84,10 +95,10 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
                 //Got the Object , get String Push it to List
                 mList.add(new Combo(pObj.getString(APIUtils.COMBO_ID),
                             pObj.getString(APIUtils.COMBO_NAME),
-                        pObj.getString(APIUtils.C_IMAGE_URL)
-
-
-                        ));
+                        pObj.getString(APIUtils.COMBO_DESC),
+                        pObj.getString(APIUtils.C_IMAGE_URL),
+                        pObj.getString(APIUtils.OUR_PRICE),
+                        pObj.getString((APIUtils.DURATION))));
 
             }
             return mList;
@@ -125,7 +136,10 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
                         pObj.getString(APIUtils.OUR_PRICE),
                         pObj.getString(APIUtils.DURATION),
                         pObj.getString(APIUtils.IMAGE_URL))   // Construct of Product
-                );                                              //Added to List
+                );
+
+                // Combo List
+
 
             }
             return mList;
@@ -137,6 +151,14 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
         return null;
     }
 
+
+
+
+    private  void unregisterCallback(){
+        this.mCallback = null;
+        this.mContext = null;
+
+    }
 
     public interface homeDataCallbacks{
         void dataLoaded(List<Product> mProductsList, List<Combo> mComboList);
