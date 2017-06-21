@@ -1,6 +1,7 @@
 package com.bookaholicc.Fragments.HomeFragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bookaholicc.Activitiy.ViewProductActivity;
 import com.bookaholicc.Adapters.ViewpagerAdapters.ListAdapters.NewArrivalListAdapter;
 import com.bookaholicc.Adapters.ViewpagerAdapters.MainFragmentAdapter;
 import com.bookaholicc.Adapters.ViewpagerAdapters.SwipeAdapterNewArrivals;
@@ -30,7 +32,9 @@ import com.bookaholicc.R;
 import com.bookaholicc.StorageHelpers.CartHandler;
 import com.bookaholicc.StorageHelpers.DataStore;
 import com.bookaholicc.utils.APIUtils;
+import com.bookaholicc.utils.BundleKey;
 import com.bookaholicc.utils.NetworkUtils;
+import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
@@ -49,7 +53,7 @@ import static com.bookaholicc.R.attr.logo;
  * provided by {@link MainFragmentAdapter}
  */
 
-public class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArrivals.ComboInterface, NewArrivalListAdapter.NewArrvialsListCallback, HomePageDataHandler.homeDataCallbacks {
+public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArrivals.ComboInterface, NewArrivalListAdapter.NewArrvialsListCallback, HomePageDataHandler.homeDataCallbacks {
 
 
     private Context mContext;
@@ -59,6 +63,8 @@ public class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArri
     private String TAG = "BK NEW ARRIVALS";
 
 
+
+    private List<Product> mParsedProducts;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -178,19 +184,17 @@ public class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArri
      * */
 
 
+
+
     @Override
     public void ComboproductClicked(Product p) {
 
     }
 
     @Override
-    public void addToCart(int pos, int pid) {
-
-    }
-
-    @Override
     public void dataLoaded(List<Product> mProductsList, List<Combo> mComboList) {
         View mInfaltedView = null;
+
         if (mRootFrame != null & mRootFrame.isShown()){
 
              mInfaltedView = View.inflate(mContext,R.layout.new_arrivals_content,mRootFrame);
@@ -203,7 +207,7 @@ public class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArri
 
         InkPageIndicator mIndicator = (InkPageIndicator) mInfaltedView.findViewById(R.id.indicator);
 
-        SwipeAdapterNewArrivals mAdapter1 = new SwipeAdapterNewArrivals(mProductsList,mContext,this);
+        SwipeAdapterNewArrivals mAdapter1 = new SwipeAdapterNewArrivals(mComboList,mContext,this);
         ViewPager mTopPager = (ViewPager) mInfaltedView.findViewById(R.id.home_top_pager);
         if (mTopPager != null) {
 
@@ -227,12 +231,28 @@ public class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArri
             mListView.setNestedScrollingEnabled(false);
             DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mContext, GridLayoutManager.VERTICAL);
             mListView.addItemDecoration(dividerItemDecoration);
+            mParsedProducts = mProductsList;
         }
     }
 
     @Override
     public void noDataLoaded() {
         Toast.makeText(mContext,"No Order Placed, Try Again..",Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void showProduct(NewArrivalListAdapter.NewArrivalListItem item, int pos, String pid) {
+        //First COnvert the List,
+        //Pass it as a String to View Product Activity
+        Gson gson = new Gson();
+
+        String productListString = gson.toJson(mParsedProducts);
+        Log.d(TAG, "showProduct: Converted Product List to String :"+productListString);
+        Intent i = new Intent(mContext, ViewProductActivity.class);
+        //// TODO: 20/6/17 Implement Transitions
+        i.putExtra(BundleKey.ARG_PRODUCT_LIST,productListString);
+        mContext.startActivity(i);
 
     }
 }

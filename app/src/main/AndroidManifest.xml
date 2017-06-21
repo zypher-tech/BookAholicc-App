@@ -25,6 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activitiy.ViewProductActivity"/>
         <activity android:name=".Activitiy.SplashActivity"
             android:exported="true"/>
         <activity android:name=".Activitiy.UserAboardingActivity"

@@ -1,65 +1,21 @@
 {
   "project_info": {
-    "project_number": "141636601678",
-    "firebase_url": "https://bookaholic-4.firebaseio.com",
-    "project_id": "bookaholic-4",
-    "storage_bucket": "bookaholic-4.appspot.com"
+    "project_number": "193097484074",
+    "firebase_url": "https://bookaholic-786.firebaseio.com",
+    "project_id": "bookaholic-786",
+    "storage_bucket": "bookaholic-786.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:141636601678:android:22a3a48496b24a29",
-        "android_client_info": {
-          "package_name": "com.strictlyindian.rentsmart"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "141636601678-5c91ft5lhfuk9eqpcjtjmtsc6n3ku3qb.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.strictlyindian.rentsmart",
-            "certificate_hash": "a5e29b98a47eeeae03b6a37a91b59600871fcc46"
-          }
-        },
-        {
-          "client_id": "141636601678-gc80jlf1cjaj9v13685ids97dfu83qq8.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAodtBdTm2kGaVZhiWs03CINd-yt59xYio"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "141636601678-gc80jlf1cjaj9v13685ids97dfu83qq8.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:141636601678:android:dbbcf3e567d3d587",
+        "mobilesdk_app_id": "1:193097484074:android:dbbcf3e567d3d587",
         "android_client_info": {
           "package_name": "com.bookaholicc"
         }
       },
       "oauth_client": [
         {
-          "client_id": "141636601678-2prq2t3q6rdfqdaqsnefh8lluue6u3s0.apps.googleusercontent.com",
+          "client_id": "193097484074-7vq4scmio4khn0kp7b8srbicfj8jdu97.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.bookaholicc",
@@ -67,13 +23,13 @@
           }
         },
         {
-          "client_id": "141636601678-gc80jlf1cjaj9v13685ids97dfu83qq8.apps.googleusercontent.com",
+          "client_id": "193097484074-krmri4qas7kies3dv5j01fkiadvt2a5n.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAodtBdTm2kGaVZhiWs03CINd-yt59xYio"
+          "current_key": "AIzaSyCXBZ1EK5nY0aRHuioKROTwFinps45P-hg"
         }
       ],
       "services": {
@@ -84,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "141636601678-gc80jlf1cjaj9v13685ids97dfu83qq8.apps.googleusercontent.com",
+              "client_id": "193097484074-krmri4qas7kies3dv5j01fkiadvt2a5n.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

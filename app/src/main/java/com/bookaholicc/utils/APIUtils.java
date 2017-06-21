@@ -80,6 +80,9 @@ public class APIUtils {
     /*ADD TO LIST*/
     public static final String HOME_ENDPOINT_ADD_TO_LIST = "";
 
+    public static String SAVE_TOKEN_API = "";
+
+
 
 
     /*REGISTER API - Provide first name , last name , email , password*/
@@ -101,4 +104,8 @@ public class APIUtils {
     public static String IS_ACCEPTED = "isAccepted";
     public static String ORDER_ID = "orderId";
     public static String ORDER_ACCEPTED = "orderInsertedAt";
+    public static String USER_ID = "userId";
+    public static String TOKEN_ID = "tokenId";
+    public static String PROFILE_ID = "profileId";
+    public static String FROM_WHERE = "fromWhere";
 }

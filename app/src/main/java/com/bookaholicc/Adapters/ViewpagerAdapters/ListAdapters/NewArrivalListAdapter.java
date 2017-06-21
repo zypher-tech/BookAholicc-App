@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bookaholicc.CustomUI.WhitenyBooksFont;
@@ -58,10 +59,22 @@ public class NewArrivalListAdapter extends RecyclerView.Adapter<NewArrivalListAd
                 .centerCrop()
                 .into(holder.mProductImage);
 
-        holder.mAuthorName.setText(mList.get(position).getAuthorName());
-        holder.mProductName.setText(mList.get(position).getProductName());
-        holder.mPriceText.setText(mList.get(position).getOru_price());
-        holder.mCompleteDuration.setText(mList.get(position).getDuration());
+
+        final int pos = position;
+        holder.mAuthorName.setText(mList.get(pos).getAuthorName());
+        holder.mProductName.setText(mList.get(pos).getProductName());
+        final String pid = mList.get(pos).getPid();
+        holder.mPriceText.setText(mList.get(pos).getOru_price());
+        holder.mCompleteDuration.setText(mList.get(pos).getDuration());
+        holder.mRootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mCallback != null){
+                    mCallback.showProduct(holder,pos,pid);
+                }
+            }
+        });
+
     }
 
 
@@ -80,10 +93,11 @@ public class NewArrivalListAdapter extends RecyclerView.Adapter<NewArrivalListAd
         WhitenyBooksFont mAuthorName;
         WhitenyBooksFont mPriceText;
         WhitenyBooksFont mCompleteDuration;
+        RelativeLayout mRootView;
 
         public NewArrivalListItem(View itemView) {
             super(itemView);
-
+            mRootView  = (RelativeLayout)itemView.findViewById(R.id.na_item_root);
             mProductImage = (ImageView) itemView.findViewById(R.id.p_item_image);
             mProductName = (WhitenyBooksFont) itemView.findViewById(R.id.p_item_pname);
             mAuthorName = (WhitenyBooksFont) itemView.findViewById(R.id.p_item_addn_info);
@@ -93,6 +107,6 @@ public class NewArrivalListAdapter extends RecyclerView.Adapter<NewArrivalListAd
     }
 
     public interface NewArrvialsListCallback {
-        void addToCart(int pos, int pid);
+        void showProduct(NewArrivalListItem item ,int pos, String pid);
     }
 }

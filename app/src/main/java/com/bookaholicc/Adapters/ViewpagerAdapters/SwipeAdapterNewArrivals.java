@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bookaholicc.Model.Combo;
 import com.squareup.picasso.Picasso;
 import com.bookaholicc.Model.Product;
 import com.bookaholicc.utils.ScreenUtil;
@@ -31,7 +32,7 @@ public class SwipeAdapterNewArrivals extends PagerAdapter {
 
 
 
-    private List<Product> mList;
+    private List<Combo> mList;
     private Context mContext;
     private ComboInterface mCallback ;
 
@@ -65,25 +66,18 @@ public class SwipeAdapterNewArrivals extends PagerAdapter {
         ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.image_view_land, container, false);
         ButterKnife.bind(this, layout);
         ImageView image = (ImageView) layout.findViewById(R.id.top_image);
-        Picasso.with(mContext).load(R.mipmap.bookaholic)
+        Picasso.with(mContext).load(mList.get(position).getImageURL())
                 .resize(ScreenUtil.getScreenWidth(mContext),ScreenUtil.getScreenHeight(mContext))
                 .centerInside()
                 .transform(new RoundedCornersTransformation(15,5))
                 .into(image);
         container.addView(layout);
-       final Product p = mList.get(position);
-        image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mCallback != null){
-                    mCallback.ComboproductClicked(p);
-                }
-            }
-        });
+
+
          return layout;
     }
 
-    public SwipeAdapterNewArrivals(List<Product> mList, Context mContext, ComboInterface mCallback) {
+    public SwipeAdapterNewArrivals(List<Combo> mList, Context mContext, ComboInterface mCallback) {
         this.mList = mList;
         this.mContext = mContext;
         this.mCallback = mCallback;

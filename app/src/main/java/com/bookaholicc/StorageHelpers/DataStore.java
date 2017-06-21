@@ -76,6 +76,8 @@ public class DataStore {
     private String IS_WISH_LIST_SAVED = "WISH";
     private String IS_LOC_FIRST_TIME = "LOCATION_FLAG";
     private String GCMKey = "GCM_KEY";
+    private String TOKEN_SAVED = "IS_TOKEN_SAVED";
+    private String TOKEN ="TOKE_ID";
 
     public static synchronized DataStore getStorageInstance(Context context) {
         if (mStore == null) {
@@ -335,5 +337,26 @@ public class DataStore {
         String pStringToPush = gs.toJson(m);
 
 
+    }
+
+    public void setTokenSaved(boolean b) {
+        editor.putBoolean(TOKEN_SAVED,b);
+        editor.apply();
+
+    }
+
+
+    public boolean isTokenSaved() {
+        return mSharedPrefrences.getBoolean(TOKEN_SAVED,false);
+    }
+
+    public void saveToken(String tokenId) {
+        editor.putString(TOKEN,tokenId);
+        editor.apply();
+
+    }
+
+    public String getToken() {
+        return mSharedPrefrences.getString(TOKEN,null);
     }
 }

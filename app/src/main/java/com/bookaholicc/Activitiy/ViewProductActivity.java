@@ -19,9 +19,11 @@ import com.bookaholicc.R;
 import com.bookaholicc.StorageHelpers.CartHandler;
 import com.bookaholicc.utils.BlurBuilder;
 import com.bookaholicc.utils.BundleKey;
+import com.bookaholicc.utils.ScreenUtil;
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -54,7 +56,7 @@ public class ViewProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_product);
         ButterKnife.bind(this);
-        Log.d(TAG, "Inside View Product Setting Up Pager ");
+        Log.d(TAG, "Inside View Product Setting Up Pager, and getting Product List String  ");
 
 
         //Get THe Product List
@@ -63,14 +65,14 @@ public class ViewProductActivity extends AppCompatActivity {
         Gson gson = new Gson();
         String Json = getIntent().getStringExtra(BundleKey.ARG_PRODUCT_LIST);
         List<Product> productList = gson.fromJson(Json, type);
-        Log.d(TAG, String.format("Pid of First Product %d", productList.get(0).getPid()));
+
         Log.d(TAG, "onCreate: size of products " + productList.size());
 
 
 
 
         //set up the Adapter
-        mAdapter = new ProductSwipeAdapter(getSupportFragmentManager(), this, mProductsList);
+        mAdapter = new ProductSwipeAdapter(getSupportFragmentManager(), this, productList);
         //set it to Adapter
         mPager.setAdapter(mAdapter);
         mPager.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -93,22 +95,28 @@ public class ViewProductActivity extends AppCompatActivity {
         });
 
 
+        Picasso.with(this)
+                .load(R.mipmap.fifa)
+                .resize(ScreenUtil.getScreenWidth(this),ScreenUtil.getScreenHeight(this))
+                .centerCrop()
+                .into(mBackDropImage);
+
+
+
+
+
+
+
+
+
+
 
 
 
     }
-//        if (getIntent() != null){
-//            String trns = getIntent().getStringExtra(BundleKey.TRANS_NAME);
-//            Log.d(TAG, "onCreate: trans Name: "+trns);
-//            mBackDropImage.setTransitionName(trns);
-//            Bitmap b = drawableToBitmap(ContextCompat.getDrawable(this, R.mipmap.fifa));
-//            Bitmap b1 = BlurBuilder.blur(this,b);
-//            mBackDropImage.setImageBitmap(b1);
-//            mBackDropImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//        }
-//        mProductsList = CartHandler.getInstance(this).getMockProducts();
 //
 //
+        //
 //
 
 

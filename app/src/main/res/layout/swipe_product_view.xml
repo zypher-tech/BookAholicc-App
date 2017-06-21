@@ -4,206 +4,213 @@
     android:layout_width="match_parent"
     android:id="@+id/vp_root"
     android:layout_height="wrap_content">
-
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-       <FrameLayout
-           android:layout_width="match_parent"
-           android:id="@+id/top_holder"
-           android:layout_height="160dp">
-           <android.support.v4.view.ViewPager
-               android:id="@+id/vp_image_pager"
-               android:paddingTop="2dp"
-               android:layout_width="match_parent"
-               android:layout_height="160dp" />
-           <com.strictlyindian.rentsmart.CustomUI.InkPageIndicator
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:id="@+id/top_holder"
+                android:layout_height="160dp">
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_image_pager"
+                    android:paddingTop="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp" />
+                <com.bookaholicc.CustomUI.InkPageIndicator
 
-               android:id="@+id/top_indicator"
-               android:layout_width="match_parent"
+                    android:id="@+id/top_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="@dimen/padding_normal"
+                    app:pageIndicatorColor="@color/material_grey300"
+                    app:currentPageIndicatorColor="@color/my_black" />
+            </FrameLayout>
 
-               android:layout_height="wrap_content"
-               android:layout_gravity="bottom"
-               android:layout_marginBottom="20dp"
-               android:layout_marginTop="@dimen/padding_normal"
-               app:pageIndicatorColor="@color/material_grey300"
-               app:currentPageIndicatorColor="@color/my_black" />
-       </FrameLayout>
-
-        <TextView
-            android:id="@+id/vp_pname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/top_holder"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="32dp"
-            android:text="ProductName"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/vp_addln_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/tsLikesCounter"
-            android:layout_alignStart="@+id/vp_pname"
-            android:layout_below="@+id/vp_pname"
-            android:text="additional Info"
-            android:textSize="18sp" />
-
-        <com.like.LikeButton
-            android:id="@+id/like_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/vp_pname"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/vp_pname"
-
-            app:anim_scale_factor="2"
-            app:circle_end_color="@color/material_purple700"
-            app:circle_start_color="@color/colorPrimary"
-            app:dots_primary_color="@color/colorAccent"
-            app:dots_secondary_color="@color/material_yellow600"
-            app:icon_size="25dp"
-
-            app:liked="false" />
-
-
-        <TextSwitcher
-            android:id="@+id/tsLikesCounter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/like_button"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:inAnimation="@anim/slide_in_likes_counter"
-            android:outAnimation="@anim/slide_out_likes_counter">
-
-            <TextView
+            <com.bookaholicc.CustomUI.WhitenyBooksFont
+                android:id="@+id/vp_pname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="123"
-                android:textColor="@color/cardview_dark_background"
-                android:textSize="16sp" />
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/top_holder"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="32dp"
+                android:text="ProductName"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textSize="22sp"
+                android:layout_toStartOf="@+id/tsLikesCounter" />
 
-            <TextView
+            <com.bookaholicc.CustomUI.WhitenyBooksFont
+                android:id="@+id/vp_addln_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/tsLikesCounter"
+                android:layout_alignStart="@+id/vp_pname"
+                android:layout_below="@+id/vp_pname"
+                android:text="additional Info"
+                android:textSize="18sp"
+                android:layout_toStartOf="@+id/like_button" />
+
+            <com.like.LikeButton
+                android:id="@+id/like_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/vp_pname"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/vp_pname"
+
+                app:anim_scale_factor="2"
+                app:circle_end_color="@color/material_purple700"
+                app:circle_start_color="@color/colorPrimary"
+                app:dots_primary_color="@color/colorAccent"
+                app:dots_secondary_color="@color/material_yellow600"
+                app:icon_size="25dp"
+
+                app:liked="false" />
+
+
+            <TextSwitcher
+                android:id="@+id/tsLikesCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/like_button"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:inAnimation="@anim/slide_in_likes_counter"
+                android:outAnimation="@anim/slide_out_likes_counter">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="123"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="16sp" />
+            </TextSwitcher>
+
+            <View
+                android:id="@+id/vp_div"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/vp_addln_info"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/material_grey400" />
+
+
+
+            <com.bookaholicc.CustomUI.WhitenyBooksFont
+                android:id="@+id/vp_price_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="112"
+                android:textSize="18sp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+
+                android:layout_below="@+id/pv_avail_text"
+                android:layout_alignStart="@+id/vp_div_2" />
+
+            <com.bookaholicc.CustomUI.WhitenyBooksFont
+                android:id="@+id/vp_time_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 Weeks"
+                android:layout_below="@+id/vp_price_text"
+                android:layout_alignStart="@+id/vp_price_text" />
+
+            <TextView
+                android:id="@+id/pv_avail_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/vp_div"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
                 android:gravity="center"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:textColor="@color/cardview_dark_background"
+                android:text="Available"
+                android:textColor="@color/material_green700"
                 android:textSize="16sp" />
-        </TextSwitcher>
 
-        <View
-            android:id="@+id/vp_div"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/vp_addln_info"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/material_grey400" />
+            <View
+                android:id="@+id/vp_div_2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/vp_time_text"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/material_grey400" />
 
+            <TextView
+                android:id="@+id/vp_about_book_text"
 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/vp_addln_info"
+                android:layout_below="@+id/vp_time_text"
+                android:layout_marginTop="8dp"
+                android:text="About the Book"
+                android:textSize="12sp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_below="@id/vp_about_book_text"
+                android:layout_marginTop="2dp"
 
-        <TextView
-            android:id="@+id/vp_price_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="112"
-            android:textSize="18sp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="16sp"
+                android:id="@+id/vp_about_book_text_vale"
+                android:maxLines="2"
+                android:layout_marginBottom="2dp"
+                android:ellipsize="end"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/vp_about_book_text"
+                android:layout_alignEnd="@+id/vp_div_2" />
 
-            android:layout_below="@+id/pv_avail_text"
-            android:layout_alignStart="@+id/vp_div_2" />
+            <Button
+                android:layout_width="match_parent"
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                android:text="Cart"
+                android:layout_height="wrap_content"
+                android:id="@+id/vp_add_to_cart"
+                android:layout_below="@+id/vp_about_book_text_vale"
+                android:layout_alignParentStart="true" />
 
-        <TextView
-            android:id="@+id/vp_time_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2 Weeks"
-            android:layout_below="@+id/vp_price_text"
-            android:layout_alignStart="@+id/vp_price_text" />
+            <com.bookaholicc.CustomUI.WhitenyBooksFont
+                android:id="@+id/textView10"
+                android:maxWidth="80dp"
+                android:maxLines="3"
 
-        <TextView
-            android:id="@+id/pv_avail_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/vp_div"
-            android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp"
-            android:gravity="center"
-            android:text="Available"
-            android:textColor="@color/material_green700"
-            android:textSize="16sp" />
+                android:gravity="center"
 
-        <View
-            android:id="@+id/vp_div_2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/vp_time_text"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginTop="2dp"
-            android:background="@color/material_grey400" />
-
-        <TextView
-            android:id="@+id/vp_about_book_text"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/vp_addln_info"
-            android:layout_below="@+id/vp_time_text"
-            android:layout_marginTop="8dp"
-            android:text="About the Book"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_below="@id/vp_about_book_text"
-            android:layout_marginTop="2dp"
-            android:text="Hi This is a Really Long Book Title and you may want to See thta this is being Done so that finnly"
-            android:textSize="16sp"
-            android:id="@+id/vp_about_book_text_vale"
-            android:maxLines="2"
-            android:layout_marginBottom="2dp"
-            android:ellipsize="end"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/vp_about_book_text"
-            android:layout_alignEnd="@+id/vp_div_2" />
-
-        <Button
-            android:layout_width="match_parent"
-            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-            android:text="Cart"
-            android:layout_height="60dp"
-            android:id="@+id/vp_add_to_cart"
-            android:layout_below="@+id/vp_about_book_text_vale"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:maxWidth="80dp"
-            android:maxLines="3"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
-            android:gravity="center"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Crime &amp; Thriller"
-            android:layout_alignEnd="@+id/vp_div_2"
-            android:layout_below="@+id/pv_avail_text"
-            android:layout_above="@+id/vp_div_2" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crime &amp; Thriller"
+                android:layout_alignEnd="@+id/vp_div_2"
+                android:layout_below="@+id/pv_avail_text"
+                android:layout_above="@+id/vp_div_2" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+
 
 
 </android.support.v7.widget.CardView>
