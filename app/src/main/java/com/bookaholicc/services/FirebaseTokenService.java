@@ -20,8 +20,8 @@ import java.util.Objects;
 /**
  * Created by nandhu on 21/6/17.
  * A Token iS Generated and send to Server use DataStore to track the Sent Status
- * Please see {@linkplain https://firebase.google.com/docs/cloud-messaging/android/client}
- * and {@linkplain  https://github.com/firebase/quickstart-android/blob/master/messaging/app/src/main/java/com/google/firebase/quickstart/fcm/MyFirebaseInstanceIDService.java#L35-L45}
+ * Please see { https://firebase.google.com/docs/cloud-messaging/android/client}
+ * and {  https://github.com/firebase/quickstart-android/blob/master/messaging/app/src/main/java/com/google/firebase/quickstart/fcm/MyFirebaseInstanceIDService.java#L35-L45}
  */
 
 public class FirebaseTokenService extends FirebaseInstanceIdService implements Response.ErrorListener, Response.Listener<JSONObject> {
