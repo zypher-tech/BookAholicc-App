@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -21,6 +24,9 @@ import com.bookaholicc.Adapters.CartAdapter;
 import com.bookaholicc.Model.Product;
 import com.bookaholicc.R;
 import com.bookaholicc.StorageHelpers.CartHandler;
+import com.bookaholicc.StorageHelpers.DataStore;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -33,7 +39,7 @@ import butterknife.ButterKnife;
  * Shows Cart Products -- Uses {@link CartHandler} to provide with List of Products that the User has Added
  */
 
-public class CartFragment extends Fragment implements CartAdapter.CartCallbacks {
+public class CartFragment extends Fragment implements CartAdapter.CartCallbacks, CompoundButton.OnCheckedChangeListener {
 
 
 
@@ -59,6 +65,7 @@ public class CartFragment extends Fragment implements CartAdapter.CartCallbacks 
 
     public List<Product> mCartList;
     private String TAG = "CARTFRAGMENT";
+    private boolean isDefaultChecked = false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -99,10 +106,40 @@ public class CartFragment extends Fragment implements CartAdapter.CartCallbacks 
 
         if (mCartRoot != null){
             try {
+
+
+                // Inflate The views by Showing Products
                 mCartRoot.removeAllViews();
-                cartListView = LayoutInflater.from(mContext).inflate(R.layout.recyler_view,mCartRoot,false);
+                cartListView = LayoutInflater.from(mContext).inflate(R.layout.cart_view,mCartRoot,false);
                 RecyclerView mList = (RecyclerView) cartListView.findViewById(R.id.list);
+
+                // Initilized Top Cards values
+                TextView mProductsCount = (TextView) cartListView.findViewById(R.id.cart_view_product_count);
+                TextView mAmount = (TextView) cartListView.findViewById(R.id.cart_view_amount_value);
+                Button mPlaceOrder = (Button) cartListView.findViewById(R.id.place_order_button);
+                mProductsCount.setText(mCartList.size());
+
+                CheckBox mDefaultChekcbox = (CheckBox) cartListView.findViewById(R.id.cart_view_check_box);
+
+                // Check whether Locatin exisits or not
+                DataStore mStore = DataStore.getStorageInstance(mContext);
+                if (mStore.isFirstTime()){
+
+                    // change the Text to Select delivery Location
+                    mDefaultChekcbox.setText("Select Default Delivery Location");
+
+                }
+                else{
+                    //Leave i
+                }
+
+
+
+
+                String totalAmount = getAmount(mCartList);
+                mAmount.setText(totalAmount);
                 CartAdapter mAdapter = new CartAdapter(mCartList,mContext,this);
+
                 mList.setLayoutManager(new LinearLayoutManager(mContext));
                 mList.setAdapter(mAdapter);
             }
@@ -111,6 +148,27 @@ public class CartFragment extends Fragment implements CartAdapter.CartCallbacks 
             }
         }
 
+    }
+
+    private void placeOrder() {
+        //Here are The List of products
+        //Check whether Check box Check or Not
+        //Check whether Location has been saved on not
+
+        if (isDefaultChecked){
+            //check whetehr Lat lng Exists or Not
+        }
+
+
+    }
+
+    private String getAmount(List<Product> mCartList) {
+        String totalSum ="";
+        for (int i=0;i<mCartList.size();i++){
+            totalSum = totalSum + mCartList.get(i).getOru_price();
+        }
+
+        return totalSum;
     }
 
 
@@ -181,5 +239,23 @@ public class CartFragment extends Fragment implements CartAdapter.CartCallbacks 
     @Override
     public void removeProduct(int pos, Product p) {
 
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+        // IF First Time Checked then it is
+        // Then show Map Picker Activity
+        if (compoundButton.getId() == R.id.cart_view_check_box && b){
+            //Check Box Clicked
+            isDefaultChecked = b;
+
+        }
+        else{
+
+            isDefaultChecked = false;
+
+
+        }
     }
 }
