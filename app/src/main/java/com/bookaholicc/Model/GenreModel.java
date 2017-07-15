@@ -1,5 +1,7 @@
 package com.bookaholicc.Model;
 
+import com.bookaholicc.DataHandler.MiniProduct;
+
 import java.util.List;
 
 /**
@@ -9,11 +11,11 @@ import java.util.List;
 
 public class GenreModel {
     private String genreName;
-    private String genreId;
-    private List<Product> mList;
+    private int genreId;
+    private List<MiniProduct> mList;
 
 
-    public GenreModel(String genreName, String genreId, List<Product> mList) {
+    public GenreModel(String genreName, int genreId, List<MiniProduct> mList) {
         this.genreName = genreName;
         this.genreId = genreId;
         this.mList = mList;
@@ -27,19 +29,19 @@ public class GenreModel {
         this.genreName = genreName;
     }
 
-    public String getGenreId() {
+    public int getGenreId() {
         return genreId;
     }
 
-    public void setGenreId(String genreId) {
+    public void setGenreId(int genreId) {
         this.genreId = genreId;
     }
 
-    public List<Product> getProductList() {
+    public List<MiniProduct> getProductList() {
         return mList;
     }
 
-    public void setmList(List<Product> mList) {
+    public void setmList(List<MiniProduct> mList) {
         this.mList = mList;
     }
 }

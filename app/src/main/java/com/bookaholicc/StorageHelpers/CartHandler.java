@@ -145,4 +145,12 @@ public class CartHandler  {
     }
 
 
+    public List<Combo> getMockCombo() {
+        List<Combo> mList = new ArrayList<>();
+        mList.add(new Combo(4,"A Combo ","Some Description ","",300,"2 Weeks"));
+        mList.add(new Combo(4,"A Combo ","Some Description ","",300,"2 Weeks"));
+        mList.add(new Combo(4,"A Combo ","Some Description ","",300,"2 Weeks"));
+        mList.add(new Combo(4,"A Combo ","Some Description ","",300,"2 Weeks"));
+        return mList;
+    }
 }

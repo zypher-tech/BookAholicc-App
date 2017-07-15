@@ -63,7 +63,7 @@ public class NewArrivalListAdapter extends RecyclerView.Adapter<NewArrivalListAd
         final int pos = position;
         holder.mAuthorName.setText(mList.get(pos).getAuthorName());
         holder.mProductName.setText(mList.get(pos).getProductName());
-        final String pid = mList.get(pos).getPid();
+        final int pid = mList.get(pos).getPid();
         holder.mPriceText.setText(mList.get(pos).getOru_price());
         holder.mCompleteDuration.setText(mList.get(pos).getDuration());
         holder.mRootView.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +107,6 @@ public class NewArrivalListAdapter extends RecyclerView.Adapter<NewArrivalListAd
     }
 
     public interface NewArrvialsListCallback {
-        void showProduct(NewArrivalListItem item ,int pos, String pid);
+        void showProduct(NewArrivalListItem item , int pos, int pid);
     }
 }

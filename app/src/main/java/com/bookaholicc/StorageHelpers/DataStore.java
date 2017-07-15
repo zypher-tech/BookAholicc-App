@@ -100,8 +100,14 @@ public class DataStore {
     }
 
 
-    public  String getUserId() {
-        return mSharedPrefrences.getString(USER_ID,null);
+    public  void setUserId(int userId) {
+        editor.putInt(USER_ID,userId);
+        editor.apply();
+
+    }
+
+    public  int getUserId() {
+        return mSharedPrefrences.getInt(USER_ID,0);
     }
 
     public void setEmailId(String emailIdTag) {
@@ -217,7 +223,16 @@ public class DataStore {
     }
 
 
-//
+
+    public void saveLocation(double lat,double lon) {
+
+        //means Location is saved , therefore ,location is not being selected for First time
+        editor.putFloat(USER_LAT, (float) lat);
+        editor.putFloat(USER_LON, (float) lon);
+        editor.commit();
+    }
+
+
 //
 //    public void saveUserLocation(Place place) {
 //        editor.putString(USER_LAT, String.valueOf(place.getLatLng().latitude));
@@ -226,6 +241,15 @@ public class DataStore {
 //        editor.putString(USER_PLACE_NAME, (String) place.getName());
 //        editor.commit();
 //    }
+
+
+    public float getUserLat() {
+        return mSharedPrefrences.getFloat(USER_LAT, (float) 0);
+    }
+
+    public float getUserLon(){
+        return mSharedPrefrences.getFloat(USER_LON, (float) 0);
+    }
 
     public void setLocationSaved(boolean b) {
 
@@ -332,7 +356,7 @@ public class DataStore {
     }
 
     public void addtoCart(Product p) {
-        MiniProduct m = new MiniProduct(p.getProductName(),p.getPid(),p.getImageURL());
+        MiniProduct m = new MiniProduct(p.getProductName(),p.getImageURL(),p.getPid());
         Gson gs = new Gson();
         String pStringToPush = gs.toJson(m);
 

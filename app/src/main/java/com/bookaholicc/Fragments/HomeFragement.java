@@ -46,18 +46,17 @@ public class HomeFragement extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.home_fragment, container, false);
         ButterKnife.bind(this, v);
-
-
         setUpPager();
         return v;
     }
 
 
     private void setUpPager() {
+
+
         mAdapter = new MainFragmentAdapter(getChildFragmentManager());
         mPager.setAdapter(mAdapter);
         mTab.setTitles(pageTitles);
-
         mTab.setViewPager(mPager);
 
 

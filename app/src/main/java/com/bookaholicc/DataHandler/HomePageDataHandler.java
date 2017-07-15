@@ -1,12 +1,16 @@
 package com.bookaholicc.DataHandler;
 
+import android.app.IntentService;
 import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bookaholicc.Fragments.HomeFragments.NewArrivalsFragment;
 import com.bookaholicc.Model.Combo;
 import com.bookaholicc.Model.Product;
 import com.bookaholicc.Network.AppRequestQueue;
@@ -33,13 +37,30 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
     private static final String TAG = "BK HOMEDATA";
     private Context mContext;
     private static boolean isRequestMade = false;
-    private homeDataCallbacks mCallback ;
-    public HomePageDataHandler(Context mContext,homeDataCallbacks mCallback){
+    private homeDataCallbacks mCallback;
 
-        this.mCallback = mCallback;
-        this.mContext = mContext;
-
+    public HomePageDataHandler(Context context, homeDataCallbacks mCalbac) {
+        this.mContext = context;
+        this.mCallback = mCalbac;
     }
+
+    /**
+     * Creates an IntentService.  Invoked by your subclass's constructor.
+     *
+
+     */
+
+//    public HomePageDataHandler(Context mContext,homeDataCallbacks mCallback){
+//
+//        this.mCallback = mCallback;
+//        this.mContext = mContext;
+//
+//    }
+
+
+
+
+
 
     public void makeRequests(){
         Log.d(TAG, "making Request");
@@ -67,8 +88,8 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
         try {
             JSONArray mProductsArray = response.getJSONArray("products");
             JSONArray mComboArray  = response.getJSONArray("combos");
-            Log.d(TAG, "onResponse: Products Array "+mProductsArray.toString());
-            Log.d(TAG, "onResponse: Combo Array "+mComboArray.toString());
+
+
             List<Product> mProductsList = getProductListFromJson(mProductsArray);
             List<Combo> mCombosList = getComboListFromJson(mComboArray);
 
@@ -88,7 +109,7 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
 
         //Make Sure not more than 7
         int productCount = mComboArray.length();
-        Log.d(TAG, "getComboListFromJson: ArrY Size: "+productCount);
+
         List<Combo> mList = new ArrayList<>(productCount);
         try {
             for (int i = 0; i < productCount; i++) {
@@ -96,7 +117,7 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
                 // Get the Oject Turn It to String
                 JSONObject pObj = null;
                 pObj = mComboArray.getJSONObject(i);
-                Log.d(TAG, "getComboListFromJson: Singel Object "+pObj);
+
                 if (pObj != null){
 
                     //Got the Object , get String Push it to List
@@ -139,12 +160,12 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
                     JSONObject pObj = null;
                     // Get the Oject Turn It to String
                     pObj = mProductsArray.getJSONObject(i);
-                    Log.d(TAG, "getProductListFromJson Product Json " + pObj);
+
                     if (pObj != null) {
                         //Got the Object , get String Push it to List
                         try {
 
-                            mList.add(new Product(pObj.getString(APIUtils.PID),
+                            mList.add(new Product(pObj.getInt(APIUtils.PID),
                                     pObj.getString(APIUtils.PRODUCT_NAME),
                                     pObj.getString(APIUtils.PRODUCT_DESC),
                                     pObj.getString(APIUtils.AUTHOR_NAME),
@@ -199,6 +220,7 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
     public static void setIsRequestMade(boolean isRequestMade) {
         HomePageDataHandler.isRequestMade = isRequestMade;
     }
+
 
     public interface homeDataCallbacks{
         void dataLoaded(List<Product> mProductsList, List<Combo> mComboList);

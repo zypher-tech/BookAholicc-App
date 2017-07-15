@@ -21,7 +21,7 @@ public class APIUtils {
 
 
     /* HOME _ POPULAR*/
-    public static final String HOME_ENDPOINT_POPULAR = "";
+    public static final String HOME_ENDPOINT_GENRE = "https://us-central1-bookaholic-786.cloudfunctions.net/genreViewer";
 
 
 
@@ -34,6 +34,7 @@ public class APIUtils {
 
         //The Keys Assciated with that time
     public static final String PID = "pid";
+    public static final String  PRODUCT_NAME_1 = "productName";
     public static final String PRODUCT_NAME = "pName";
     public static final String PRODUCT_DESC = "productDescription";
     public static final String AUTHOR_NAME = "authorName";
@@ -79,6 +80,7 @@ public class APIUtils {
 
     /*ADD TO LIST*/
     public static final String HOME_ENDPOINT_ADD_TO_LIST = "";
+    public static final String  PRICE = "price";
 
     public static String SAVE_TOKEN_API = "";
 
@@ -108,4 +110,6 @@ public class APIUtils {
     public static String TOKEN_ID = "tokenId";
     public static String PROFILE_ID = "profileId";
     public static String FROM_WHERE = "fromWhere";
+    public static String GENRE_ID = "genreId";
+    public static String GENRE_NAME = "genreName";
 }

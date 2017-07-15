@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bookaholicc.CustomUI.WhitenyBooksFont;
+import com.bookaholicc.DataHandler.MiniProduct;
 import com.bookaholicc.Model.Product;
 import com.bookaholicc.R;
 
@@ -24,11 +25,11 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ho
 
 
     private Context mContext;
-    private List<Product> mList;
+    private List<MiniProduct> mList;
     private Horizontalcallback mCallback;
 
 
-    public HorizontalAdapter(Context mContext, List<Product> mList, Horizontalcallback mCallback) {
+    public HorizontalAdapter(Context mContext, List<MiniProduct> mList, Horizontalcallback mCallback) {
         this.mContext = mContext;
         this.mList = mList;
         this.mCallback = mCallback;

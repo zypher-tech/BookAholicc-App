@@ -91,19 +91,19 @@ public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArr
         //Show the Results
         //Unitll Then SHow Loading results
         HomePageDataHandler mDataHandler = new HomePageDataHandler(getContext(),this);
-        if (HomePageDataHandler.isRequestMade()){
-                // Request Made
-
-
-        }
-        else{
-
-            //No Request Made
+//        if (HomePageDataHandler.isRequestMade()){
+//                // Request Made
+//
+//
+//        }
+//        else{
+//
+//            //No Request Made
 
             mDataHandler.makeRequests();
 
 
-        }
+//        }
 /*
 
         if (cachedResultsExists()){
@@ -242,7 +242,7 @@ public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArr
     }
 
     @Override
-    public void showProduct(NewArrivalListAdapter.NewArrivalListItem item, int pos, String pid) {
+    public void showProduct(NewArrivalListAdapter.NewArrivalListItem item, int pos, int pid) {
         //First COnvert the List,
         //Pass it as a String to View Product Activity
         Gson gson = new Gson();

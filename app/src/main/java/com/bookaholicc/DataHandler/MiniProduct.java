@@ -9,12 +9,20 @@ package com.bookaholicc.DataHandler;
 public class MiniProduct {
     private String productName;
     private String imageURL;
-    private String pid;
+    private int pid;
+    int price;
 
-    public MiniProduct(String productName, String imageURL, String pid) {
+    public MiniProduct(String productName, String imageURL , int pid) {
         this.productName = productName;
         this.imageURL = imageURL;
         this.pid = pid;
+    }
+
+    public MiniProduct(String productName, String imageURL, int pid, int price) {
+        this.productName = productName;
+        this.imageURL = imageURL;
+        this.pid = pid;
+        this.price = price;
     }
 
     public String getProductName() {
@@ -33,11 +41,11 @@ public class MiniProduct {
         this.imageURL = imageURL;
     }
 
-    public String getPid() {
+    public int getPid() {
         return pid;
     }
 
-    public void setPid(String pid) {
+    public void setPid(int pid) {
         this.pid = pid;
     }
 }

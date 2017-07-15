@@ -29,7 +29,7 @@ public class Product {
     private final String publisherName;
     // Generic attributes
     /*Product Id*/
-    private String pid;
+    private int pid;
 
     /*Product name*/
     private String productName;
@@ -68,13 +68,13 @@ public class Product {
 
     private String quantity;
 
-    public Product(String pid, String productName,
+    public Product(int pid, String productName,
                    String productDesc, String auhtorName,
                    String publisherName, String mrp,
                    String isTopRated, String isBestSeller,
                    String bookSummary, String base_category,
                    String sub_category, String our_price,
-                   String duration,String iamgeUrl) {
+                   String duration, String iamgeUrl) {
 
 
 
@@ -113,11 +113,11 @@ public class Product {
         return publisherName;
     }
 
-    public String getPid() {
+    public int getPid() {
         return pid;
     }
 
-    public void setPid(String pid) {
+    public void setPid(int pid) {
         this.pid = pid;
     }
 

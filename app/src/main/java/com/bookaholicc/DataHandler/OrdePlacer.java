@@ -51,7 +51,7 @@ public class OrdePlacer implements Response.ErrorListener, Response.Listener<JSO
             for (int i = 0;i<mProducts.size();i++){
 
 
-                    String  pid = mProducts.get(i).getPid();
+                    int pid = mProducts.get(i).getPid();
 
                 //Adding to the total Products
                     totalSum = Integer.parseInt(mProducts.get(i).getPrice());
@@ -126,10 +126,10 @@ public class OrdePlacer implements Response.ErrorListener, Response.Listener<JSO
             List<MiniProduct> mProductsList = new ArrayList<>();
             for (int i = 0; i < mArray.length(); i++) {
                 JSONObject mObject = mArray.getJSONObject(i);
-                String pid = mObject.getString(APIUtils.PID);
+                int pid = mObject.getInt(APIUtils.PID);
                 String pName = mObject.getString(APIUtils.PRODUCT_NAME);
                 String imageUrl = mObject.getString(APIUtils.IMAGE_URL);
-                mProductsList.add(new MiniProduct(pName, pid, imageUrl));
+                mProductsList.add(new MiniProduct(pName,imageUrl, pid));
 
 
             }

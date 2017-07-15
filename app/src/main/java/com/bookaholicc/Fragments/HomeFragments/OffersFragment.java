@@ -6,10 +6,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -75,8 +77,8 @@ public class OffersFragment extends Fragment implements Response.ErrorListener, 
 //        }
 //
 
-//        List<Combo> Mlist = CartHandler.getInstance(mContext).getMockCombo();
-//        setViewValues(Mlist);
+        List<Combo> Mlist = CartHandler.getInstance(mContext).getMockCombo();
+        setViewValues(Mlist);
 
 
         return mView;
@@ -154,7 +156,7 @@ public class OffersFragment extends Fragment implements Response.ErrorListener, 
     private void setViewValues(List<Combo> mComboList) {
         ImageAdapter mImageAdapter = new ImageAdapter(mContext, mComboList, this);
         mListView.setAdapter(mImageAdapter);
-        mListView.setLayoutManager(new LinearLayoutManager(mContext));
+        mListView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
 
 
 
@@ -166,6 +168,6 @@ public class OffersFragment extends Fragment implements Response.ErrorListener, 
 
     @Override
     public void imageClicked(int pid) {
-
+        Toast.makeText(mContext,"Combo Id"+pid,Toast.LENGTH_LONG).show();
     }
 }

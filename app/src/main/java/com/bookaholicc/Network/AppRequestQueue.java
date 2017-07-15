@@ -47,6 +47,7 @@ public class AppRequestQueue {
 
     public void cancelRequest(String netTag) {
         if (mRequestQueue!=null){
+
             getRequestQueue().cancelAll(netTag);
         }
     }
