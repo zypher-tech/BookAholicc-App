@@ -2,18 +2,25 @@ package com.bookaholicc.Adapters.ViewpagerAdapters.ListAdapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bookaholicc.CustomUI.WhitenyBooksFont;
 import com.bookaholicc.DataHandler.MiniProduct;
 import com.bookaholicc.Model.Product;
 import com.bookaholicc.R;
+import com.bookaholicc.utils.ScreenUtil;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 /**
  * Created by nandhu on 1/6/17.
@@ -24,6 +31,8 @@ import java.util.List;
 public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.HorizaontalItem> {
 
 
+    private final String TAG = "HOR_ADAPTER";
+    private final int cellSize;
     private Context mContext;
     private List<MiniProduct> mList;
     private Horizontalcallback mCallback;
@@ -33,18 +42,26 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ho
         this.mContext = mContext;
         this.mList = mList;
         this.mCallback = mCallback;
+        this.cellSize = ScreenUtil.getScreenWidth(mContext) / 3;
+        Log.d(TAG, "HorizontalAdapter: ");
 
     }
 
     @Override
     public HorizontalAdapter.HorizaontalItem onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new HorizontalAdapter.HorizaontalItem(LayoutInflater.from(mContext).inflate(R.layout.horizontal_item, parent, false));
+//        return new HorizontalAdapter.HorizaontalItem(LayoutInflater.from(mContext).inflate(R.layout.horizontal_item, parent, false));
+        final View view = LayoutInflater.from(mContext).inflate(R.layout.horizontal_item, parent, false);
+       return new HorizaontalItem(view);
     }
 
 
     @Override
     public void onBindViewHolder(final HorizontalAdapter.HorizaontalItem holder, int position) {
-        holder.mProductName.setText(mList.get(position).getProductName());
+        MiniProduct p =  mList.get(position);
+        holder.mProductName.setText(p.getProductName());
+        Picasso.with(mContext).load(p.getImageURL())
+                .transform(new RoundedCornersTransformation(4,4))
+                .into(holder.mProductImage);
 
 
 

@@ -10,6 +10,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 
@@ -21,6 +22,7 @@ import com.bookaholicc.utils.BlurBuilder;
 import com.bookaholicc.utils.BundleKey;
 import com.bookaholicc.utils.ScreenUtil;
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
+import com.gigamole.infinitecycleviewpager.OnInfiniteCyclePageTransformListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
@@ -50,33 +52,26 @@ public class ViewProductActivity extends AppCompatActivity {
 
 
     List<Product> mProductsList;
+    ViewPager.OnPageChangeListener mPageListener;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_product);
         ButterKnife.bind(this);
-        Log.d(TAG, "Inside View Product Setting Up Pager, and getting Product List String  ");
+
+        if (getIntent() != null){
+
+            Type type = new TypeToken<List<Product>>(){}.getType();
+            Gson gson = new Gson();
+            mProductsList = gson.fromJson(getIntent().getStringExtra(BundleKey.ARG_PRODUCT_LIST), type);
+        }
 
 
-        //Get THe Product List
-
-        Type type = new TypeToken<List<Product>>(){}.getType();
-        Gson gson = new Gson();
-        String Json = getIntent().getStringExtra(BundleKey.ARG_PRODUCT_LIST);
-        List<Product> productList = gson.fromJson(Json, type);
-
-        Log.d(TAG, "onCreate: size of products " + productList.size());
-
-
-
-
-        //set up the Adapter
-        mAdapter = new ProductSwipeAdapter(getSupportFragmentManager(), this, productList);
-        //set it to Adapter
+        mAdapter = new ProductSwipeAdapter(getSupportFragmentManager(),this,mProductsList);
         mPager.setAdapter(mAdapter);
-        mPager.setInterpolator(new AccelerateDecelerateInterpolator());
-        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mPageListener = new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -84,22 +79,17 @@ public class ViewProductActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                Log.d(TAG, "onPageSelected: " + mPager.getRealItem());
-
+                Log.d(TAG, "onPageSelected: "+position);
+                Log.d(TAG, "onPageSelected:Real Item "+mPager.getRealItem());
+                updateImage();
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
 
             }
-        });
-
-
-        Picasso.with(this)
-                .load(R.mipmap.fifa)
-                .resize(ScreenUtil.getScreenWidth(this),ScreenUtil.getScreenHeight(this))
-                .centerCrop()
-                .into(mBackDropImage);
+        };
+        mPager.addOnPageChangeListener(mPageListener);
 
 
 
@@ -107,11 +97,9 @@ public class ViewProductActivity extends AppCompatActivity {
 
 
 
+    }
 
-
-
-
-
+    private void updateImage() {
 
     }
 //
@@ -139,3 +127,59 @@ public class ViewProductActivity extends AppCompatActivity {
         return bitmap;
     }
 }
+//
+//
+//
+//    //Get THe Product List
+//
+//    Type type = new TypeToken<List<Product>>(){}.getType();
+//    Gson gson = new Gson();
+//    String Json = getIntent().getStringExtra(BundleKey.ARG_PRODUCT_LIST);
+//    List<Product> productList = gson.fromJson(Json, type);
+//
+//        Log.d(TAG, "onCreate: size of products " + productList.size());
+//
+//
+//
+//
+//                //set up the Adapter
+//                mAdapter = new ProductSwipeAdapter(getSupportFragmentManager(), this, productList);
+//                //set it to Adapter
+//                mPager.setAdapter(mAdapter);
+//                mPager.setInterpolator(new AccelerateDecelerateInterpolator());
+//                mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//@Override
+//public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//        }
+//
+//@Override
+//public void onPageSelected(int position) {
+//        Log.d(TAG, "onPageSelected: " + mPager.getRealItem());
+//
+//        }
+//
+//@Override
+//public void onPageScrollStateChanged(int state) {
+//
+//        }
+//        });
+//
+//
+//        Picasso.with(this)
+//        .load(R.mipmap.fifa)
+//        .resize(ScreenUtil.getScreenWidth(this),ScreenUtil.getScreenHeight(this))
+//        .centerCrop()
+//        .into(mBackDropImage);
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+

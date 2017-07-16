@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by nandhu on 22/6/17.
+ *
  */
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Cartholder> {

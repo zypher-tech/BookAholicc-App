@@ -65,6 +65,9 @@ public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArr
 
 
     private List<Product> mParsedProducts;
+
+    private List<Combo> mParsedCombo;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -188,7 +191,16 @@ public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArr
 
     @Override
     public void ComboproductClicked(Product p) {
+        //Pass it as a String to View Product Activity
+        Gson gson = new Gson();
+//
+        String productListString = gson.toJson(mParsedCombo);
+        Log.d(TAG, "showProduct: Converted Product List to String :"+productListString);
+        Intent i = new Intent(mContext, ViewProductActivity.class);
+//        //// TODO: 20/6/17 Implement Transitions
+        i.putExtra(BundleKey.ARG_COMBO_LIST,productListString);
 
+        mContext.startActivity(i);
     }
 
     @Override
@@ -220,11 +232,6 @@ public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArr
         /*-------PREPARING FOR BOTTOM LIST---------*/
         RecyclerView mListView = (RecyclerView) mInfaltedView.findViewById(R.id.new_arrivals_list);
         mListView.setLayoutManager(new GridLayoutManager(mContext,2));
-
-
-
-
-
         if (mListView != null && mListView.isShown()){
             NewArrivalListAdapter mAdapter = new NewArrivalListAdapter(mContext,mProductsList,this);
             mListView.setAdapter(mAdapter);
@@ -233,6 +240,7 @@ public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArr
             mListView.addItemDecoration(dividerItemDecoration);
             mParsedProducts = mProductsList;
         }
+        mParsedCombo = mComboList;
     }
 
     @Override
@@ -243,14 +251,14 @@ public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArr
 
     @Override
     public void showProduct(NewArrivalListAdapter.NewArrivalListItem item, int pos, int pid) {
-        //First COnvert the List,
-        //Pass it as a String to View Product Activity
+//        //First COnvert the List,
+//        //Pass it as a String to View Product Activity
         Gson gson = new Gson();
-
+//
         String productListString = gson.toJson(mParsedProducts);
         Log.d(TAG, "showProduct: Converted Product List to String :"+productListString);
         Intent i = new Intent(mContext, ViewProductActivity.class);
-        //// TODO: 20/6/17 Implement Transitions
+//        //// TODO: 20/6/17 Implement Transitions
         i.putExtra(BundleKey.ARG_PRODUCT_LIST,productListString);
         mContext.startActivity(i);
 

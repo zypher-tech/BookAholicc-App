@@ -173,29 +173,36 @@ public class ExploreFragment extends Fragment implements Response.ErrorListener,
         Log.d(TAG, "onResponse: "+response.toString());
 
         int count = 0;
+
         List<GenreModel> modelist = parseData(response);
         if (modelist != null) {
             count = modelist.size();
         }
-        View[] mCards = new View[count];
-        TextView[] mTitles = new TextView[count];
-        RecyclerView[] mList = new RecyclerView[count];
 
         for (int i =0; i< modelist.size();i++){
 
-            mCards[i] = LayoutInflater.from(mContext).inflate(R.layout.explore_card,mRootView,true);
-            mList[i] = (RecyclerView) mCards[i].findViewById(R.id.explore_list);
-            HorizontalAdapter mAdapter = new HorizontalAdapter(mContext,modelist.get(i).getProductList(),this);
-            mList[i].setAdapter(mAdapter);
-            mList[i].setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false));
-            mTitles[i] = (TextView) mCards[i].findViewById(R.id.explore_card_title);
-            mTitles[i].setText(modelist.get(i).getGenreName());
 
+            Log.d(TAG, "Genre Id: "+modelist.get(i).getGenreId() + " Genre Name: "+modelist.get(i).getGenreName());
+
+            View mView = LayoutInflater.from(mContext).inflate(R.layout.explore_card,mAddingLayout,false);
+            HorizontalAdapter mAdapter = new HorizontalAdapter(mContext,modelist.get(i).getProductList(),this);
+            RecyclerView mListView = (RecyclerView) mView.findViewById(R.id.explore_list);
+            mListView.setAdapter(mAdapter);
+            mListView.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false));
+            TextView mText  = (TextView) mView.findViewById(R.id.explore_card_title);
+            mText.setText(modelist.get(i).getGenreName());
+            mAddingLayout.addView(mView);
 
         }
 
     }
 
+    private void showView(View mView, GenreModel model) {
+
+
+
+
+    }
 
 
     /** this has Lots of Products within them , for all Genres we have to Add

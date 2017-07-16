@@ -3,6 +3,7 @@ package com.bookaholicc.Activitiy;
 import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.animation.DecelerateInterpolator;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 import com.bookaholicc.CustomUI.HelviticaTv;
 import com.bookaholicc.MainActivity;
 import com.bookaholicc.R;
+import com.bookaholicc.utils.ScreenUtil;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,11 +29,10 @@ import butterknife.ButterKnife;
 public class SplashActivity extends AppCompatActivity {
 
 
-
+    private static final long SPLASH_TIME_OUT = 2500;
     @BindView(R.id.splash_logo)
     ImageView mSplashImage;
-    @BindView(R.id.splash_text)
-    HelviticaTv mSplashText;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,49 +40,29 @@ public class SplashActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
-        runIntroAnim();
+        Picasso.with(this).load(R.mipmap.splash_bg)
+                .resize(ScreenUtil.getScreenWidth(this),ScreenUtil.getScreenHeight(this))
+                .centerCrop()
+                .into(mSplashImage);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // This method will be executed once the timer is over
+                // Start your app main activity
+                    Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
+            }
+        }, SPLASH_TIME_OUT);
+
 
 
     }
 
     private void runIntroAnim() {
-        mSplashImage.setAlpha(0f);
 
 
-        mSplashText.setAlpha(0f);
-        mSplashImage.animate()
-                .alpha(1f)
-                .scaleX(1)
-                .scaleY(1)
-                .setDuration(1200)
-                .setInterpolator(new DecelerateInterpolator())
-                .start();
-        mSplashText.animate()
-                .alpha(1)
-                .setDuration(400)
-                .setStartDelay(1500)
-                .setListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animator) {
 
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        startMainActivity();
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animator) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animator animator) {
-
-                    }
-                })
-                .start();
 
     }
 

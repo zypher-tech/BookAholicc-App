@@ -35,7 +35,7 @@ public class APIUtils {
         //The Keys Assciated with that time
     public static final String PID = "pid";
     public static final String  PRODUCT_NAME_1 = "productName";
-    public static final String PRODUCT_NAME = "pName";
+    public static final String PRODUCT_NAME = "productName";
     public static final String PRODUCT_DESC = "productDescription";
     public static final String AUTHOR_NAME = "authorName";
     public static final String MRP = "MRP";

@@ -16,11 +16,11 @@
 
        <TextView
            android:layout_width="wrap_content"
-           android:textSize="18sp"
+           android:textSize="@dimen/card_title_ts"
            android:layout_marginLeft="16dp"
            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
            android:gravity="center_vertical"
-           android:text="@string/business_career"
+           android:text=""
            android:layout_height="wrap_content"
            android:layout_alignBottom="@+id/explore_button"
            android:layout_toStartOf="@+id/explore_button"
@@ -37,10 +37,19 @@
            android:layout_alignParentTop="true"
            android:text="more" />
 
+       <View
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:background="@color/material_grey500"
+           android:layout_marginTop="4dp"
+           android:id="@+id/card_div"
+           android:layout_below="@id/explore_card_title"/>
+
        <android.support.v7.widget.RecyclerView
            android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:layout_below="@+id/explore_card_title"
+           android:layout_marginTop="4dp"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/card_div"
            android:id="@+id/explore_list"
            android:layout_alignStart="@+id/explore_card_title"
            android:layout_alignParentEnd="true">

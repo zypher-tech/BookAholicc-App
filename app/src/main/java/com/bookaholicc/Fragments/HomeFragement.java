@@ -56,6 +56,7 @@ public class HomeFragement extends Fragment {
 
         mAdapter = new MainFragmentAdapter(getChildFragmentManager());
         mPager.setAdapter(mAdapter);
+        mPager.setOffscreenPageLimit(3);
         mTab.setTitles(pageTitles);
         mTab.setViewPager(mPager);
 

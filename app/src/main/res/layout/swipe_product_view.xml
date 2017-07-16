@@ -40,7 +40,7 @@
                 android:layout_below="@+id/top_holder"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="32dp"
-                android:text="ProductName"
+                android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:textSize="22sp"
                 android:layout_toStartOf="@+id/tsLikesCounter" />
@@ -52,7 +52,7 @@
                 android:layout_alignBottom="@+id/tsLikesCounter"
                 android:layout_alignStart="@+id/vp_pname"
                 android:layout_below="@+id/vp_pname"
-                android:text="additional Info"
+
                 android:textSize="18sp"
                 android:layout_toStartOf="@+id/like_button" />
 

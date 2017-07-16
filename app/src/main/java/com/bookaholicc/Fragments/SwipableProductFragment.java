@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bookaholicc.Adapters.ViewpagerAdapters.ListAdapters.ImageAdapter;
 import com.bookaholicc.Adapters.ViewpagerAdapters.SwipeAdapterNewArrivals;
@@ -54,7 +55,7 @@ import static android.content.ContentValues.TAG;
  *
  */
 
-public class SwipableProductFragment extends Fragment  implements GListener.Callbacks,  ImageAdapter.ImageCallback, SwipeAdapterNewArrivals.ComboInterface {
+public class SwipableProductFragment extends Fragment  implements GListener.Callbacks,  ImageAdapter.ImageCallback, SwipeAdapterNewArrivals.ComboInterface, View.OnClickListener, OnLikeListener {
 
 
     private static final int LOGIN_REQUEST_CODE = 2255;
@@ -70,16 +71,23 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
     InkPageIndicator mPagerIndicator;
 
 
+
+    //Summary
     @BindView(R.id.vp_about_book_text_vale)
     TextView mSummary;
 
 
 
+
+    //Product Name
     @BindView(R.id.vp_pname)
     WhitenyBooksFont pName;
+    //Additional Info/Author name
     @BindView(R.id.vp_addln_info)
     WhitenyBooksFont pAdditionalInfo;
-
+    @BindView(R.id. vp_price_text) WhitenyBooksFont mPrice;
+    @BindView(R.id.vp_time_text)  WhitenyBooksFont mDurationText;
+    @BindView(R.id.textView10) TextView mGenreText;
 
     //The like Count Switcer
     @BindView(R.id.tsLikesCounter)
@@ -90,6 +98,8 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
     //The heart button
     @BindView(R.id.like_button)
     LikeButton mLikeButton;
+
+
     private Context mContext;
     //ADd to Cart
 
@@ -135,6 +145,8 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
         pAdditionalInfo.setText(p.getProductDesc());
 
         mSummary.setText(p.getSummary());
+        mPrice.setText(p.getPrice());
+        mDurationText.setText(p.getDuration());
 
 
 
@@ -142,26 +154,32 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
 
 
 
+
+
+
+
+        Combo c = new Combo("asd","asd","Adasd",p.getImageURL(),"45","45");
+        List<Combo> c1 = new ArrayList<>();
+        c1.add(c);
 //
-//
-//
-//
-//
-        List<Combo> mList = populateImages();
-//
-        SwipeAdapterNewArrivals mImageAdapter = new SwipeAdapterNewArrivals(mList,mContext,this);
+        SwipeAdapterNewArrivals mImageAdapter = new SwipeAdapterNewArrivals(c1,mContext,this);
         imagePager.setAdapter(mImageAdapter);
         mPagerIndicator.setViewPager(imagePager);
+        //setting Listeners
+        mAddtoCart.setOnClickListener(this);
+        mSummary.setOnClickListener(this);
+        mLikeButton.setOnLikeListener(this);
+
 //
         mLikeButton.setOnLikeListener(new OnLikeListener() {
             @Override
             public void liked(LikeButton likeButton) {
-                mSwithcer.setText("124");
+                mSwithcer.setText("1");
             }
 
             @Override
             public void unLiked(LikeButton likeButton) {
-                mSwithcer.setText("123");
+                mSwithcer.setText("3");
             }
         });
 //
@@ -190,27 +208,20 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
 //        return v;
     }
 
-    private List<Combo> populateImages() {
-        List<Combo> mProducts = new ArrayList<>();
-        mProducts.add(new Combo(1,"nandha","sdad","http://download-wallpaper.net/images/images/images-13.jpg",45,"3 Days"));
-        mProducts.add(new Combo(1,"nandha","sdad","http://download-wallpaper.net/images/images/images-13.jpg",45,"3 Days"));
-        mProducts.add(new Combo(1,"nandha","sdad","http://download-wallpaper.net/images/images/images-13.jpg",45,"3 Days"));
-        return mProducts;
 
-    }
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments() != null) {
-            /*Gson gs = new Gson();
-            String pJson = getArguments().getString(BundleKey.ARG_PRODUCT);
-            this.p = gs.fromJson(pJson, Product.class);
-            Log.d(TAG, "onCreate: VP FRAG got Product " + p.getPid());*/
-
-        }
+//        if (getArguments() != null) {
+//            /*Gson gs = new Gson();
+//            String pJson = getArguments().getString(BundleKey.ARG_PRODUCT);
+//            this.p = gs.fromJson(pJson, Product.class);
+//            Log.d(TAG, "onCreate: VP FRAG got Product " + p.getPid());*/
+//
+//        }
 
 
     }
@@ -291,6 +302,30 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
 
     @Override
     public void ComboproductClicked(Product p) {
+        Toast.makeText(mContext,"Image Clicked",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.vp_add_to_cart:
+                Toast.makeText(mContext,"Added to Cart",Toast.LENGTH_LONG).show();
+                break;
+            case R.id.vp_about_book_text_vale:
+                Toast.makeText(mContext,"Added to Cart",Toast.LENGTH_LONG).show();
+                break;
+
+
+        }
+    }
+
+    @Override
+    public void liked(LikeButton likeButton) {
+
+    }
+
+    @Override
+    public void unLiked(LikeButton likeButton) {
 
     }
 }
