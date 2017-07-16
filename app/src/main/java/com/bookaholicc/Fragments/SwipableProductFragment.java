@@ -142,7 +142,7 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
         });
 
         pName.setText(p.getProductName());
-        pAdditionalInfo.setText(p.getProductDesc());
+        pAdditionalInfo.setText(p.getAuthorName());
 
         mSummary.setText(p.getSummary());
         mPrice.setText(p.getPrice());
@@ -158,7 +158,7 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
 
 
 
-        Combo c = new Combo("asd","asd","Adasd",p.getImageURL(),"45","45");
+        Combo c = new Combo(45,"asd","Adasd",p.getImageURL(),245,"45");
         List<Combo> c1 = new ArrayList<>();
         c1.add(c);
 //

@@ -176,7 +176,7 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
                                     pObj.getString(APIUtils.BOOK_SUMMARY),
                                     pObj.getString(APIUtils.BASE_CATEGORY),
                                     pObj.getString(APIUtils.SUB_CATEGORY),
-                                    "45",
+                                    pObj.getString(APIUtils.PRICE),
                                    "2 Weeks",
                                     pObj.getString(APIUtils.IMAGE_URL))   // Construct of Product
                             );

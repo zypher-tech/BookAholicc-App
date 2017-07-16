@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.bookaholicc.Model.Product;
 import com.bookaholicc.R;
@@ -52,9 +53,9 @@ public class NoOrderAdapter extends RecyclerView.Adapter<NoOrderAdapter.NoOrderP
     @Override
     public void onBindViewHolder(final NoOrderProductsList holder, int position) {
 
-        Picasso.with(mContext)
+        Glide.with(mContext)
                 .load(R.mipmap.bookaholic)
-                .resize(60,60)
+
                 .into(holder.mImage);
         final int pos = position;
         holder.mName.setText(mList.get(pos).getProductName());

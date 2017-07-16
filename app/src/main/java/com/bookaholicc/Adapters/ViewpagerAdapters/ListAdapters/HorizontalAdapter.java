@@ -16,6 +16,7 @@ import com.bookaholicc.DataHandler.MiniProduct;
 import com.bookaholicc.Model.Product;
 import com.bookaholicc.R;
 import com.bookaholicc.utils.ScreenUtil;
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -59,8 +60,8 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ho
     public void onBindViewHolder(final HorizontalAdapter.HorizaontalItem holder, int position) {
         MiniProduct p =  mList.get(position);
         holder.mProductName.setText(p.getProductName());
-        Picasso.with(mContext).load(p.getImageURL())
-                .transform(new RoundedCornersTransformation(4,4))
+        Glide.with(mContext).load(p.getImageURL())
+
                 .into(holder.mProductImage);
 
 

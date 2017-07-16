@@ -13,6 +13,7 @@ import com.bookaholicc.Fragments.HomeFragments.OffersFragment;
 import com.bookaholicc.Model.Combo;
 import com.bookaholicc.R;
 import com.bookaholicc.utils.ScreenUtil;
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageHolder>
 
     @Override
     public void onBindViewHolder(ImageHolder holder, int position) {
-        Picasso.with(mContext)
+        Glide.with(mContext)
                 .load(R.mipmap.fifaa)
                 .into(holder.mImageView);
 

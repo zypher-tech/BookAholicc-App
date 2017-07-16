@@ -15,6 +15,8 @@ import com.bookaholicc.Fragments.HomeFragments.NewArrivalsFragment;
 import com.bookaholicc.Model.Product;
 import com.bookaholicc.R;
 import com.bookaholicc.utils.ScreenUtil;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -52,12 +54,10 @@ public class NewArrivalListAdapter extends RecyclerView.Adapter<NewArrivalListAd
     @Override
     public void onBindViewHolder(final NewArrivalListItem holder, int position) {
         //First Set the image
-        Picasso.with(mContext)
+        Glide.with(mContext)
                 .load(mList.get(position).getImageURL())
-                .resize(ScreenUtil.getScreenWidth(mContext),ScreenUtil.getScreenHeight(mContext))
-                .priority(Picasso.Priority.NORMAL)
-                .centerCrop()
                 .into(holder.mProductImage);
+
 
 
         final int pos = position;

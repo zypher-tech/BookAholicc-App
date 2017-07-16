@@ -16,19 +16,16 @@ public class Combo {
     private int pricing;
     private String duration;
 
-    public Combo(String comboId, String comBoName,String comoDesc, String imageURL, String pricing, String duration) {
-
-    }
-
-    public Combo(int comboId, String comBoName, String comoDesc, String imageURL, int price, String duration) {
-
+    public Combo(int comboId, String comBoName,String comoDesc, String imageURL, int pricing, String duration) {
         this.comboId = comboId;
         this.comboName = comBoName;
         this.comoDesc = comoDesc;
         this.imageURL = imageURL;
-        this.pricing = price;
+        this.pricing = pricing;
         this.duration = duration;
     }
+
+
 
 
     public String getComboName() {
