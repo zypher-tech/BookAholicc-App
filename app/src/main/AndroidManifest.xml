@@ -33,12 +33,13 @@
         <activity android:name=".Activitiy.UserAboardingActivity"
             android:theme="@style/ua_activity_style"
             android:exported="true"/>
-
+        <activity android:name=".Activitiy.CheckOutActivity"
+                android:theme="@style/AppTheme.NoActionBar"
+            />
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

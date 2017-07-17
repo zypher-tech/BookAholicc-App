@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cart_root"
+    app:cardUseCompatPadding="true"
+
+    app:cardCornerRadius="15dp"
+    app:cardBackgroundColor="@color/material_grey300"
     android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:id="@+id/cart_frame_root"
+        android:layout_height="match_parent">
 
-    <include layout="@layout/no_ordrers"/>
+    </FrameLayout>
 
-</FrameLayout>
+</android.support.v7.widget.CardView>

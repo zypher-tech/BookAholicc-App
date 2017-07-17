@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <!--Profile Image-->
+    <android.support.v4.widget.CircleImageView
+        android:layout_width="75dp"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@mipmap/fifa"
+        android:background="@mipmap/fifa"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/co_pro_image"
+        android:layout_height="75dp" />
+
+    <!--User Name-->
+    <com.bookaholicc.CustomUI.OpenSansBold
+        android:layout_width="150dp"
+        android:textColor="@color/material_black"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/co_pro_image"
+        android:text="Ravi Shankar"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="18sp"
+        android:layout_alignTop="@id/co_pro_image"
+        android:id="@+id/co_user_name"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"/>
+
+    <!--Phone Number-->
+
+    <com.bookaholicc.CustomUI.OpenSansBold
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/co_pro_image"
+        android:text="9688612122"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="15sp"
+        android:layout_alignLeft="@id/co_user_name"
+        android:layout_below="@id/co_user_name"
+        android:id="@+id/co_phone_number"
+       />
+
+    <!--Change Text-->
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:text="Change?"
+
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/co_phone_number"
+        android:layout_alignStart="@+id/co_phone_number" />
+
+    <com.bookaholicc.CustomUI.OpenSansBold
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:textColor="@color/md_redA400"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="3365"
+        android:layout_marginRight="8dp"
+        android:layout_above="@+id/textView3"
+        android:layout_toEndOf="@+id/co_user_name"
+        android:layout_alignTop="@+id/co_pro_image" />
+    <!--View details-->
+
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:id="@+id/textView3"
+        android:layout_width="100dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/co_phone_number"
+        android:text="View details?"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/co_phone_number" />
+
+
+
+    <!--View div-->
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:id="@+id/co_profile_div"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/co_pro_image"
+        android:background="@color/material_grey500"/>
+
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:text="Deliver At "
+        android:textSize="20sp"
+        android:textColor="@color/md_redA400"
+        android:layout_marginTop="10dp"
+        android:id="@+id/deliver_text"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@id/co_profile_div"
+        android:layout_height="wrap_content" />
+    <com.bookaholicc.CustomUI.OpenSansBold
+        android:layout_width="wrap_content"
+        style="@style/delivery_text"
+        android:layout_below="@id/deliver_text"
+        android:text="25,3rd Cross"
+        android:id="@+id/street_address"
+        android:layout_height="wrap_content" />
+    <com.bookaholicc.CustomUI.OpenSansBold
+        android:layout_width="wrap_content"
+        android:layout_below="@id/street_address"
+        android:text="Marthi Nagar,BTM Layout Stage 1"
+        style="@style/delivery_text"
+        android:id="@+id/region_addr"
+        android:layout_height="wrap_content" />
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:text="Change Address?"
+        android:layout_marginRight="4dp"
+        android:gravity="center"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/deliver_text"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/region_addr" />
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:text="Pay With"
+        android:textSize="20sp"
+        android:textColor="@color/md_redA400"
+        android:layout_marginTop="20dp"
+        android:id="@+id/ship_text"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@id/region_addr"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

@@ -1,86 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<FrameLayout
-
-    android:layout_height="match_parent"
+<FrameLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:id="@+id/cart_view"
-
-        android:layout_height="120dp">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/cart_view_product_count"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:text="4 Products"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="12dp" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:id="@+id/cart_view_check_box"
-                android:text="Default Delivery location"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/cart_view_amount_value"
-                android:layout_alignStart="@+id/cart_view_product_count" />
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:text="Total"
-                android:gravity="center"
-                android:layout_below="@+id/cart_view_amount_value"
-                android:layout_alignParentEnd="true"
-                android:layout_alignStart="@+id/cart_view_amount_value" />
-            <TextView
-                android:id="@+id/cart_view_amount_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-               android:layout_marginRight="32dp"
-                android:text="324"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                 />
-
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
         android:id="@+id/list"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
         android:layout_marginTop="8dp"
         android:layout_below="@+id/cart_view"
         android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>
 
-
-
-
-</RelativeLayout>
-    <Button
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:id="@+id/place_order_button"
-        android:text="Place ORDER"
-        android:layout_gravity="bottom"
-        android:layout_height="60dp" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="bottom">
+
+        <com.bookaholicc.CustomUI.OpenSansBold
+            android:id="@+id/total_amount_text"
+            android:text="Total Amount Rs 338"
+            android:textSize="22sp"
+            android:paddingRight="72dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.bookaholicc.CustomUI.FontButton
+            android:id="@+id/chekout_button"
+            style="@style/login_button"
+            android:layout_below="@id/total_amount_text"
+            android:layout_width="match_parent"
+            android:textColor="@color/md_white"
+            android:layout_height="60dp"
+            android:text="Check Out" />
+
+    </RelativeLayout>
 
 </FrameLayout>
+
+

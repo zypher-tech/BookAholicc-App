@@ -279,9 +279,15 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
     @Override
     public void addtoCart() {
 
-        //Change Button Behaviour
+        // todo Change Button Behaviour
 
-        CartHandler.getInstance(mContext).addProductToCart(p);
+        boolean  isAdded = CartHandler.getInstance(mContext).addProductToCart(p);
+        if (isAdded){
+            Log.d(TAG, "Added");
+        }
+        else{
+            Log.d(TAG, "Not Added");
+        }
 
     }
 
@@ -309,7 +315,8 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.vp_add_to_cart:
-                Toast.makeText(mContext,"Added to Cart",Toast.LENGTH_LONG).show();
+                addtoCart();
+
                 break;
             case R.id.vp_about_book_text_vale:
                 Toast.makeText(mContext,"Added to Cart",Toast.LENGTH_LONG).show();
