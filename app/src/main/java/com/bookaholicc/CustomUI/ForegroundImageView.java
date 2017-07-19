@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
@@ -44,7 +45,9 @@ public class ForegroundImageView extends android.support.v7.widget.AppCompatImag
             setForeground(d);
         }
         a.recycle();
-        setOutlineProvider(ViewOutlineProvider.BOUNDS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setOutlineProvider(ViewOutlineProvider.BOUNDS);
+        }
     }
 
     @Override

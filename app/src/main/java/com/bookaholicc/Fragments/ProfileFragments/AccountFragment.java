@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bookaholicc.Adapters.ViewpagerAdapters.ProfileAdapter;
+import com.bookaholicc.CustomUI.WhitenyBooksFont;
 import com.bookaholicc.Fragments.ProfileFragment;
 import com.bookaholicc.R;
 import com.bookaholicc.StorageHelpers.DataStore;
@@ -38,11 +39,11 @@ public class AccountFragment extends Fragment implements OnMapReadyCallback {
 
     private static final String TAG = "BK ACCOUNT FRAG: ";
     @BindView(R.id.acct_name_value)
-    TextView mUserName;
+    WhitenyBooksFont mUserName;
     @BindView(R.id.acct_phone_value)
-    TextView mPhoneNumber;
+    WhitenyBooksFont mPhoneNumber;
     @BindView(R.id.acct_email_value)
-    TextView mEmail;
+    WhitenyBooksFont mEmail;
     @BindView(R.id.map)
     MapView mMap;
     @BindView(R.id.pv_delivery_container)

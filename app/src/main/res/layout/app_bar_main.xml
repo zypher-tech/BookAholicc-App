@@ -11,12 +11,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="top"
+    android:clipToPadding="false"
+    android:clipChildren="true"
     sothree:umanoPanelHeight="60dp"
     sothree:umanoShadowHeight="4dp"
     sothree:umanoParallaxOffset="50dp"
     sothree:umanoDragView="@+id/dragView"
     sothree:umanoOverlay="true"
-    sothree:umanoScrollableView="@+id/sv"
     >
 
     <!-- MAIN CONTENT -->
@@ -25,11 +26,12 @@
            android:layout_width="match_parent"
            android:layout_marginLeft="6dp"
            android:layout_marginRight="6dp"
-           android:layout_marginTop="8dp"
+           android:layout_marginTop="50dp"
            sothree:cardElevation="8dp"
+
            sothree:cardPreventCornerOverlap="true"
            sothree:cardCornerRadius="6dp"
-           android:layout_marginBottom="8dp"
+
            sothree:cardUseCompatPadding="true"
            android:layout_height="match_parent">
       <FrameLayout
@@ -57,13 +59,6 @@
         android:id="@+id/dragView">
 
 
-
-
-        <ScrollView
-        android:id="@+id/sv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:orientation="vertical"
@@ -132,8 +127,8 @@
                                     android:text="Your Profile"
                                     android:textSize="10sp"
                                     android:textColor="@color/my_black"
-                                    android:layout_below="@id/drawer_profile_name"
-                                    android:layout_alignLeft="@id/drawer_profile_name"
+                                    android:layout_below="@+id/drawer_profile_name"
+                                    android:layout_alignLeft="@+id/drawer_profile_name"
                                     android:id="@+id/drawer_your_p_text"
                                     android:layout_height="wrap_content"
                                     />
@@ -179,9 +174,9 @@
                             android:layout_toEndOf="@+id/d_h_img" />
                         <com.bookaholicc.CustomUI.WhitenyBooksFont
 
-                            android:layout_below="@id/d_home_tt"
+                            android:layout_below="@+id/d_home_tt"
                             style="@style/drawer_subtitle_text"
-                            android:layout_alignLeft="@id/d_home_tt"
+                            android:layout_alignLeft="@+id/d_home_tt"
                             android:text="Novels,Combo's,  Competetive."
                             />
 
@@ -215,9 +210,9 @@
                             android:layout_toEndOf="@+id/d_categ_img" />
                         <com.bookaholicc.CustomUI.WhitenyBooksFont
 
-                            android:layout_below="@id/d_cat_tt"
+                            android:layout_below="@+id/d_cat_tt"
                             style="@style/drawer_subtitle_text"
-                            android:layout_alignLeft="@id/d_cat_tt"
+                            android:layout_alignLeft="@+id/d_cat_tt"
                             android:text="Books For Everyone,"
                             />
                     </RelativeLayout>
@@ -249,9 +244,9 @@
                             android:layout_toEndOf="@+id/d_wish_img" />
                         <com.bookaholicc.CustomUI.WhitenyBooksFont
 
-                            android:layout_below="@id/d_wish_tt"
+                            android:layout_below="@+id/d_wish_tt"
                             style="@style/drawer_subtitle_text"
-                            android:layout_alignLeft="@id/d_wish_tt"
+                            android:layout_alignLeft="@+id/d_wish_tt"
                             android:text="Books For Everyone,"
                             android:id="@+id/wishlist_count" />
                         <TextView
@@ -297,9 +292,9 @@
                             android:layout_toEndOf="@+id/d_cart_img" />
                         <com.bookaholicc.CustomUI.WhitenyBooksFont
 
-                            android:layout_below="@id/d_cart_tt"
+                            android:layout_below="@+id/d_cart_tt"
                             style="@style/drawer_subtitle_text"
-                            android:layout_alignLeft="@id/d_cart_tt"
+                            android:layout_alignLeft="@+id/d_cart_tt"
                             android:text="Total 338 rupess"
                             android:id="@+id/d_cart_amount" />
                         <TextView
@@ -344,9 +339,9 @@
                             android:layout_toEndOf="@+id/d_dontate_img" />
                         <com.bookaholicc.CustomUI.WhitenyBooksFont
 
-                            android:layout_below="@id/d_donate_tt"
+                            android:layout_below="@+id/d_donate_tt"
                             style="@style/drawer_subtitle_text"
-                            android:layout_alignLeft="@id/d_donate_tt"
+                            android:layout_alignLeft="@+id/d_donate_tt"
                             android:text="Contribute or Earn."
                             />
 
@@ -361,7 +356,7 @@
                     android:layout_height="50dp" />
             </LinearLayout>
 
-        </ScrollView>
+
         <!-->-->
         <!--<TextView-->
         <!--android:layout_width="match_parent"-->

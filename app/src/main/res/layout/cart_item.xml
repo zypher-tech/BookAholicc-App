@@ -13,7 +13,7 @@
         <com.bookaholicc.CustomUI.OpenSansTextView
             android:id="@+id/cart_item_pname"
             android:layout_width="wrap_content"
-            android:textColor="@color/my_black"
+            android:textColor="@color/material_black"
 
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"

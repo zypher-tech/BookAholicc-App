@@ -81,6 +81,7 @@ public class APIUtils {
     /*ADD TO LIST*/
     public static final String HOME_ENDPOINT_ADD_TO_LIST = "";
     public static final String  PRICE = "price";
+    public static final String GET_RETURNS = "";
 
     public static String SAVE_TOKEN_API = "";
 
