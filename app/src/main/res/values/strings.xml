@@ -9,4 +9,8 @@
     <string name="business_career"><![CDATA[Business & Career]]></string>
     <string name="infos">Some additional Info\'s we may need</string>
     <string name="tc"><![CDATA[By Registering , You accept to BookAholic Terms & Conditions]]></string>
+    <string name="action_show">show</string>
+    <string name="action_hide">hide</string>
+    <string name="hello">hello</string>
+    <string name="follow">follow</string>
 </resources>

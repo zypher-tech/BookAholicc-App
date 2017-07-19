@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!--Search Container-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/material_grey700"
+        android:layout_height="60dp">
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_marginLeft="10dp"
+        android:clipChildren="true"
+        android:layout_marginRight="10dp"
+
+
+        android:layout_height="wrap_content">
+
+
+        <!--PRofile Container-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/d_pro_c"
+            android:layout_height="80dp">
+            <com.bookaholicc.CustomUI.CircleImageView
+                android:layout_width="80dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="20dp"
+                app:srcCompat ="@mipmap/bookaholic"
+                android:id="@+id/drawer_profile_img"
+                android:layout_height="match_parent" />
+           <android.support.v7.widget.CardView
+               android:layout_width="match_parent"
+               android:id="@+id/profile_container"
+               android:layout_marginLeft="16dp"
+               android:layout_marginRight="16dp"
+               app:cardCornerRadius="25dp"
+               app:cardBackgroundColor="#ECD1CA"
+               android:layout_height="50dp"
+               android:layout_alignTop="@+id/drawer_profile_img"
+               android:layout_toEndOf="@+id/drawer_profile_img"
+               android:layout_alignBottom="@+id/drawer_profile_img">
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_marginLeft="22dp"
+                   android:layout_marginRight="22dp"
+
+                   android:layout_height="match_parent">
+                   <com.bookaholicc.CustomUI.WhitenyBooksFont
+                       android:layout_width="wrap_content"
+                       android:text="Madrai Michael"
+                       android:layout_marginTop="6dp"
+                       android:textSize="16sp"
+                       android:layout_marginLeft="4dp"
+                       android:textColor="@color/material_black"
+                       android:id="@+id/drawer_profile_name"
+                       android:layout_height="wrap_content"
+                       android:layout_alignParentTop="true"
+                       android:layout_alignParentStart="true" />
+                   <com.bookaholicc.CustomUI.WhitenyBooksFont
+                       android:layout_width="wrap_content"
+                       android:text="Your Profile"
+                       android:textSize="10sp"
+                       android:textColor="@color/my_black"
+                       android:layout_below="@id/drawer_profile_name"
+                        android:layout_alignLeft="@id/drawer_profile_name"
+                       android:id="@+id/drawer_your_p_text"
+                       android:layout_height="wrap_content"
+                       />
+
+                   <ImageView
+                       android:layout_width="50dp"
+                       android:layout_alignParentEnd="true"
+                       app:srcCompat = "@drawable/ic_menu_share"
+                       android:padding="10dp"
+                       android:layout_height="50dp" />
+               </RelativeLayout>
+
+
+           </android.support.v7.widget.CardView>
+        </RelativeLayout>
+        <!--Home-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_below="@+id/d_pro_c"
+            android:id="@+id/d_home_c"
+
+            android:layout_height="80dp">
+            <ImageView
+
+                style="@style/drawer_image_view"
+                android:id="@+id/d_h_img"
+                app:srcCompat = "@drawable/ic_user"
+
+  />
+            <com.bookaholicc.CustomUI.OpenSansTextView
+
+                android:text="Home"
+                android:id="@+id/d_home_tt"
+                style="@style/drawer_title_text"
+                android:layout_toEndOf="@+id/d_h_img" />
+            <com.bookaholicc.CustomUI.WhitenyBooksFont
+
+                android:layout_below="@id/d_home_tt"
+                style="@style/drawer_subtitle_text"
+                android:layout_alignLeft="@id/d_home_tt"
+                android:text="Novels,Combo's,  Competetive."
+                />
+
+        </RelativeLayout>
+        <!--Categories-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_below="@+id/d_home_c"
+            android:id="@+id/d_cat_c"
+            android:layout_height="80dp">
+            <ImageView
+
+                android:id="@+id/d_categ_img"
+                style="@style/drawer_image_view"
+
+                app:srcCompat = "@drawable/ic_user"
+                />
+
+            <com.bookaholicc.CustomUI.OpenSansTextView
+
+                android:text="Categories"
+                android:id="@+id/d_cat_tt"
+                style="@style/drawer_title_text"
+                android:layout_toEndOf="@+id/d_categ_img" />
+            <com.bookaholicc.CustomUI.WhitenyBooksFont
+
+                android:layout_below="@id/d_cat_tt"
+                style="@style/drawer_subtitle_text"
+                android:layout_alignLeft="@id/d_cat_tt"
+                android:text="Books For Everyone,"
+                />
+        </RelativeLayout>
+        <!--WishList-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_below="@+id/d_cat_c"
+            android:id="@+id/d_wish_c"
+            android:layout_height="80dp">
+            <ImageView
+
+                android:id="@+id/d_wish_img"
+                style="@style/drawer_image_view"
+
+                app:srcCompat = "@drawable/ic_user"
+                />
+            <com.bookaholicc.CustomUI.OpenSansTextView
+
+                android:text="Wishlist"
+                android:id="@+id/d_wish_tt"
+                style="@style/drawer_title_text"
+                android:layout_toEndOf="@+id/d_wish_img" />
+            <com.bookaholicc.CustomUI.WhitenyBooksFont
+
+                android:layout_below="@id/d_wish_tt"
+                style="@style/drawer_subtitle_text"
+                android:layout_alignLeft="@id/d_wish_tt"
+                android:text="Books For Everyone,"
+                android:id="@+id/whitenyBooksFont" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="4"
+                android:textSize="20dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#ECD1CA"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/d_wish_tt"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="14dp"
+                android:layout_alignBottom="@+id/whitenyBooksFont" />
+
+        </RelativeLayout>
+        <!--Cart-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_below="@+id/d_wish_c"
+            android:id="@+id/d_cart_c"
+            android:layout_height="80dp">
+            <ImageView
+                android:layout_width="80dp"
+                android:id="@+id/d_cart_img"
+                style="@style/drawer_image_view"
+
+                app:srcCompat = "@drawable/ic_user"
+                />
+
+            <com.bookaholicc.CustomUI.OpenSansTextView
+
+                android:text="Cart"
+                android:id="@+id/d_cart_tt"
+                style="@style/drawer_title_text"
+                android:layout_toEndOf="@+id/d_cart_img" />
+            <com.bookaholicc.CustomUI.WhitenyBooksFont
+
+                android:layout_below="@id/d_cart_tt"
+                style="@style/drawer_subtitle_text"
+                android:layout_alignLeft="@id/d_cart_tt"
+                android:text="Total 338 rupess"
+                android:id="@+id/d_cart_amouunt" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="15"
+                android:textSize="20sp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#ECD1CA"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/d_cart_tt"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="14dp"
+                android:layout_alignBottom="@+id/d_cart_amouunt" />
+
+        </RelativeLayout>
+        <!--Rent/Donate Books-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_below="@+id/d_cart_c"
+            android:id="@+id/d_rent_books"
+            android:layout_height="80dp">
+            <ImageView
+                android:layout_width="80dp"
+                android:id="@+id/d_dontate_img"
+                style="@style/drawer_image_view"
+
+                app:srcCompat = "@drawable/ic_user"
+                />
+            <com.bookaholicc.CustomUI.OpenSansTextView
+
+                android:text="Donate/Rent Books"
+                android:id="@+id/d_donate_tt"
+                style="@style/drawer_title_text"
+                android:layout_toEndOf="@+id/d_dontate_img" />
+            <com.bookaholicc.CustomUI.WhitenyBooksFont
+
+                android:layout_below="@id/d_donate_tt"
+                style="@style/drawer_subtitle_text"
+                android:layout_alignLeft="@id/d_donate_tt"
+                android:text="Contribute or Earn."
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

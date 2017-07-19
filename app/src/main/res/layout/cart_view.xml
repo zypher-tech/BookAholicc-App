@@ -28,8 +28,10 @@
             android:id="@+id/total_amount_text"
             android:text="Total Amount Rs 338"
             android:textSize="22sp"
-            android:paddingRight="72dp"
+
+            android:textColor="@color/md_redA400"
             android:layout_marginBottom="8dp"
+
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

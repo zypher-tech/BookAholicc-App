@@ -40,6 +40,7 @@ import com.bookaholicc.R;
 import com.bookaholicc.StorageHelpers.CartHandler;
 import com.bookaholicc.StorageHelpers.DataStore;
 import com.bookaholicc.utils.APIUtils;
+import com.bookaholicc.utils.RVdecorator;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -94,6 +95,7 @@ public class CartFragment extends Fragment implements CartAdapter.CartCallbacks,
             CartAdapter mAdapter = new CartAdapter(pList,mContext,this);
             RecyclerView mList = (RecyclerView) cartView.findViewById(R.id.list);
             mList.setAdapter(mAdapter);
+            mList.addItemDecoration(new RVdecorator(ContextCompat.getDrawable(mContext,R.drawable.divider)));
             mList.setLayoutManager(new LinearLayoutManager(mContext));
             Button b  = (Button) cartView.findViewById(R.id.chekout_button);
             b.setOnClickListener(this);
@@ -139,7 +141,7 @@ public class CartFragment extends Fragment implements CartAdapter.CartCallbacks,
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (mContext != null){
+        if (mContext == null){
             mContext = context;
         }
     }

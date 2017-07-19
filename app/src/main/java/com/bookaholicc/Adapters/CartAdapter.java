@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -55,8 +56,22 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Cartholder> {
         holder.mName.setText(mlist.get(position).getProductName());
         holder.mPrice.setText(mlist.get(position).getPrice());
 
+        holder.itemView.setScaleX(0);
+        holder.itemView.setScaleY(0);
+        holder.itemView.setAlpha(0.1f);
+        holder.itemView.animate().setInterpolator(new DecelerateInterpolator(1.5f))
+                .scaleY(1)
+                .scaleX(1)
+                .alpha(1)
+                .setStartDelay(200)
+                .setDuration(600)
+                .start();
+
+
 
     }
+
+
 
     @Override
     public int getItemCount() {

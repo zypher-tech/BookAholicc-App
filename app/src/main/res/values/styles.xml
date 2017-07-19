@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -75,6 +75,32 @@
     <style name="delivery_text">
         <item name="android:layout_marginLeft">16dp</item>
         <item name="android:layout_marginTop">2dp</item>
+    </style>
+    <style name="ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:displayOptions">homeAsUp</item>
+    </style>
+
+    <style name="drawer_image_view">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">@dimen/home_image_width</item>
+        <item name="android:padding">@dimen/home_image_padding</item>
+    </style>
+
+    <style name="drawer_title_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/material_grey100</item>
+    </style>
+
+    <style name="drawer_subtitle_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:textColor">@color/material_grey300</item>
     </style>
 
 </resources>
