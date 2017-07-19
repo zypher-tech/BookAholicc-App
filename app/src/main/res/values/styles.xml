@@ -87,20 +87,29 @@
     </style>
 
     <style name="drawer_title_text">
+
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:layout_marginLeft">20dp</item>
-        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:textSize">@dimen/drawer_title_ts</item>
+        <item name="android:layout_marginLeft">@dimen/drawer_mleft</item>
+        <item name="android:layout_marginTop">@dimen/drawert_title_mtop</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/material_grey100</item>
+        <item name="android:textColor">@color/material_white</item>
     </style>
 
     <style name="drawer_subtitle_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginTop">@dimen/drawer_sub_mtop</item>
         <item name="android:textColor">@color/material_grey300</item>
+    </style>
+
+    <style name="drawer_item_rel">
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="divider_drawer">
+        <item name="android:background">@color/material_grey800</item>
     </style>
 
 </resources>

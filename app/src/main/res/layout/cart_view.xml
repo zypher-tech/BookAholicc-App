@@ -12,39 +12,33 @@
         android:id="@+id/list"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:paddingTop="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_below="@+id/cart_view"
+
+
+
         android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_gravity="bottom">
-
-        <com.bookaholicc.CustomUI.OpenSansBold
-            android:id="@+id/total_amount_text"
-            android:text="Total Amount Rs 338"
-            android:textSize="22sp"
-
-            android:textColor="@color/md_redA400"
-            android:layout_marginBottom="8dp"
-
-            android:gravity="center"
+        android:layout_gravity="bottom"
+        android:layout_below="@+id/list">
+        <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <com.bookaholicc.CustomUI.FontButton
-            android:id="@+id/chekout_button"
             style="@style/login_button"
-            android:layout_below="@id/total_amount_text"
+            android:text="CHEck OUT"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/check_out_button"
+            android:textColor="@color/material_grey300"
+            android:layout_height="50dp" />
+        <com.bookaholicc.CustomUI.WhitenyBooksFont
             android:layout_width="match_parent"
-            android:textColor="@color/md_white"
-            android:layout_height="60dp"
-            android:text="Check Out" />
-
+            android:text="Total Rs 308"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:layout_below="@+id/check_out_button"
+            android:layout_marginTop="4dp"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 
 </FrameLayout>

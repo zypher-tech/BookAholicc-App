@@ -1,6 +1,10 @@
 package com.bookaholicc;
 
+import android.media.Image;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.text.Html;
@@ -18,68 +22,89 @@ import android.widget.TextView;
 import com.bookaholicc.CustomUI.CircleImageView;
 import com.bookaholicc.CustomUI.OpenSansTextView;
 import com.bookaholicc.CustomUI.WhitenyBooksFont;
+import com.bookaholicc.Fragments.CartFragment;
+import com.bookaholicc.Fragments.CategoriesFragment;
+import com.bookaholicc.Fragments.HomeFragement;
+import com.bookaholicc.Fragments.NotificationsFragment;
+import com.bookaholicc.Fragments.ProfileFragment;
+import com.bookaholicc.StorageHelpers.DataStore;
+import com.bumptech.glide.Glide;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+
+import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     //        implements NavigationView.OnNavigationItemSelectedListener, OnTabSelectListener, OnTabReselectListener {
 //
 //
     private static final String TAG = "DemoActivity";
-    @BindView(R.id.main)
-    TextView main;
-    @BindView(R.id.drawer_profile_img)
+
+    @Nullable @BindView(R.id.drawer_profile_img)
     CircleImageView drawerProfileImg;
-    @BindView(R.id.drawer_profile_name)
-    WhitenyBooksFont drawerProfileName;
-    @BindView(R.id.drawer_your_p_text)
-    WhitenyBooksFont drawerYourPText;
-    @BindView(R.id.profile_container)
+    @Nullable @BindView(R.id.drawer_profile_name)
+    WhitenyBooksFont mProfileName;
+    @Nullable @BindView(R.id.drawer_your_p_text)
+    WhitenyBooksFont mProfileSubText;
+    @Nullable @BindView(R.id.profile_container)
     CardView profileContainer;
-    @BindView(R.id.d_pro_c)
+    @Nullable @BindView(R.id.d_pro_c)
     RelativeLayout dProC;
-    @BindView(R.id.d_h_img)
+    @Nullable @BindView(R.id.d_h_img)
     ImageView dHImg;
-    @BindView(R.id.d_home_tt)
+    @Nullable @BindView(R.id.d_home_tt)
     OpenSansTextView dHomeTt;
-    @BindView(R.id.d_home_c)
-    RelativeLayout dHomeC;
-    @BindView(R.id.d_categ_img)
+    @Nullable @BindView(R.id.d_home_c)
+    RelativeLayout mHome;
+    @Nullable @BindView(R.id.d_categ_img)
     ImageView dCategImg;
-    @BindView(R.id.d_cat_tt)
+    @Nullable @BindView(R.id.d_cat_tt)
     OpenSansTextView dCatTt;
-    @BindView(R.id.d_cat_c)
-    RelativeLayout dCatC;
-    @BindView(R.id.d_wish_img)
+    @Nullable @BindView(R.id.d_cat_c)
+    RelativeLayout mCat;
+    @Nullable @BindView(R.id.d_wish_img)
     ImageView dWishImg;
-    @BindView(R.id.d_wish_tt)
+    @Nullable @BindView(R.id.d_wish_tt)
     OpenSansTextView dWishTt;
-    @BindView(R.id.whitenyBooksFont)
+    @Nullable @BindView(R.id.whitenyBooksFont)
     WhitenyBooksFont whitenyBooksFont;
-    @BindView(R.id.d_wish_c)
-    RelativeLayout dWishC;
-    @BindView(R.id.d_cart_img)
+    @Nullable @BindView(R.id.d_wish_c)
+    RelativeLayout mWish;
+    @Nullable @BindView(R.id.d_cart_img)
     ImageView dCartImg;
-    @BindView(R.id.d_cart_tt)
-    OpenSansTextView dCartTt;
-    @BindView(R.id.d_cart_amouunt)
-    WhitenyBooksFont dCartAmouunt;
-    @BindView(R.id.d_cart_c)
-    RelativeLayout dCartC;
-    @BindView(R.id.d_dontate_img)
+//
+//    @BindView(R.id.wishlist_count) WhitenyBooksFont mWishCount;
+//
+//    // Cart Title
+//    @BindView(R.id.d_cart_tt)
+//    OpenSansTextView dCartTt;
+//    // MCart Amount
+//    @BindView(R.id.d_cart_amount)
+//    WhitenyBooksFont mCartAmount;
+@Nullable@BindView(R.id.d_cart_c)
+    RelativeLayout mCart;
+
+//    @BindView(R.id.drawer_cart_no)
+//    TextView mCartNo;
+@Nullable   @BindView(R.id.d_dontate_img)
     ImageView dDontateImg;
-    @BindView(R.id.d_donate_tt)
+    @Nullable @BindView(R.id.d_donate_tt)
     OpenSansTextView dDonateTt;
-    @BindView(R.id.d_rent_books)
-    RelativeLayout dRentBooks;
-    @BindView(R.id.dragView)
+    @Nullable @BindView(R.id.d_rent_books)
+    RelativeLayout mDonate;
+    @Nullable @BindView(R.id.dragView)
     LinearLayout dragView;
-    @BindView(R.id.sliding_layout)
+    @Nullable @BindView(R.id.sliding_layout)
     SlidingUpPanelLayout slidingLayout;
 
+
+    @Nullable @BindView(R.id.logo_id)
+    ImageView mLogoIcon;
     private SlidingUpPanelLayout mLayout;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,6 +162,28 @@ public class MainActivity extends AppCompatActivity {
         mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
 
 
+        DataStore mStore  = DataStore.getStorageInstance(this);
+        if(!mStore.isLoggedIn()){
+            mProfileName.setText("Login/Sign Up");
+//            mCartNo.setText("0");
+//            mCartAmount.setText("0 products in Cart");
+//            mWishCount.setText("0");
+
+
+        }
+        else{
+            // Get the values from storage
+        }
+
+        mHome.setOnClickListener(this);
+        mCart.setOnClickListener(this);
+        mCat.setOnClickListener(this);
+        mWish.setOnClickListener(this);
+        mDonate.setOnClickListener(this);
+        Glide.with(this)
+                .load(R.mipmap.logo_icon)
+                .into(mLogoIcon);
+
         mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
@@ -171,7 +218,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void closeDrawer() {
         Log.d(TAG, "closeDrawer: Button Pressed");
-        mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        if (mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED){
+            mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        }
     }
 
     @Override
@@ -235,6 +284,36 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        Fragment mFrag = null;
+        switch (v.getId()){
+            case R.id.d_home_c:
+                mFrag = new HomeFragement();
+                break;
+            case R.id.d_cart_c:
+                mFrag = new CartFragment();
+                break;
+            case R.id.d_cat_c:
+                mFrag = new CategoriesFragment();
+                break;
+            case R.id.d_wish_c:
+                mFrag = new ProfileFragment();
+                break;
+            case R.id.d_rent_books:
+                mFrag = new NotificationsFragment();
+                break;
+        }
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frag_holder_main,mFrag)
+                .addToBackStack("tra")
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
+        closeDrawer();
+
     }
 }
 

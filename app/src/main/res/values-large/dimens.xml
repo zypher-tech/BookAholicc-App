@@ -27,4 +27,9 @@
     <dimen name="card_title_ts">14sp</dimen>
     <dimen name="home_image_width">80dp</dimen>
     <dimen name="home_image_padding">10dp</dimen>
+    <dimen name="d_t_ts">16sp</dimen>
+    <dimen name="p_card">10dp</dimen>
+    <dimen name="p_content_left">14dp</dimen>
+    <dimen name="drawer_item_h">80dp</dimen>
+    <dimen name="share_icon_padd">2dp</dimen>
 </resources>

@@ -97,8 +97,8 @@ public class CartFragment extends Fragment implements CartAdapter.CartCallbacks,
             mList.setAdapter(mAdapter);
             mList.addItemDecoration(new RVdecorator(ContextCompat.getDrawable(mContext,R.drawable.divider)));
             mList.setLayoutManager(new LinearLayoutManager(mContext));
-            Button b  = (Button) cartView.findViewById(R.id.chekout_button);
-            b.setOnClickListener(this);
+//            Button b  = (Button) cartView.findViewById(R.id.chekout_button);
+//            b.setOnClickListener(this);
 
         }
 
@@ -174,9 +174,9 @@ public class CartFragment extends Fragment implements CartAdapter.CartCallbacks,
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.chekout_button:
-                checkOut();
-                break;
+//            case R.id.chekout_button:
+//                checkOut();
+//                break;
         }
     }
 
