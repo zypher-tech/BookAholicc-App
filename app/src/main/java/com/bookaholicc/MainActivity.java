@@ -1,55 +1,83 @@
 package com.bookaholicc;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
-import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bookaholicc.Fragments.CartFragment;
-import com.bookaholicc.Fragments.CategoriesFragment;
-import com.bookaholicc.Fragments.HomeFragement;
-import com.bookaholicc.Fragments.NotificationsFragment;
-import com.bookaholicc.Fragments.ProfileFragment;
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnTabReselectListener;
-import com.roughike.bottombar.OnTabSelectListener;
+import com.bookaholicc.CustomUI.CircleImageView;
+import com.bookaholicc.CustomUI.OpenSansTextView;
+import com.bookaholicc.CustomUI.WhitenyBooksFont;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
-import com.squareup.picasso.Picasso;
-
-import java.util.Arrays;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-//        implements NavigationView.OnNavigationItemSelectedListener, OnTabSelectListener, OnTabReselectListener {
+    //        implements NavigationView.OnNavigationItemSelectedListener, OnTabSelectListener, OnTabReselectListener {
 //
 //
-private static final String TAG = "DemoActivity";
+    private static final String TAG = "DemoActivity";
+    @BindView(R.id.main)
+    TextView main;
+    @BindView(R.id.drawer_profile_img)
+    CircleImageView drawerProfileImg;
+    @BindView(R.id.drawer_profile_name)
+    WhitenyBooksFont drawerProfileName;
+    @BindView(R.id.drawer_your_p_text)
+    WhitenyBooksFont drawerYourPText;
+    @BindView(R.id.profile_container)
+    CardView profileContainer;
+    @BindView(R.id.d_pro_c)
+    RelativeLayout dProC;
+    @BindView(R.id.d_h_img)
+    ImageView dHImg;
+    @BindView(R.id.d_home_tt)
+    OpenSansTextView dHomeTt;
+    @BindView(R.id.d_home_c)
+    RelativeLayout dHomeC;
+    @BindView(R.id.d_categ_img)
+    ImageView dCategImg;
+    @BindView(R.id.d_cat_tt)
+    OpenSansTextView dCatTt;
+    @BindView(R.id.d_cat_c)
+    RelativeLayout dCatC;
+    @BindView(R.id.d_wish_img)
+    ImageView dWishImg;
+    @BindView(R.id.d_wish_tt)
+    OpenSansTextView dWishTt;
+    @BindView(R.id.whitenyBooksFont)
+    WhitenyBooksFont whitenyBooksFont;
+    @BindView(R.id.d_wish_c)
+    RelativeLayout dWishC;
+    @BindView(R.id.d_cart_img)
+    ImageView dCartImg;
+    @BindView(R.id.d_cart_tt)
+    OpenSansTextView dCartTt;
+    @BindView(R.id.d_cart_amouunt)
+    WhitenyBooksFont dCartAmouunt;
+    @BindView(R.id.d_cart_c)
+    RelativeLayout dCartC;
+    @BindView(R.id.d_dontate_img)
+    ImageView dDontateImg;
+    @BindView(R.id.d_donate_tt)
+    OpenSansTextView dDonateTt;
+    @BindView(R.id.d_rent_books)
+    RelativeLayout dRentBooks;
+    @BindView(R.id.dragView)
+    LinearLayout dragView;
+    @BindView(R.id.sliding_layout)
+    SlidingUpPanelLayout slidingLayout;
 
     private SlidingUpPanelLayout mLayout;
 
@@ -57,8 +85,9 @@ private static final String TAG = "DemoActivity";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_bar_main);
+        ButterKnife.bind(this);
 
-        setSupportActionBar((Toolbar) findViewById(R.id.main_toolbar));
+//        setSupportActionBar((Toolbar) findViewById(R.id.main_toolbar));
 
 //        ListView lv = (ListView) findViewById(R.id.list);
 //        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -127,17 +156,17 @@ private static final String TAG = "DemoActivity";
             }
         });
 
-        TextView t = (TextView) findViewById(R.id.name);
-        t.setText(Html.fromHtml(getString(R.string.hello)));
-        final Button f = (Button) findViewById(R.id.follow);
-        f.setText(Html.fromHtml(getString(R.string.follow)));
-        f.setMovementMethod(LinkMovementMethod.getInstance());
-        f.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-             closeDrawer();
-            }
-        });
+//        TextView t = (TextView) findViewById(R.id.name);
+//        t.setText(Html.fromHtml(getString(R.string.hello)));
+//        final Button f = (Button) findViewById(R.id.follow);
+//        f.setText(Html.fromHtml(getString(R.string.follow)));
+//        f.setMovementMethod(LinkMovementMethod.getInstance());
+//        f.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                closeDrawer();
+//            }
+//        });
     }
 
     private void closeDrawer() {
@@ -208,134 +237,6 @@ private static final String TAG = "DemoActivity";
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //    private static final String TAG = "MAIN: ";
