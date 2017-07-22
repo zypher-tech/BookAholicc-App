@@ -1,23 +1,30 @@
 package com.bookaholicc.Fragments.UserAboarding;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bookaholicc.MainActivity;
 import com.bookaholicc.Model.User;
 import com.bookaholicc.Network.AppRequestQueue;
 import com.bookaholicc.R;
+import com.bookaholicc.StorageHelpers.DataStore;
 import com.bookaholicc.utils.APIUtils;
 import com.bookaholicc.utils.BundleKey;
 import com.bookaholicc.utils.StringValidator;
@@ -36,62 +43,44 @@ import butterknife.ButterKnife;
  * Reoistration always follows Name, Email & Optional things
  */
 
-public class EmailFragment extends Fragment implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
+public class PhoneActivity extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
-    @BindView(R.id.email_tip)
-    TextInputLayout mEmail;
-    @BindView(R.id.email_pass_fip)
-    TextInputLayout mPassword;
-    @BindView(R.id.email_submit_button)
+
+
+    @BindView(R.id.number_text)
+    TextInputEditText mPhoneNumber;
+    @BindView(R.id.continue_box)
     Button mNextButton;
     private Context mContext;
+
+
+
+
     View mView;
     private String firstName;
-    private String lastName;
+    private String email;
     private String TAG = "EMAIL";
-
-    private RegistrationCallback mCallback;
-
-    public RegistrationCallback getmCallback() {
-        return mCallback;
-    }
-
-    public void setmCallback(RegistrationCallback mCallback) {
-        this.mCallback = mCallback;
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = LayoutInflater.from(mContext).inflate(R.layout.email_fragment, container, false);
+       setContentView(R.layout.email_fragment);
         ButterKnife.bind(this, mView);
 
 
 
         /*get the Arguments from */
-        if (getArguments() != null){
-            firstName = getArguments().getString(BundleKey.ARG_FIRST_NAME);
-            lastName = getArguments().getString(BundleKey.ARG_LAST_NAME);
+        if (getIntent() != null){
+            firstName = getIntent().getStringExtra(BundleKey.ARG_FIRST_NAME);
+            email = getIntent().getStringExtra(BundleKey.ARG_EMAIL_ID);
         }
 
 
 
         mNextButton.setOnClickListener(this);
 
-
-        return mView;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -122,21 +111,9 @@ public class EmailFragment extends Fragment implements View.OnClickListener, Res
         super.onResume();
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mContext = context;
-    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
+
 
     @Override
     public void onPause() {
@@ -145,7 +122,7 @@ public class EmailFragment extends Fragment implements View.OnClickListener, Res
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.email_submit_button){
+        if (view.getId() == R.id.continue_box){
             //Submit Button has Clicked
 
             createAccount();
@@ -155,37 +132,36 @@ public class EmailFragment extends Fragment implements View.OnClickListener, Res
 
     /** Validate the Fields, if Right then hit the Webservices */
     private void createAccount() {
-
-        String emailAddress = mEmail.getEditText().getText().toString();
-        String password = mPassword.getEditText().getText().toString();
-        if (StringValidator.checkeEMail(emailAddress)){
-            //correct Email
-            if (StringValidator.checkPassword(password)){
-
-                //Hit the webservice
-
-                newjoin(emailAddress,password,firstName,lastName);
-
-
-            }
-            else{
-                Snackbar.make(mView,"Enter Password Correctly",Snackbar.LENGTH_SHORT).show();
-            }
-        }
-        else{
-            //Wrong Email
-            //give a Shake // TODO: 2/6/17 give a shake
-            Snackbar.make(mView,"Enter Email Correcty",Snackbar.LENGTH_SHORT).show();
-
+        String phoneNumber = mPhoneNumber.getText().toString();
+        if (StringValidator.checkPhoneNumber(phoneNumber)){
+            // Correct Phone number
+            newjoin(email,firstName,phoneNumber);
         }
 
+    }
+
+    private void newjoin(String email, String firstName, String phoneNumber) {
+        JSONObject mUserObject = new JSONObject();
+        try {
+            mUserObject.put("firstName",firstName);
+
+            mUserObject.put("emailAddress",email);
+            mUserObject.put("phoneNumber",phoneNumber);
+            JsonObjectRequest mRequest = new JsonObjectRequest(APIUtils.REGISTER_API,mUserObject,this,this);
+            AppRequestQueue mRequestQueue = AppRequestQueue.getInstance(mContext);
+            mRequestQueue.addToRequestQue(mRequest);
+
+        }
+        catch (Exception e){
+            Log.d(TAG, "newjoin:Exception  ");
+        }
     }
 
     private void newjoin(String emailAddress, String password, String firstName, String lastName) {
         JSONObject mUserObject = new JSONObject();
         try {
             mUserObject.put("firstName",firstName);
-            mUserObject.put("lastName",password);
+            mUserObject.put("email",password);
             mUserObject.put("emailAddress",emailAddress);
             mUserObject.put("password",password);
             JsonObjectRequest mRequest = new JsonObjectRequest(APIUtils.REGISTER_API,mUserObject,this,this);
@@ -206,24 +182,31 @@ public class EmailFragment extends Fragment implements View.OnClickListener, Res
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void parseJson(JSONObject response) {
         try {
             String status  = response.getString("status");
             if (Objects.equals(status, "success")){
                 //Registed
-                User u = new User();
-                u.setFirstName(response.getString("firstName"));
-                u.setLastName(response.getString("lastName"));
-                u.seteMailAddress(response.getString("email"));
-                u.setPhoneNumber(response.getString("phoneNumber"));
-                mCallback.registered(u);
+                DataStore mStore =  DataStore.getStorageInstance(this);
+                if (mStore != null){
+                    mStore.setUserName(response.getString(APIUtils.FIRST_NAME));
+                    mStore.setPhoneNumberTag(response.getString(APIUtils.PHONE_NUMBER));
+                    mStore.setEmailId(response.getString(APIUtils.EMAIL));
+                    mStore.setIsFirstTime(false);
+                    mStore.setLoggedIn(true);
+                    startActivity(new Intent(this, MainActivity.class));
+
+
+                }
 
 
             }
         }
         catch (Exception e){
             Log.d(TAG, "parseJson: Exception ");
-            mCallback.notRegistered();
+            Toast.makeText(this,"Some Error Happened",Toast.LENGTH_SHORT).show();
+
         }
     }
 

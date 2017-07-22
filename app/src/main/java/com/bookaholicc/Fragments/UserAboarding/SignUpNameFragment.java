@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.bookaholicc.Fragments.UserAboarding.EmailFragment;
 import com.bookaholicc.R;
 import com.bookaholicc.utils.StringValidator;
 

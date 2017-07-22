@@ -1,7 +1,6 @@
 package com.bookaholicc.Activitiy;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,15 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
-import com.bookaholicc.Fragments.SignUpNameFragment;
-import com.bookaholicc.Fragments.UserAboarding.EmailFragment;
-import com.bookaholicc.Fragments.UserAboarding.LoginFragment;
+import com.bookaholicc.Fragments.UserAboarding.PhoneActivity;
 import com.bookaholicc.Fragments.UserAboarding.UARootFragment;
-import com.bookaholicc.Fragments.UserAboarding.UserPrefFragment;
-import com.bookaholicc.Model.Tags;
-import com.bookaholicc.Model.User;
 import com.bookaholicc.R;
-import com.bookaholicc.utils.BundleKey;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -42,8 +35,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import butterknife.ButterKnife;
-
-import static com.bookaholicc.Fragments.UserAboarding.LoginFragment.LoginCallback;
 
 /**
  * Created by nandhu on 2/6/17.
@@ -100,6 +91,28 @@ public  class UserAboardingActivity extends AppCompatActivity  implements  Googl
 //                .commit();
 //
 
+
+    }
+
+    private void handleFirebaseUser(FirebaseUser user) {
+
+    }
+
+    private void startLoginProcess() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this , this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
+
+        SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
+        signInButton.setSize(SignInButton.SIZE_STANDARD);
+        findViewById(R.id.sign_in_button).setOnClickListener(this);
+
         loginButton = (LoginButton)findViewById(R.id.login_button);
         loginButton.setReadPermissions("email");
         // Callback registration
@@ -113,6 +126,7 @@ public  class UserAboardingActivity extends AppCompatActivity  implements  Googl
             @Override
             public void onCancel() {
                 // App code
+
             }
 
             @Override
@@ -120,27 +134,6 @@ public  class UserAboardingActivity extends AppCompatActivity  implements  Googl
                 // App code
             }
         });
-
-    }
-
-    private void handleFirebaseUser(FirebaseUser user) {
-
-    }
-
-    private void startLoginProcess() {
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-
-                .build();
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this , this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
-
-        SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
-        findViewById(R.id.sign_in_button).setOnClickListener(this);
 
 
         // Pass the activity result back to the Facebook SDK
@@ -188,6 +181,7 @@ public  class UserAboardingActivity extends AppCompatActivity  implements  Googl
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            saveFirebaseUserDetails(user);
                             // Start Main Activity
                         } else {
                             // If sign in fails, display a message to the user.
@@ -199,10 +193,20 @@ public  class UserAboardingActivity extends AppCompatActivity  implements  Googl
 
                         // ...
                     }
+
+
                 });
     }
 
+    private void saveFirebaseUserDetails(FirebaseUser user) {
+      String firstName  = user.getDisplayName();
+      String email = user.getEmail();
+      startActivity(new Intent(this, PhoneActivity.class));
 
+
+
+
+    }
 
 
     @Override
@@ -242,9 +246,11 @@ public  class UserAboardingActivity extends AppCompatActivity  implements  Googl
             handleGoogleSignIn(result);
         }
 
+        callbackManager.onActivityResult(requestCode, resultCode, data);
 
 
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+
+
     }
 
     private void handleGoogleSignIn(GoogleSignInResult result) {
@@ -252,6 +258,7 @@ public  class UserAboardingActivity extends AppCompatActivity  implements  Googl
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
+            handleGoogleSignIn(result);
         } else {
             // Signed out, show unauthenticated UI.
 
@@ -263,82 +270,82 @@ public  class UserAboardingActivity extends AppCompatActivity  implements  Googl
         super.onBackPressed();
     }
 
+//
+//    @Override
+//    public void showLoginFragment() {
+//
+//        /** Callback is Already Obtained in Fragment in OnAttach()*/
+//        LoginFragment mFragment = new LoginFragment();
+//
+//
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.ua_frag_holder,mFragment,"loginfrag")
+//                .commit();
+//    }
+//
+//    @Override
+//    public void showSigUpFragment() {
+//
+//
+//
+//
+//        SignUpNameFragment mFragment = new SignUpNameFragment();
+//        mFragment.setmCallback(this);
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.ua_frag_holder,mFragment,"loginfrag")
+//                .commit();
+//
+//    }
+//
+//    @Override
+//    public void loggedIn(User u) {
+//
+//    }
+//
+//    @Override
+//    public void notLoggedIn() {
+//
+//    }
+//
+//    @Override
+//    public void inCorrectLoginDetails() {
+//
+//    }
+//
+//    @Override
+//    public void showEmailFragment(String firstName, String lastName) {
+//
+//        Bundle b = new Bundle();
+//        b.putString(BundleKey.ARG_FIRST_NAME,firstName);
+//        b.putString(BundleKey.ARG_LAST_NAME,lastName);
+//        PhoneActivity mFragment = new PhoneActivity();
+//        mFragment.setmCallback(this);
+//        mFragment.setArguments(b);
+//
+//        //Start the Transaction
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.ua_frag_holder,mFragment,"emailfrag")
+//                .commit();
+//
+//    }
+//
+//
+//    @Override
+//    public void registered(User u) {
+//        showPrefernceFragment();
+//    }
 
-    @Override
-    public void showLoginFragment() {
-
-        /** Callback is Already Obtained in Fragment in OnAttach()*/
-        LoginFragment mFragment = new LoginFragment();
-
-
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.ua_frag_holder,mFragment,"loginfrag")
-                .commit();
-    }
-
-    @Override
-    public void showSigUpFragment() {
-
-
-
-
-        SignUpNameFragment mFragment = new SignUpNameFragment();
-        mFragment.setmCallback(this);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.ua_frag_holder,mFragment,"loginfrag")
-                .commit();
-
-    }
-
-    @Override
-    public void loggedIn(User u) {
-
-    }
-
-    @Override
-    public void notLoggedIn() {
-
-    }
-
-    @Override
-    public void inCorrectLoginDetails() {
-
-    }
-
-    @Override
-    public void showEmailFragment(String firstName, String lastName) {
-
-        Bundle b = new Bundle();
-        b.putString(BundleKey.ARG_FIRST_NAME,firstName);
-        b.putString(BundleKey.ARG_LAST_NAME,lastName);
-        EmailFragment mFragment = new EmailFragment();
-        mFragment.setmCallback(this);
-        mFragment.setArguments(b);
-
-        //Start the Transaction
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.ua_frag_holder,mFragment,"emailfrag")
-                .commit();
-
-    }
-
-
-    @Override
-    public void registered(User u) {
-        showPrefernceFragment();
-    }
-
-    private void showPrefernceFragment() {
-        UserPrefFragment mFragment = new UserPrefFragment();
-        mFragment.setmCallback(this);
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.ua_frag_holder,mFragment,"preffrag")
-                .commit();
-    }
+//    private void showPrefernceFragment() {
+//        UserPrefFragment mFragment = new UserPrefFragment();
+//        mFragment.setmCallback(this);
+//
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.ua_frag_holder,mFragment,"preffrag")
+//                .commit();
+//    }
 
 
     @Override
@@ -352,7 +359,7 @@ public  class UserAboardingActivity extends AppCompatActivity  implements  Googl
             case R.id.sign_in_button:
                 signIn();
                 break;
-            // ...
+
         }
     }
 

@@ -4,13 +4,33 @@
 <RelativeLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:id="@+id/ua_frag_holder"
-    android:background="@color/my_black"
+    android:background="@color/material_redA400"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="match_parent"
+        android:text="Welcome to Bookaholic"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:textColor="@color/material_white"
+
+        android:layout_height="wrap_content" />
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="match_parent"
+        android:text="We hope you have nice time here"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:textColor="@color/material_white"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_height="wrap_content" />
 
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
         android:layout_width="match_parent"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentBottom="true"
@@ -21,6 +41,8 @@
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="60dp" />

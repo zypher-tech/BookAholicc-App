@@ -20,6 +20,9 @@ public class BundleKey {
     public static final String ARG_COMBO_LIST = "COMBO_PRODUCTS";
     public static final java.lang.String ARG_EXAM_BASE = "EXAM_BASE";
     public static final String EXAM_ID = "EXAM_ID";
+    public static final String ARG_EMAIL_ID = "EMAIL";
+    public static final String ARG_CHECKOUT_STRING = "checkout";
+    public static final String ARG_PRICE = "price";
 
 
     public static String[] RETUNR_STRINGS = {"2 Days","4 Days" , "6 Days"};

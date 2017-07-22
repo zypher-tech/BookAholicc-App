@@ -456,4 +456,8 @@ public class DataStore {
 
         }
     }
+
+    public String getAddress() {
+        return null;
+    }
 }

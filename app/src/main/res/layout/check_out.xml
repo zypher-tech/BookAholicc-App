@@ -51,7 +51,7 @@
     <com.bookaholicc.CustomUI.WhitenyBooksFont
         android:layout_width="wrap_content"
         android:text="Change?"
-
+        android:id="@+id/co_change_phone"
         android:layout_height="wrap_content"
         android:layout_below="@+id/co_phone_number"
         android:layout_alignStart="@+id/co_phone_number" />
@@ -125,6 +125,7 @@
         android:text="Change Address?"
         android:layout_marginRight="4dp"
         android:gravity="center"
+        android:id="@+id/co_change_addr"
         android:layout_alignParentEnd="true"
         android:layout_below="@id/deliver_text"
         android:layout_height="wrap_content"

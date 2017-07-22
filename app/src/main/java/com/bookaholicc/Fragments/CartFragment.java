@@ -40,6 +40,7 @@ import com.bookaholicc.R;
 import com.bookaholicc.StorageHelpers.CartHandler;
 import com.bookaholicc.StorageHelpers.DataStore;
 import com.bookaholicc.utils.APIUtils;
+import com.bookaholicc.utils.BundleKey;
 import com.bookaholicc.utils.RVdecorator;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -97,8 +98,8 @@ public class CartFragment extends Fragment implements CartAdapter.CartCallbacks,
             mList.setAdapter(mAdapter);
             mList.addItemDecoration(new RVdecorator(ContextCompat.getDrawable(mContext,R.drawable.divider)));
             mList.setLayoutManager(new LinearLayoutManager(mContext));
-//            Button b  = (Button) cartView.findViewById(R.id.chekout_button);
-//            b.setOnClickListener(this);
+            Button b  = (Button) cartView.findViewById(R.id.check_out_button);
+            b.setOnClickListener(this);
 
         }
 
@@ -174,14 +175,20 @@ public class CartFragment extends Fragment implements CartAdapter.CartCallbacks,
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-//            case R.id.chekout_button:
-//                checkOut();
-//                break;
+            case R.id.check_out_button:
+                checkOut();
+                break;
         }
     }
 
     private void checkOut() {
-            mContext.startActivity(new Intent(mContext,CheckOutActivity.class));
+            Gson gs  = new Gson();
+            String cartString = gs.toJson(pList);
+
+            Intent i = new Intent(mContext,CheckOutActivity.class);
+            i.putExtra(BundleKey.ARG_CHECKOUT_STRING,cartString);
+            startActivity(i);
+
 
     }
 }

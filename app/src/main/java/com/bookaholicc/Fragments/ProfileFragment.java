@@ -91,6 +91,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
         }
         else {
             // No user is signed in
+            mContext.startActivity(new Intent(getActivity(),UserAboardingActivity.class));
         }
 
 
