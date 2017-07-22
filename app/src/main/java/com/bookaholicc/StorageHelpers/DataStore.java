@@ -2,11 +2,14 @@ package com.bookaholicc.StorageHelpers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.bookaholicc.DataHandler.MiniProduct;
 import com.bookaholicc.Model.CartModel;
 import com.bookaholicc.Model.Product;
+import com.bookaholicc.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -14,6 +17,7 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONArray;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -382,5 +386,74 @@ public class DataStore {
 
     public String getToken() {
         return mSharedPrefrences.getString(TOKEN,null);
+    }
+
+    public List<Drawable> getDrawables(int examCode) {
+
+
+            List<Drawable> mlist  = new ArrayList<>();
+
+        switch (examCode){
+            case 0:
+                // Study In us
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_avatar));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_cart));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_menu_send));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_menu_camera));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_list));
+                return mlist;
+
+            case 1:
+                // Study In us
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_avatar));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_cart));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_menu_send));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_menu_camera));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_list));
+                return mlist;
+            case 2:
+                // Study In us
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_avatar));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_cart));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_menu_send));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_menu_camera));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_list));
+                return mlist;
+            case 3:
+                // Study In us
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_avatar));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_cart));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_menu_send));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_menu_camera));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_list));
+                return mlist;
+            case 4:
+                // Study In us
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_avatar));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_cart));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_menu_send));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_menu_camera));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_list));
+                return mlist;
+            case 5:
+                // Study In us
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_avatar));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_cart));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_menu_send));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_menu_camera));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_list));
+                return mlist;
+            case 6:
+                // Study In us
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_avatar));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_cart));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_menu_send));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_menu_camera));
+                mlist.add(ContextCompat.getDrawable(mContext, R.drawable.ic_list));
+                return mlist;
+            default:
+                return null;
+
+        }
     }
 }

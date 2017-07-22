@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:text="Fully packaged Combos"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
+        android:id="@+id/eb_title"
+        android:textSize="22sp"
+        android:layout_height="wrap_content" />
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_below="@+id/eb_title"
+        android:layout_marginTop="6dp"
+
+        android:id="@+id/eb_pager"
+        android:layout_height="160dp">
+
+
+
+
+    </android.support.v4.view.ViewPager>
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:text="Explore Top Publications"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
+        android:id="@+id/eb_e_text"
+        android:textSize="22sp"
+        android:layout_below="@id/eb_pager"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_below="@id/eb_e_text"
+        android:layout_marginTop="4dp"
+        android:layout_height="100dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

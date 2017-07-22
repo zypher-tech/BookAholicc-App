@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/material_redA400"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <com.bookaholicc.CustomUI.HelviticaTv
+        android:layout_width="wrap_content"
+
+        android:textSize="45sp"
+        android:id="@+id/ei_title"
+        android:text="Exam Name"
+        android:textColor="@color/material_white"
+        android:layout_marginTop="20sp"
+        android:layout_marginLeft="12dp"
+        android:layout_height="wrap_content" />
+    <com.bookaholicc.CustomUI.OpenSansTextView
+        android:layout_width="wrap_content"
+        android:text="Upcoming Exam on Jun 30"
+        android:textSize="22sp"
+
+        android:textColor="@color/material_grey50"
+        android:id="@+id/ei_edate"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ei_type"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp" />
+    <com.bookaholicc.CustomUI.OpenSansTextView
+        android:layout_width="wrap_content"
+        android:text="90 min, MCQ"
+        android:textSize="16sp"
+
+        android:textColor="@color/material_grey50"
+        android:id="@+id/ei_type"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ei_title"
+        android:layout_alignStart="@+id/ei_title" />
+    <com.bookaholicc.CustomUI.OpenSansTextView
+        android:layout_width="wrap_content"
+        android:text="Appx  5 Lakh people Apprearing"
+        android:textSize="15sp"
+        android:id="@+id/ei_people_count"
+        android:textColor="@color/material_grey50"
+
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ei_edate"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="About"
+        android:textSize="15sp"
+        android:gravity="left"
+        android:id="@+id/ei_about_text"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+        android:textColor="@color/material_grey50"
+
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ei_people_count"
+        android:layout_alignStart="@+id/ei_title"
+        android:layout_marginTop="17dp" />
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="match_parent"
+        android:layout_marginRight="12dp"
+        android:textColor="@color/material_grey300"
+        android:layout_below="@+id/ei_about_text"
+        android:text="This is along textview and it has all the About info for the Exam <have Globe Image Side by and get the officail Side link of the exam before ....skdjfasjdfhasdkfjhkjshdfjkhsjdkfhkhsfkjhsdfkhkdfkhfkhsdkfdjsfhsdkfkjhafdkj"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/ei_about_text" />
+
+</RelativeLayout>

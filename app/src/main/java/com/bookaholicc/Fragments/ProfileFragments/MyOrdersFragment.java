@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,13 +18,25 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.bookaholicc.Adapters.ViewpagerAdapters.ListAdapters.NoOrderAdapter;
 import com.bookaholicc.Adapters.ViewpagerAdapters.ProfileAdapter;
 import com.bookaholicc.Fragments.ProfileFragment;
+import com.bookaholicc.Model.Order;
 import com.bookaholicc.Model.Product;
 import com.bookaholicc.R;
 import com.bookaholicc.StorageHelpers.CartHandler;
+import com.bookaholicc.StorageHelpers.DataStore;
+import com.bookaholicc.utils.APIUtils;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -36,7 +49,7 @@ import butterknife.ButterKnife;
  * provided by {@link ProfileAdapter}
  */
 
-public class MyOrdersFragment extends Fragment implements NoOrderAdapter.NoOrderListCallback {
+public class MyOrdersFragment extends Fragment implements NoOrderAdapter.NoOrderListCallback, Response.Listener<JSONObject>, Response.ErrorListener {
     private static final String TAG = "BOOKAHOLIC";
 
 
@@ -90,7 +103,8 @@ public class MyOrdersFragment extends Fragment implements NoOrderAdapter.NoOrder
         //Infalting Views
         View view = LayoutInflater.from(mContext).inflate(R.layout.my_orders, container, false);
         ButterKnife.bind(this, view);
-        showNoOrders();
+
+        getOrders();
 
 
         //FIrst Hit the Webservices get Any orders
@@ -98,6 +112,19 @@ public class MyOrdersFragment extends Fragment implements NoOrderAdapter.NoOrder
         //If No ORders Present call No Previos orders
 
         return view;
+    }
+
+    private void getOrders() {
+        int userId  = DataStore.getStorageInstance(mContext).getUserId();
+
+        JSONObject mJsonObject  = new JSONObject();
+        try {
+            mJsonObject.put(APIUtils.USER_ID,userId);
+            JsonObjectRequest mREq = new JsonObjectRequest(Request.Method.POST,APIUtils.GET_MY_ORDERS,mJsonObject,this,this);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -197,5 +224,29 @@ public class MyOrdersFragment extends Fragment implements NoOrderAdapter.NoOrder
     @Override
     public void addToCart(int pos, int pid) {
 
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        try {
+            List<Order> mOrders = getResponse(response);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private List<Order> getResponse(JSONObject response) throws JSONException {
+        List<Order> mOrders = new ArrayList<>();
+        JSONArray mArray = response.getJSONArray(APIUtils.ORDERS);
+        for (int i =0; i< mArray.length();i++){
+            JSONObject m  = mArray.getJSONObject(i);
+
+        }
+        return null;
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Log.d(TAG, "onErrorResponse:");
     }
 }

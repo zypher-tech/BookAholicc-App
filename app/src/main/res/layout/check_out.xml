@@ -7,11 +7,11 @@
 
 
     <!--Profile Image-->
-    <android.support.v4.widget.CircleImageView
+    <com.bookaholicc.CustomUI.CircleImageView
         android:layout_width="75dp"
         android:layout_marginTop="16dp"
         app:srcCompat="@mipmap/fifa"
-        android:background="@mipmap/fifa"
+
         android:layout_marginLeft="20dp"
         android:id="@+id/co_pro_image"
         android:layout_height="75dp" />
@@ -129,14 +129,64 @@
         android:layout_below="@id/deliver_text"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/region_addr" />
+
+
+    <!--Payment Start-->
     <com.bookaholicc.CustomUI.WhitenyBooksFont
-        android:layout_width="wrap_content"
-        android:text="Pay With"
-        android:textSize="20sp"
-        android:textColor="@color/md_redA400"
-        android:layout_marginTop="20dp"
         android:id="@+id/ship_text"
-        android:layout_marginLeft="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/region_addr"
-        android:layout_height="wrap_content" />
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        android:text="Pay By"
+        android:textColor="@color/md_redA400"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@color/material_grey400"
+        android:layout_height="100dp"
+        android:layout_marginTop="4dp"
+        android:weightSum="2"
+        android:layout_below="@id/ship_text"
+        android:id="@+id/co_pay_container"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+        <com.bookaholicc.CustomUI.WhitenyBooksFont
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:layout_marginLeft="32dp"
+            android:textColor="@color/my_black"
+            android:text="Cash on Delivery"
+            android:layout_height="0dp" />
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/bb_darkBackgroundColor"
+            android:layout_height="1dp"/>
+        <com.bookaholicc.CustomUI.WhitenyBooksFont
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="1dp"
+            android:gravity="left|center_vertical"
+            android:layout_marginLeft="32dp"
+            android:text="Other Payment Options"
+            android:layout_height="0dp" />
+
+    </LinearLayout>
+
+    <!--Place Order-->
+    <Button
+        android:layout_width="match_parent"
+        android:layout_below="@+id/co_pay_container"
+        android:layout_marginTop="12dp"
+        android:text="PLace Order"
+        android:id="@+id/place_order_button"
+        android:textColor="@color/material_white"
+        style="@style/login_button"
+        android:layout_height="40dp" />
 </RelativeLayout>

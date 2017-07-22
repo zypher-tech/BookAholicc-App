@@ -4,15 +4,19 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bookaholicc.Adapters.MyReturnsAdapter;
 import com.bookaholicc.Adapters.ViewpagerAdapters.ProfileAdapter;
 import com.bookaholicc.Fragments.ProfileFragment;
 import com.bookaholicc.Model.Return;
@@ -28,6 +32,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -42,6 +47,8 @@ public class MyReturnsFragment extends Fragment implements Response.Listener<JSO
 
 
     private Context mContext ;
+    @BindView(R.id.return_root)
+    FrameLayout mRoot;
 
 
 
@@ -81,7 +88,7 @@ public class MyReturnsFragment extends Fragment implements Response.Listener<JSO
         }
         JsonObjectRequest mRequest = new JsonObjectRequest(Request.Method.POST,APIUtils.GET_RETURNS,mJsonObject,this,this);
         AppRequestQueue mAppRequestQueue = AppRequestQueue.getInstance(mContext);
-        mAppRequestQueue.addToRequestQue();
+        mAppRequestQueue.addToRequestQue(mRequest);
     }
 
     @Override
@@ -138,6 +145,21 @@ public class MyReturnsFragment extends Fragment implements Response.Listener<JSO
 
 
         List<Return> mList = getReturnBooks(response);
+        if (mList == null){
+
+            /// SHow No // TODO: 20/7/17 Show Empty View
+
+        }
+        else {
+            // Show Return View
+            MyReturnsAdapter myReturnsAdapter= new MyReturnsAdapter(mContext,mList);
+            View mV = View.inflate(mContext,R.layout.recyler_view,mRoot);
+            RecyclerView mListV = (RecyclerView) mV.findViewById(R.id.list);
+            mListV.setLayoutManager(new LinearLayoutManager(mContext));
+            mListV.setAdapter(myReturnsAdapter);
+
+
+        }
 
     }
 
@@ -147,12 +169,16 @@ public class MyReturnsFragment extends Fragment implements Response.Listener<JSO
             JSONArray mArray = response.getJSONArray(APIUtils.PRODUCTS_KEYWORD);
             for (int i =0;i<mArray.length();i++){
                 JSONObject mObject = mArray.getJSONObject(i);
-                mList.add(new Return());
-                mList.add()
+                mList.add(new Return(mObject.getInt(APIUtils.USER_ID),mObject.getString(APIUtils.IMAGE_URL),mObject.getString(APIUtils.PRODUCT_NAME),mObject.getString(APIUtils.RETURN_TIME)));
+//                mList.add()
             }
+            return mList;
         } catch (JSONException e) {
             e.printStackTrace();
+            return null;
+
         }
+
     }
 
     @Override

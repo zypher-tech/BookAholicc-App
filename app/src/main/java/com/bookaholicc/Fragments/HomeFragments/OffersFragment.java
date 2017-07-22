@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -23,6 +22,7 @@ import com.bookaholicc.Network.AppRequestQueue;
 import com.bookaholicc.R;
 import com.bookaholicc.StorageHelpers.CartHandler;
 import com.bookaholicc.utils.APIUtils;
+import com.bookaholicc.utils.RVdivider;
 
 import org.json.JSONObject;
 
@@ -85,9 +85,7 @@ public class OffersFragment extends Fragment implements Response.ErrorListener, 
     }
 
     private void makeReqestAndSave() {
-        JsonObjectRequest mObjectRequest = new JsonObjectRequest(APIUtils.HOME_ENDPOINT_OFFERS, null, this, this);
-        AppRequestQueue mRequestQueue = AppRequestQueue.getInstance(mContext);
-        mRequestQueue.addToRequestQue(mObjectRequest);
+
 
     }
 
@@ -156,7 +154,8 @@ public class OffersFragment extends Fragment implements Response.ErrorListener, 
     private void setViewValues(List<Combo> mComboList) {
         ImageAdapter mImageAdapter = new ImageAdapter(mContext, mComboList, this);
         mListView.setAdapter(mImageAdapter);
-        mListView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        mListView.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
+        mListView.addItemDecoration(new RVdivider(1));
 
 
 

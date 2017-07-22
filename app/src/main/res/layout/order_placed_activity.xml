@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="match_parent"
+        android:text="Order Confirmed :)"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:id="@+id/op_title_text"
+        android:textSize="22sp"
+        android:layout_height="wrap_content" />
+    <com.bookaholicc.CustomUI.OpenSansTextView
+        android:layout_width="wrap_content"
+        android:text="Status :"
+        android:textColor="@color/material_indigoA400"
+        android:layout_marginTop="4dp"
+        android:id="@+id/status_text"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/op_title_text"
+        android:layout_toEndOf="@+id/op_pcount_text" />
+    <com.bookaholicc.CustomUI.OpenSansTextView
+        android:layout_width="wrap_content"
+        android:text="Order Receieved"
+        android:id="@+id/stat_val"
+
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/status_text"
+        android:layout_toEndOf="@+id/status_text"
+        android:layout_alignTop="@+id/status_text" />
+    <ImageView
+        android:layout_width="100dp"
+        app:srcCompat = "@drawable/ic_player"
+        android:layout_height="100dp"
+        android:id="@+id/op_image"
+        android:layout_below="@+id/status_text"
+        android:layout_centerHorizontal="true"
+        />
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:text="4 Products"
+        android:id="@+id/op_pcount_text"
+        android:layout_below="@+id/op_div"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/op_div"
+        android:layout_below="@+id/op_image"
+        android:layout_marginTop="8dp"
+        android:background="@color/material_grey500"/>
+
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:text="335"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="12dp"
+        android:id="@+id/op_ampunt_text"
+        android:layout_below="@id/op_div"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_height="wrap_content" />
+   <android.support.v7.widget.RecyclerView
+       android:layout_width="match_parent"
+       android:layout_marginTop="4dp"
+       android:id="@+id/op_list"
+       android:layout_marginLeft="16dp"
+       android:layout_marginRight="16dp"
+       android:layout_below="@+id/op_pcount_text"
+
+       android:layout_height="200dp">
+
+   </android.support.v7.widget.RecyclerView>
+</RelativeLayout>

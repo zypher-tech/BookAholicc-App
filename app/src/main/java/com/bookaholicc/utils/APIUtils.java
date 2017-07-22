@@ -26,7 +26,7 @@ public class APIUtils {
 
 
     /*HOME - OFFERS*/
-    public static final String HOME_ENDPOINT_OFFERS = "";
+    public static final String HOME_ = "";
 
 
     /*CATEGORIES */
@@ -76,12 +76,16 @@ public class APIUtils {
 
 
     /*ADD TO CART*/
-    public static final String HOME_ENDPOINT_ADD_TO_CART = "";
+    public static final String HOME_ENDPOINT_ADD_TO_CART = ""; //// TODO: 20/7/17
 
     /*ADD TO LIST*/
-    public static final String HOME_ENDPOINT_ADD_TO_LIST = "";
+    public static final String HOME_ENDPOINT_ADD_TO_LIST = ""; // // TODO: 20/7/17  
     public static final String  PRICE = "price";
-    public static final String GET_RETURNS = "";
+    public static final String GET_RETURNS = ""; // // TODO: 20/7/17  
+    public static final String  RETURN_TIME = "return";
+    public static final String GET_MY_ORDERS = ""; //// TODO: 20/7/17  
+    public static final String ORDERS = "orders";
+    public static final String ORDER_DETAILS = ""; //// TODO: 20/7/17  
 
     public static String SAVE_TOKEN_API = "";
 
@@ -113,4 +117,6 @@ public class APIUtils {
     public static String FROM_WHERE = "fromWhere";
     public static String GENRE_ID = "genreId";
     public static String GENRE_NAME = "genreName";
+    public static String INSERT_AT = "insertedAt";
+    public static String ORDERS_STATUS = "orderStatus";
 }

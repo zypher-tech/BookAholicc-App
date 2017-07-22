@@ -18,6 +18,8 @@ public class BundleKey {
     public static final String IS_MAP_STARTED = "MAP_STARTED";
     public static final java.lang.String ARG_LAST_NAME = "LAST_NAME";
     public static final String ARG_COMBO_LIST = "COMBO_PRODUCTS";
+    public static final java.lang.String ARG_EXAM_BASE = "EXAM_BASE";
+    public static final String EXAM_ID = "EXAM_ID";
 
 
     public static String[] RETUNR_STRINGS = {"2 Days","4 Days" , "6 Days"};

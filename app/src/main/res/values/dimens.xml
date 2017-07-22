@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="p_card">10dp</dimen>
+    <dimen name="avatar_size">96dp</dimen>
 
 </resources>

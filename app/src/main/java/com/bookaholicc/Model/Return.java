@@ -7,12 +7,22 @@ import java.util.List;
  * The Return object for this user
  */
 
+
+// Since Each user can use multiple dates to read
+    // we have to have  COmplete object for user
+
 public class Return {
 
+    int userId;
+    int pid;
+    String imageURL;
+    String pName;
+    String returnTime;
 
-    String usernName;
-    String phoneNumber;
-    List<Product> mReturn;
-
-
+    public Return(int userId, String imageURL, String pName, String returnTime) {
+        this.userId = userId;
+        this.imageURL = imageURL;
+        this.pName = pName;
+        this.returnTime = returnTime;
+    }
 }
