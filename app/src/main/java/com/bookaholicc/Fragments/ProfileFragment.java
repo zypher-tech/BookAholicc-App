@@ -27,6 +27,8 @@ import com.bookaholicc.Adapters.ViewpagerAdapters.ProfileAdapter;
 import com.bookaholicc.R;
 import com.bookaholicc.StorageHelpers.DataStore;
 import com.bookaholicc.utils.BlurBuilder;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,20 +80,33 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
         View v = LayoutInflater.from(mContext).inflate(R.layout.profile_frag, container, false);
         ButterKnife.bind(this, v);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+                String name = user.getDisplayName();
+                String email = user.getEmail();
+                Uri photoUrl = user.getPhotoUrl();
 
-        mProfileImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                pickImage();
-            }
-        });
 
-        if (isSignedIn()) {
 
-            setUpPager();
-        } else {
-            showLoginOrSignUpPage();
         }
+        else {
+            // No user is signed in
+        }
+
+
+//        mProfileImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                pickImage();
+//            }
+//        });
+//
+//        if (isSignedIn()) {
+//
+//            setUpPager();
+//        } else {
+//            showLoginOrSignUpPage();
+//        }
 
 
 

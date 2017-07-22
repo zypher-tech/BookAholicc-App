@@ -62,7 +62,7 @@
         android:layout_marginRight="12dp"
         android:textColor="@color/material_grey300"
         android:layout_below="@+id/ei_about_text"
-        android:text="This is along textview and it has all the About info for the Exam <have Globe Image Side by and get the officail Side link of the exam before ....skdjfasjdfhasdkfjhkjshdfjkhsjdkfhkhsfkjhsdfkhkdfkhfkhsdkfdjsfhsdkfkjhafdkj"
+        android:text="@string/s"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/ei_about_text" />
 
