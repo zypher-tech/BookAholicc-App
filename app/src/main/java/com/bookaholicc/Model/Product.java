@@ -68,13 +68,23 @@ public class Product {
 
     private String quantity;
 
+    private List<PriceInfo> mPricing;
+
+    public List<PriceInfo> getmPricing() {
+        return mPricing;
+    }
+
+    public void setmPricing(List<PriceInfo> mPricing) {
+        this.mPricing = mPricing;
+    }
+
     public Product(int pid, String productName,
                    String productDesc, String auhtorName,
                    String publisherName, String mrp,
                    String isTopRated, String isBestSeller,
                    String bookSummary, String base_category,
                    String sub_category, String our_price,
-                   String duration, String iamgeUrl) {
+                   String duration, String iamgeUrl, List<PriceInfo> mPriceInfo) {
 
 
 
@@ -93,6 +103,7 @@ public class Product {
         this.summary = bookSummary;
         this.mrp = mrp;
         this.oru_price = our_price;
+        this.mPricing = mPriceInfo;
 
     }
 

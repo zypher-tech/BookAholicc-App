@@ -12,6 +12,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bookaholicc.Fragments.HomeFragments.NewArrivalsFragment;
 import com.bookaholicc.Model.Combo;
+import com.bookaholicc.Model.PriceInfo;
 import com.bookaholicc.Model.Product;
 import com.bookaholicc.Network.AppRequestQueue;
 import com.bookaholicc.utils.APIUtils;
@@ -151,6 +152,8 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
 
     }
 
+//    // TODO: 24/7/17 Addd Pricing Object
+
     private List<Product> getProductListFromJson(JSONArray mProductsArray) {
         int productCount = mProductsArray.length();
         List<Product> mList = new ArrayList<>(productCount);
@@ -160,6 +163,7 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
                     JSONObject pObj = null;
                     // Get the Oject Turn It to String
                     pObj = mProductsArray.getJSONObject(i);
+                    List<PriceInfo> mPriceInfo = getPricing(pObj.getJSONArray(APIUtils.PAYMENT));
 
                     if (pObj != null) {
                         //Got the Object , get String Push it to List
@@ -178,7 +182,7 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
                                     pObj.getString(APIUtils.SUB_CATEGORY),
                                     pObj.getString(APIUtils.PRICE),
                                    "2 Weeks",
-                                    pObj.getString(APIUtils.IMAGE_URL))   // Construct of Product
+                                    pObj.getString(APIUtils.IMAGE_URL),mPriceInfo)   // Construct of Product
                             );
                         } catch (Exception e) {
                             Log.d(TAG, "getProductListFromJson:Exception "+e.getLocalizedMessage());
@@ -204,7 +208,24 @@ public class HomePageDataHandler implements Response.ErrorListener, Response.Lis
         return null;
     }
 
+    private List<PriceInfo> getPricing(JSONArray jsonArray) {
+        try {
+            if (jsonArray.length() == 0) {
+                return null;
+            }
+            List<PriceInfo> mlist = new ArrayList<>();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject mObject = jsonArray.getJSONObject(i);
+                mlist.add(new PriceInfo(mObject.getInt(APIUtils.WINDOW_ID), mObject.getInt(APIUtils.COST)));
 
+            }
+            return mlist;
+        }
+        catch (Exception e){
+            Log.d(TAG, "getPricing: Exception in getting Pricing "+e.getLocalizedMessage());
+            return null;
+        }
+    }
 
 
     private  void unregisterCallback(){

@@ -67,7 +67,7 @@ public  class UserAboardingActivity extends AppCompatActivity  implements  Googl
             handleFirebaseUser(user);
         }
         else{
-            startLoginProcess();
+//            startLoginProcess();
         }
 
 
@@ -98,48 +98,48 @@ public  class UserAboardingActivity extends AppCompatActivity  implements  Googl
 
     }
 
-    private void startLoginProcess() {
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this , this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
-
-        SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
-        findViewById(R.id.sign_in_button).setOnClickListener(this);
-
-        loginButton = (LoginButton)findViewById(R.id.login_button);
-        loginButton.setReadPermissions("email");
-        // Callback registration
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                // App code
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-                // App code
-
-            }
-
-            @Override
-            public void onError(FacebookException exception) {
-                // App code
-            }
-        });
-
-
-        // Pass the activity result back to the Facebook SDK
-
-
-    }
+//    private void startLoginProcess() {
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestEmail()
+//                .build();
+//
+//        mGoogleApiClient = new GoogleApiClient.Builder(this)
+//                .enableAutoManage(this , this)
+//                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+//                .build();
+//
+//
+//        SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
+//        signInButton.setSize(SignInButton.SIZE_STANDARD);
+//        findViewById(R.id.sign_in_button).setOnClickListener(this);
+//
+//        loginButton = (LoginButton)findViewById(R.id.login_button);
+//        loginButton.setReadPermissions("email");
+//        // Callback registration
+//        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                // App code
+//                handleFacebookAccessToken(loginResult.getAccessToken());
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                // App code
+//
+//            }
+//
+//            @Override
+//            public void onError(FacebookException exception) {
+//                // App code
+//            }
+//        });
+//
+//
+//        // Pass the activity result back to the Facebook SDK
+//
+//
+//    }
 
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
@@ -356,9 +356,9 @@ public  class UserAboardingActivity extends AppCompatActivity  implements  Googl
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.sign_in_button:
-                signIn();
-                break;
+//            case R.id.sign_in_button:
+//                signIn();
+//                break;
 
         }
     }

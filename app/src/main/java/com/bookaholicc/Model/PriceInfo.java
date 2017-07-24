@@ -9,62 +9,28 @@ import java.io.Serializable;
  * Created by nandhu on 5/3/17.
  * This class holds Prices
  */
-public class PriceInfo  implements Parcelable ,Serializable{
-    private int price;
-    private String days;
+public class PriceInfo {
+    private int windowId;
+    private int amount;
 
-    public PriceInfo(int price, String days) {
-        this.price = price;
-        this.days = days;
+    public PriceInfo(int windowId, int amount) {
+        this.windowId = windowId;
+        this.amount = amount;
     }
 
-
-    public PriceInfo(Parcel in) {
-        price = in.readInt();
-        days = in.readString();
+    public int getWindowId() {
+        return windowId;
     }
 
-    public static final Creator<PriceInfo> CREATOR = new Creator<PriceInfo>() {
-        @Override
-        public PriceInfo createFromParcel(Parcel in) {
-            return new PriceInfo(in);
-        }
-
-        @Override
-        public PriceInfo[] newArray(int size) {
-            return new PriceInfo[size];
-        }
-    };
-
-    public int getPrice() {
-        return price;
+    public void setWindowId(int windowId) {
+        this.windowId = windowId;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public int getAmount() {
+        return amount;
     }
 
-    public String getDays() {
-        return days;
-    }
-
-    public void setDays(String days) {
-        this.days = days;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-
-
-    @Override
-    public void writeToParcel(Parcel dest, int i) {
-
-        dest.writeString(days);
-        dest.writeInt(price);
-
-
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

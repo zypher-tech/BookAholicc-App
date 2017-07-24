@@ -28,9 +28,9 @@
         android:id="@+id/stat_val"
 
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/status_text"
         android:layout_alignBottom="@+id/status_text"
-        android:layout_toEndOf="@+id/status_text"
-        android:layout_alignTop="@+id/status_text" />
+        android:layout_toEndOf="@+id/status_text" />
     <ImageView
         android:layout_width="100dp"
         app:srcCompat = "@drawable/ic_player"

@@ -9,8 +9,7 @@ import com.bookaholicc.R;
 /**
  * Created by nandhu on 23/7/17.
  *  Other payment Activities
- *  this should Alwasy Start with method StartActivity for Result Callback , We must provide return Stats
- *
+ *  this should Always Start with method StartActivity for Result Callback , We must provide return Stats
  */
 
 class OtherPaymentActiviy extends AppCompatActivity{

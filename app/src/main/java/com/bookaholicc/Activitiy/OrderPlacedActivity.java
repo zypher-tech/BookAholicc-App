@@ -96,6 +96,7 @@ class OrderPlacedActivity extends AppCompatActivity implements Response.Listener
     public void onResponse(JSONObject response) {
         try {
             int orderId = response.getInt(APIUtils.ORDER_ID);
+            int isAccpeted = response.getInt(APIUtils.IS_ACCEPTED);
             double orderLat = response.getDouble(APIUtils.ORDER_LAT);
             double orderLon = response.getDouble(APIUtils.ORDER_LON);
             String orderStatus = response.getString(APIUtils.ORDERS_STATUS);
@@ -112,7 +113,7 @@ class OrderPlacedActivity extends AppCompatActivity implements Response.Listener
             JSONObject mPaymentObject = response.getJSONObject("payment");
             int total = response.getInt("amount");
             Log.d(TAG, "onResponse: GOT total Amount " + total);
-            showView(total, mList, orderLat, orderLon, orderId);
+            showView(total, mList, orderLat, orderLon, orderId,isAccpeted);
         } catch (Exception e) {
             Log.d(TAG, "Parsing :Error happened " + e.getLocalizedMessage());
         }
@@ -158,7 +159,7 @@ class OrderPlacedActivity extends AppCompatActivity implements Response.Listener
 //
 
 
-    private void showView(int total, List<MiniProduct> mList, double orderLat, double orderLon, int orderId) {
+    private void showView(int total, List<MiniProduct> mList, double orderLat, double orderLon, int orderId, int isAccpeted) {
 
     }
 

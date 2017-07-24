@@ -319,7 +319,7 @@ public class SwipableProductFragment extends Fragment  implements GListener.Call
 
                 break;
             case R.id.vp_about_book_text_vale:
-                Toast.makeText(mContext,"Added to Cart",Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext,"About",Toast.LENGTH_LONG).show();
                 break;
 
 

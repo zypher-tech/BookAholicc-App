@@ -2,10 +2,14 @@
 
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="80dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
         <ImageView
             android:layout_width="80dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
             app:srcCompat= "@mipmap/fifa"
             android:id="@+id/cart_item_image"
             android:layout_height="match_parent" />
@@ -19,43 +23,57 @@
             android:layout_alignParentTop="true"
             android:textSize="12sp"
             android:ellipsize="end"
-            android:gravity="left"
+            android:gravity="left|center_vertical"
             android:maxLines="2"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="4dp"
 
             android:layout_marginLeft="6dp"
             android:layout_marginRight="6dp"
             android:text="The Long Title o f Book jsdsdksjdkjkdjlasjdlasjdjaskd"
             android:layout_toEndOf="@+id/cart_item_image"
-            android:layout_toStartOf="@+id/linearLayout"
+
             />
+    <com.bookaholicc.CustomUI.OpenSansTextView
+        android:layout_width="wrap_content"
+        android:layout_below="@id/cart_item_pname"
+        android:text="455 pages"
+        android:textSize="10sp"
+        android:id="@+id/cart_item_page_count"
+        android:layout_alignLeft="@id/cart_item_pname"
+        android:layout_height="wrap_content" />
+    <com.bookaholicc.CustomUI.OpenSansTextView
+        android:layout_width="wrap_content"
+        android:text="Est reading dur-16h"
+        android:textSize="10sp"
+        android:id="@+id/cart_item_reading_dur"
+        android:layout_marginRight="6dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cart_item_pname"
+        android:layout_alignParentEnd="true" />
 
+    <Spinner
+        android:layout_below="@+id/cart_item_reading_dur"
+        android:layout_width="100dp"
+        android:layout_marginTop="4dp"
 
-        <LinearLayout
-            android:layout_width="100dp"
-            android:orientation="vertical"
-            android:layout_alignParentEnd="true"
-            android:weightSum="2"
-            android:layout_height="match_parent"
-            android:id="@+id/linearLayout">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:id="@+id/cart_item_price"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:text="321"
-                android:gravity="center"
-                android:layout_height="0dp" />
+        android:layout_alignParentEnd="true"
+        android:background="@color/bb_darkBackgroundColor"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/cart_item_spinner"
+        android:layout_height="match_parent"/>
 
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:id="@+id/cart_item_spinner"
-                android:layout_height="0dp">
-
-            </Spinner>
-
-        </LinearLayout>
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:text="51"
+        android:gravity="center"
+        android:id="@+id/cart_item_price"
+        android:textColor="@color/bb_darkBackgroundColor"
+        android:textSize="14sp"
+        android:layout_alignLeft="@id/cart_item_pname"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/cart_item_spinner"
+        android:layout_alignTop="@+id/cart_item_spinner" />
 
 
     </RelativeLayout>

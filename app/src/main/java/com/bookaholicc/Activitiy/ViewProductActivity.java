@@ -21,6 +21,7 @@ import com.bookaholicc.StorageHelpers.CartHandler;
 import com.bookaholicc.utils.BlurBuilder;
 import com.bookaholicc.utils.BundleKey;
 import com.bookaholicc.utils.ScreenUtil;
+import com.bumptech.glide.Glide;
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
 import com.gigamole.infinitecycleviewpager.OnInfiniteCyclePageTransformListener;
 import com.google.gson.Gson;
@@ -81,7 +82,7 @@ public class ViewProductActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 Log.d(TAG, "onPageSelected: "+position);
                 Log.d(TAG, "onPageSelected:Real Item "+mPager.getRealItem());
-                updateImage();
+                updateImage(mPager.getRealItem());
             }
 
             @Override
@@ -99,7 +100,14 @@ public class ViewProductActivity extends AppCompatActivity {
 
     }
 
-    private void updateImage() {
+    private void updateImage(int realItem) {
+        if (mBackDropImage != null){
+            Glide.with(this)
+                    .load(mProductsList.get(realItem).getImageURL())
+                    .into(mBackDropImage);
+        }
+
+
 
     }
 //

@@ -144,7 +144,7 @@
         android:textColor="@color/md_redA400"
         android:textSize="20sp" />
 
-    <LinearLayout
+    <RadioGroup
         android:layout_width="match_parent"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
@@ -157,7 +157,8 @@
         android:orientation="vertical"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true">
-        <com.bookaholicc.CustomUI.WhitenyBooksFont
+
+        <RadioButton
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:gravity="left|center_vertical"
@@ -169,7 +170,7 @@
             android:layout_width="match_parent"
             android:background="@color/bb_darkBackgroundColor"
             android:layout_height="1dp"/>
-        <com.bookaholicc.CustomUI.WhitenyBooksFont
+        <RadioButton
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:layout_marginTop="1dp"
@@ -178,7 +179,7 @@
             android:text="Other Payment Options"
             android:layout_height="0dp" />
 
-    </LinearLayout>
+    </RadioGroup>
 
     <!--Place Order-->
     <Button

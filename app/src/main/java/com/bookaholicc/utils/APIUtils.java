@@ -87,6 +87,9 @@ public class APIUtils {
     public static final String ORDERS = "orders";
     public static final String ORDER_DETAILS = ""; //// TODO: 20/7/17
     public static final String EMAIL = "emailAddress";
+    public static final String PAYMENT = "pricing";
+    public static final String WINDOW_ID = "windowId";
+    public static final String COST = "cost";
 
     public static String SAVE_TOKEN_API = "";
 

@@ -245,7 +245,7 @@ public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArr
 
     @Override
     public void noDataLoaded() {
-        Toast.makeText(mContext,"No Order Placed, Try Again..",Toast.LENGTH_LONG).show();
+        Toast.makeText(mContext,"Some Error Occurred , Try Again..",Toast.LENGTH_LONG).show();
 
     }
 
@@ -256,7 +256,7 @@ public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArr
         Gson gson = new Gson();
 //
         String productListString = gson.toJson(mParsedProducts);
-        Log.d(TAG, "showProduct: Converted Product List to String :"+productListString);
+        Log.d(TAG, "showProduct: Converted Product List to String : "+productListString);
         Intent i = new Intent(mContext, ViewProductActivity.class);
 //        //// TODO: 20/6/17 Implement Transitions
         i.putExtra(BundleKey.ARG_PRODUCT_LIST,productListString);

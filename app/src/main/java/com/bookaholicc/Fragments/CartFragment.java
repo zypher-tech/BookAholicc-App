@@ -75,6 +75,7 @@ public class CartFragment extends Fragment implements CartAdapter.CartCallbacks,
     @BindView(R.id.cart_frame_root) FrameLayout mRoot;
 
     List<Product> pList;
+    int totalAmount;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +101,7 @@ public class CartFragment extends Fragment implements CartAdapter.CartCallbacks,
             mList.setLayoutManager(new LinearLayoutManager(mContext));
             Button b  = (Button) cartView.findViewById(R.id.check_out_button);
             b.setOnClickListener(this);
+            totalAmount = getAmount(pList);
 
         }
 
@@ -109,6 +111,16 @@ public class CartFragment extends Fragment implements CartAdapter.CartCallbacks,
 
         return v;
     }
+
+    private int getAmount(List<Product> mList) {
+        int sum = 0;
+        for (int i =0;i<mList.size();i++){
+            sum = sum + mList.get(i).getmPricing().get(i).getAmount();
+
+        }
+        return sum;
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -173,6 +185,11 @@ public class CartFragment extends Fragment implements CartAdapter.CartCallbacks,
     }
 
     @Override
+    public void changeDuration(int pos, int windowId, int newAmount) {
+
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.check_out_button:
@@ -187,6 +204,7 @@ public class CartFragment extends Fragment implements CartAdapter.CartCallbacks,
 
             Intent i = new Intent(mContext,CheckOutActivity.class);
             i.putExtra(BundleKey.ARG_CHECKOUT_STRING,cartString);
+            i.putExtra(BundleKey.ARG_PRICE,totalAmount);
             startActivity(i);
 
 
