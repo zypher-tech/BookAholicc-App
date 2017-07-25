@@ -26,15 +26,19 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bookaholicc.Activitiy.ViewProductActivity;
 import com.bookaholicc.CustomUI.CircleImageView;
 import com.bookaholicc.CustomUI.OpenSansTextView;
 import com.bookaholicc.CustomUI.WhitenyBooksFont;
 import com.bookaholicc.Fragments.CartFragment;
 import com.bookaholicc.Fragments.CategoriesFragment;
 import com.bookaholicc.Fragments.HomeFragement;
+import com.bookaholicc.Fragments.HomeFragments.NewArrivalsFragment;
 import com.bookaholicc.Fragments.NotificationsFragment;
 import com.bookaholicc.Fragments.ProfileFragment;
+import com.bookaholicc.Fragments.ViewProductFragment;
 import com.bookaholicc.StorageHelpers.DataStore;
+import com.bookaholicc.utils.FontCache;
 import com.bumptech.glide.Glide;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
@@ -42,9 +46,10 @@ import com.roughike.bottombar.OnTabSelectListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener ,
-             NavigationView.OnNavigationItemSelectedListener, OnTabSelectListener, OnTabReselectListener{
+             NavigationView.OnNavigationItemSelectedListener, OnTabSelectListener, OnTabReselectListener,NewArrivalsFragment.NewArrivalsInterface{
 //
 ////
 //    private static final String TAG = "DemoActivity";
@@ -325,13 +330,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //}
 
 
-    private static final String TAG = "MAIN ";
 
 
 
 
+    private static final String TAG = "MAIN_ACTIVITY ";
     @BindView(R.id.toolbar) Toolbar toolbar;
-
+    Unbinder unbinder;
 
 
 
@@ -340,7 +345,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_bar_main);
-
+        unbinder =  ButterKnife.bind(this);
 //        ImageView mToolbarIcon=(ImageView)findViewById(R.id.toolbar_image);
 //        Picasso.with(this)
 //        .load(R.mipmap.logo_icon)
@@ -352,7 +357,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
 
 
-        ButterKnife.bind(this);
+
 //
 
 //
@@ -366,8 +371,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        navigationView.setNavigationItemSelectedListener(this);
 
 
-        setUpBottomar();
-        showMainFrag();
+               setUpBottomar();
+               showMainFrag();
         }
 
 
@@ -384,6 +389,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else{
             Log.d(TAG, "onActivityResult: Null Fragment");
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (unbinder != null){
+            unbinder.unbind();
         }
     }
 
@@ -448,6 +462,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setUpBottomar() {
         BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+        bottomBar.getShySettings().hideBar();
+        bottomBar.setTabTitleTypeface(FontCache.getTypeface("fonts/whiteny_book_reg.ttf",getApplicationContext()));
+        bottomBar.setInActiveTabAlpha(0.9f);
         bottomBar.setOnTabSelectListener(this);
         bottomBar.setOnTabReselectListener(this);
         bottomBar.setLongPressHintsEnabled(true);
@@ -512,6 +529,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
+    }
+
+    @Override
+    public void showProduct(int pid, View mView) {
+        ViewProductFragment mFragment = new ViewProductFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frag_holder_main,mFragment)
+                .commit();
+    }
+
+    @Override
+    public void comboClicked(int comboId, View mView) {
 
     }
 }

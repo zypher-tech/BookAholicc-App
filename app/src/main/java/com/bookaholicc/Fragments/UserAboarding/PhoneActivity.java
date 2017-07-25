@@ -6,14 +6,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -36,6 +32,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by nandhu on 2/6/17.
@@ -59,22 +56,25 @@ public class PhoneActivity extends AppCompatActivity implements View.OnClickList
     View mView;
     private String firstName;
     private String email;
+    private String password;
     private String TAG = "EMAIL";
+    Unbinder unbinder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setContentView(R.layout.email_fragment);
-        ButterKnife.bind(this, mView);
+        setContentView(R.layout.email_fragment);
+        unbinder = ButterKnife.bind(this, mView);
 
 
 
         /*get the Arguments from */
         if (getIntent() != null){
-            firstName = getIntent().getStringExtra(BundleKey.ARG_FIRST_NAME);
+            firstName = getIntent().getStringExtra(BundleKey.ARG_FULL_NAME);
             email = getIntent().getStringExtra(BundleKey.ARG_EMAIL_ID);
-        }
+            password = getIntent().getStringExtra(BundleKey.ARG_PASSWORD);
 
+        }
 
 
         mNextButton.setOnClickListener(this);
@@ -91,6 +91,9 @@ public class PhoneActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (unbinder != null){
+            unbinder.unbind();
+        }
         if (mContext != null) {
             mContext = null;
         }
@@ -135,7 +138,7 @@ public class PhoneActivity extends AppCompatActivity implements View.OnClickList
         String phoneNumber = mPhoneNumber.getText().toString();
         if (StringValidator.checkPhoneNumber(phoneNumber)){
             // Correct Phone number
-            newjoin(email,firstName,phoneNumber);
+            newjoin(email,firstName,password,phoneNumber);
         }
 
     }
@@ -157,11 +160,11 @@ public class PhoneActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void newjoin(String emailAddress, String password, String firstName, String lastName) {
+    private void newjoin(String emailAddress, String fullname, String password, String phoneNumber) {
         JSONObject mUserObject = new JSONObject();
         try {
-            mUserObject.put("firstName",firstName);
-            mUserObject.put("email",password);
+            mUserObject.put("fullName",fullname);
+            mUserObject.put("phoneNumber",phoneNumber);
             mUserObject.put("emailAddress",emailAddress);
             mUserObject.put("password",password);
             JsonObjectRequest mRequest = new JsonObjectRequest(APIUtils.REGISTER_API,mUserObject,this,this);
@@ -177,20 +180,19 @@ public class PhoneActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onResponse(JSONObject response) {
-
-        parseJson(response);
-
+        parseResJson(response);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void parseJson(JSONObject response) {
+
+    private void parseResJson(JSONObject response) {
         try {
             String status  = response.getString("status");
-            if (Objects.equals(status, "success")){
-                //Registed
+            if (status.equals("success")){
+                //Registered
                 DataStore mStore =  DataStore.getStorageInstance(this);
                 if (mStore != null){
                     mStore.setUserName(response.getString(APIUtils.FIRST_NAME));
+                    mStore.setUserId(response.getInt(APIUtils.USER_ID));
                     mStore.setPhoneNumberTag(response.getString(APIUtils.PHONE_NUMBER));
                     mStore.setEmailId(response.getString(APIUtils.EMAIL));
                     mStore.setIsFirstTime(false);

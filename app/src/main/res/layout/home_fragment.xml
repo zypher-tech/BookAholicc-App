@@ -16,7 +16,7 @@
         app:nts_corners_radius="4dp"
         app:nts_factor="0.5"
         app:nts_gravity="bottom"
-
+        android:background="@color/material_redA400"
         app:nts_type="point"
 
 

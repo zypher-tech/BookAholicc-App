@@ -11,11 +11,13 @@ import android.view.ViewGroup;
 
 import com.bookaholicc.Adapters.ViewpagerAdapters.MainFragmentAdapter;
 import com.bookaholicc.CustomUI.NavigationTabStrip;
+import com.bookaholicc.Fragments.HomeFragments.NewArrivalsFragment;
 import com.bookaholicc.MainActivity;
 import com.bookaholicc.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by nandhu on 29/5/17.
@@ -35,6 +37,7 @@ public class HomeFragement extends Fragment {
 
 
     String[] pageTitles = {"New Arrival's", "Explore", "Exam Corner"};
+    private Unbinder unbinder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class HomeFragement extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.home_fragment, container, false);
-        ButterKnife.bind(this, v);
+        unbinder = ButterKnife.bind(this, v);
         setUpPager();
         return v;
     }
@@ -58,6 +61,7 @@ public class HomeFragement extends Fragment {
         mPager.setAdapter(mAdapter);
         mPager.setOffscreenPageLimit(3);
         mTab.setTitles(pageTitles);
+
         mTab.setViewPager(mPager);
 
 
@@ -66,6 +70,10 @@ public class HomeFragement extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (unbinder != null){
+                unbinder.unbind();
+            }
+
     }
 
     @Override
@@ -117,5 +125,6 @@ public class HomeFragement extends Fragment {
     public void onResume() {
         super.onResume();
     }
+
 
 }

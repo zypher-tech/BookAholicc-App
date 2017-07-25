@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="pricing_selector">
+        <item name="android:textColor">@color/my_black</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">@dimen/text_size_option</item>
+        <item name="android:background">@drawable/radio_button_selector</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:layout_marginRight">4dp</item>
+        <item name="android:paddingRight">16dp</item>
+    </style>
+</resources>

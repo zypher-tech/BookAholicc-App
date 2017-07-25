@@ -4,18 +4,21 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputLayout;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.bookaholicc.CustomUI.HelviticaTv;
 import com.bookaholicc.R;
 import com.bookaholicc.utils.StringValidator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by nandhu on 2/6/17.
@@ -27,17 +30,23 @@ public class SignUpNameFragment extends Fragment implements View.OnClickListener
 
 
     View mView;
-    @BindView(R.id.reg_fi_tip)
-    TextInputLayout mFirstName;
-    @BindView(R.id.reg_lastname_tip)
-    TextInputLayout mLastName;
-    @BindView(R.id.name_submit_button)
-    Button mSubmitButton;
+    @BindView(R.id.s_title)
+    HelviticaTv mTitle;
+    @BindView(R.id.s_name_e)
+    TextInputEditText mName;
+    @BindView(R.id.s_email_e)
+    TextInputEditText mEmail;
+    @BindView(R.id.s_pass_e)
+    TextInputEditText mPas;
+    @BindView(R.id.s_signup_button)
+    Button mBut;
+    Unbinder unbinder;
     private Context mContext;
 
 
     /*A Callback Which Delivers The result to Activity*/
     private SignUpCallback mCallback;
+    private String TAG  = "SIGN Up";
 
 
     public SignUpCallback getmCallback() {
@@ -58,12 +67,9 @@ public class SignUpNameFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = LayoutInflater.from(mContext).inflate(R.layout.registartion_name_fragment, container, false);
+        unbinder = ButterKnife.bind(this, mView);
 
-
-        ButterKnife.bind(this, mView);
-
-
-        mSubmitButton.setOnClickListener(this);
+        mBut.setOnClickListener(this);
 
         return mView;
     }
@@ -71,6 +77,7 @@ public class SignUpNameFragment extends Fragment implements View.OnClickListener
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        unbinder.unbind();
     }
 
     @Override
@@ -95,7 +102,7 @@ public class SignUpNameFragment extends Fragment implements View.OnClickListener
     @Override
     public void onStop() {
         super.onStop();
-        if (mCallback != null){
+        if (mCallback != null) {
             mCallback.noSignUp();
         }
     }
@@ -123,25 +130,34 @@ public class SignUpNameFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.name_submit_button){
+        if (view.getId() == R.id.s_signup_button){
             //Button Clicked
             showEmailPassPage();
         }
     }
 
 
-    /** Submit Button Has been Clicked ,  Validate the Fields
-     *  save it to file, show in the Next Fragment
-     * */
+
+
+    /**
+     * Submit Button Has been Clicked ,  Validate the Fields
+     * save it to file, show in the Next Fragment
+     */
 
     private void showEmailPassPage() {
-        String vFirstName = mFirstName.getEditText().getText().toString();
-        String  vLastName = mLastName.getEditText().getText().toString();
-        if (StringValidator.CheckUserName(vFirstName)){
+        String mNameFul = mName.getText().toString();
+        String  mEmaill = mEmail.getText().toString();
+        String pass  = mPas.getText().toString();
+        if (StringValidator.CheckUserName(mNameFul)){
                 //Correct UserName
-                if (StringValidator.CheckUserName(vLastName)){
-                    //Last name is Also Correct
-                  mCallback.showEmailFragment(vFirstName,vLastName);
+                if (StringValidator.checkeEMail(mEmaill)){
+                    //Email name is Also Correct
+                        if (StringValidator.checkPassword(pass)){
+
+
+                        showEndingAnimation(mNameFul,mEmaill,pass);
+                    }
+
                 }
                 else{
                     Snackbar.make(mView,"Enter Last Name",Snackbar.LENGTH_SHORT).show();
@@ -153,8 +169,15 @@ public class SignUpNameFragment extends Fragment implements View.OnClickListener
 
     }
 
-    public interface SignUpCallback{
-        void showEmailFragment(String firstName,String lastName);
+    private void showEndingAnimation(String mNameFul, String mEmaill, String pass) {
+
+//        mBut.setAlpha();
+        Log.d(TAG, "showEndingAnimation: Perfrom SOme Animation");
+        mCallback.showEmailFragment(mNameFul,mEmaill,pass);
+    }
+
+    public interface SignUpCallback {
+        void showEmailFragment(String firstName, String email,String pass);
         void noSignUp();
     }
 

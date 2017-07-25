@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="s_edit_box">
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:colorActivatedHighlight">@color/material_grey300</item>
+        <item name="android:colorControlHighlight">@color/material_indigoA400</item>
+        <item name="android:backgroundTint">@color/material_grey500</item>
+    </style>
+    <style name="pricing_selector">
+        <item name="android:textColor">@color/my_black</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">@dimen/text_size_option</item>
+        <item name="android:background">@drawable/radio_button_selector</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+    </style>
+</resources>

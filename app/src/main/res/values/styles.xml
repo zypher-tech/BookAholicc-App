@@ -112,4 +112,40 @@
         <item name="android:background">@color/material_grey800</item>
     </style>
 
+    <style name="custom_radio_button">
+        <item name="android:textColor">@color/material_redA400</item>
+        <item name="android:button">@null</item>
+        <item name="android:textSize">@dimen/text_size_option</item>
+        <item name="android:background">@drawable/radio_button_selector</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+    </style>
+
+    <style name="s_edit_box">
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:colorActivatedHighlight">@color/material_grey300</item>
+
+    </style>
+
+    <style name="login_button_white">
+
+
+            <item name="android:layout_marginLeft">32dp</item>
+        <item name="android:layout_height">50dp</item>
+            <item name="android:layout_marginRight">32dp</item>
+            <item name="android:background">@drawable/button_rounded_white</item>
+
+    </style>
+
+    <style name="pricing_selector">
+        <item name="android:textColor">@color/my_black</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">@dimen/text_size_option</item>
+        <item name="android:background">@drawable/radio_button_selector</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+    </style>
+
 </resources>

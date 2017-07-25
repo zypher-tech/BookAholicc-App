@@ -148,7 +148,7 @@
         android:layout_width="match_parent"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:background="@color/material_grey400"
+
         android:layout_height="100dp"
         android:layout_marginTop="4dp"
         android:weightSum="2"
@@ -161,9 +161,7 @@
         <RadioButton
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:gravity="left|center_vertical"
-            android:layout_marginLeft="32dp"
-            android:textColor="@color/my_black"
+            style="@style/custom_radio_button"
             android:text="Cash on Delivery"
             android:layout_height="0dp" />
         <View
@@ -173,9 +171,7 @@
         <RadioButton
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:layout_marginTop="1dp"
-            android:gravity="left|center_vertical"
-            android:layout_marginLeft="32dp"
+            style="@style/custom_radio_button"
             android:text="Other Payment Options"
             android:layout_height="0dp" />
 

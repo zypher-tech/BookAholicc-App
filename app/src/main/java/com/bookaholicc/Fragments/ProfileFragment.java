@@ -12,7 +12,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bookaholicc.Activitiy.UserAboardingActivity;
+import com.bookaholicc.Activitiy.UserWelcomeActivity;
 import com.bookaholicc.Adapters.ViewpagerAdapters.ProfileAdapter;
 import com.bookaholicc.R;
 import com.bookaholicc.StorageHelpers.DataStore;
@@ -91,7 +90,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
         }
         else {
             // No user is signed in
-            mContext.startActivity(new Intent(getActivity(),UserAboardingActivity.class));
+            mContext.startActivity(new Intent(getActivity(),UserWelcomeActivity.class));
         }
 
 
@@ -123,7 +122,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
     }
 
     private void showLoginOrSignUpPage() {
-        startActivity(new Intent(mContext, UserAboardingActivity.class));
+        startActivity(new Intent(mContext, UserWelcomeActivity.class));
     }
 
 

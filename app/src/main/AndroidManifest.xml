@@ -48,7 +48,7 @@
             android:exported="true">
 
         </activity>
-        <activity android:name=".Activitiy.UserAboardingActivity"
+        <activity android:name=".Activitiy.UserWelcomeActivity"
             android:theme="@style/ua_activity_style"
             android:exported="true"/>
         <activity android:name=".Activitiy.CheckOutActivity"

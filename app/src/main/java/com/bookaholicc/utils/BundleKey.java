@@ -23,8 +23,9 @@ public class BundleKey {
     public static final String ARG_EMAIL_ID = "EMAIL";
     public static final String ARG_CHECKOUT_STRING = "checkout";
     public static final String ARG_PRICE = "price";
+    public static final String ARG_PASSWORD = "PASSWORD";
 
 
     public static String[] RETUNR_STRINGS = {"2 Days","4 Days" , "6 Days"};
-    public static java.lang.String ARG_FIRST_NAME = "FIRST_NAME" ;
+    public static java.lang.String ARG_FULL_NAME = "FIRST_NAME" ;
 }

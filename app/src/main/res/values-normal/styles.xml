@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <dimen name="drawer_title_ts">16sp</dimen>
-    <dimen name="drawert_title_mtop">8dp</dimen>
-    <dimen name="drawer_sub_mtop">2dp</dimen>
-    <dimen name="drawer_mleft">6dp</dimen>
-</resources>

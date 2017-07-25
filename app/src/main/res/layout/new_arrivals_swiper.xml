@@ -12,13 +12,13 @@
     android:paddingRight="12dp"
     app:cardCornerRadius="4dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
-            <RelativeLayout android:layout_width="match_parent"
+    <RelativeLayout android:layout_width="match_parent"
             android:layout_height="match_parent"
-             xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto">
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <TextView
-            android:text="Cool Combo's"
+        <com.bookaholicc.CustomUI.OpenSansBold
+            android:text="Combo Mania !!"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -32,11 +32,10 @@
             android:id="@+id/textView14"
             />
 
-        <TextView
+        <com.bookaholicc.CustomUI.OpenSansTextView
             android:text="Fully packaged, Tailored For your needs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:id="@+id/textView16"
             android:layout_below="@+id/textView14"
             android:layout_alignStart="@+id/textView14" />
@@ -48,10 +47,7 @@
                android:layout_width="match_parent"
               android:layout_height="match_parent"
                android:id="@+id/home_top_pager"
-
-
-
-               >
+            >
 
 
            </android.support.v4.view.ViewPager>
@@ -64,8 +60,8 @@
                android:layout_gravity="bottom"
                android:layout_marginBottom="20dp"
                android:layout_marginTop="@dimen/padding_normal"
-               app:pageIndicatorColor="@color/material_grey300"
-               app:currentPageIndicatorColor="@color/my_black" />
+               app:pageIndicatorColor="@color/material_redA400"
+               app:currentPageIndicatorColor="@color/material_white" />
        </FrameLayout>
 
     </RelativeLayout>

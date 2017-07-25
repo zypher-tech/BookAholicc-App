@@ -3,40 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:layout_width="match_parent"
+    android:fillViewport="true"
     android:layout_height="match_parent">
 
     <FrameLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:id="@+id/new_arrivals_root"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="150dp"
+            android:orientation="vertical"
+            android:background="@color/material_redA400"
             android:layout_height="match_parent">
 
 
             <ProgressBar
                 android:id="@+id/loading_progress"
-
-                android:layout_width="wrap_content"
+                android:layout_marginTop="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
+
                 android:layout_centerHorizontal="true" />
 
-            <TextView
+            <com.bookaholicc.CustomUI.OpenSansTextView
                 android:layout_width="match_parent"
                 android:text="Loading..."
-                android:textSize="30sp"
-                android:textAppearance="@style/Base.ThemeOverlay.AppCompat.Dark"
+                android:textSize="25sp"
+
                 android:gravity="center"
                 android:id="@+id/loading_text"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/loading_progress"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="28dp" />
+            <com.bookaholicc.CustomUI.OpenSansTextView
+                android:layout_width="match_parent"
+                android:text="getting Books you  may like"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="4dp" />
 
 
-        </RelativeLayout>
+        </LinearLayout>
 
 
     </FrameLayout>

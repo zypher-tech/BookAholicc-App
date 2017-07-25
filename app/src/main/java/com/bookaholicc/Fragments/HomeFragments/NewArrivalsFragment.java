@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
@@ -34,6 +35,7 @@ import com.bookaholicc.StorageHelpers.DataStore;
 import com.bookaholicc.utils.APIUtils;
 import com.bookaholicc.utils.BundleKey;
 import com.bookaholicc.utils.NetworkUtils;
+import com.bookaholicc.utils.RVdecorator;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -42,6 +44,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 import static com.bookaholicc.R.attr.layoutManager;
 import static com.bookaholicc.R.attr.logo;
@@ -67,17 +70,19 @@ public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArr
     private List<Product> mParsedProducts;
 
     private List<Combo> mParsedCombo;
+    HomePageDataHandler mDataHandler;
+    Unbinder unbinder;
+    NewArrivalsInterface mCallback;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
             mContext = context;
-
     }
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
 
@@ -86,43 +91,7 @@ public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArr
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = LayoutInflater.from(mContext).inflate(R.layout.new_arrivals_fragment,container,false);
-        ButterKnife.bind(this,mView);
-
-
-        Log.d(TAG, "onCreateView: Inside NEw Arrivals");
-        //Hit the Webservice;
-        //Show the Results
-        //Unitll Then SHow Loading results
-        HomePageDataHandler mDataHandler = new HomePageDataHandler(getContext(),this);
-//        if (HomePageDataHandler.isRequestMade()){
-//                // Request Made
-//
-//
-//        }
-//        else{
-//
-//            //No Request Made
-
-            mDataHandler.makeRequests();
-
-
-//        }
-/*
-
-        if (cachedResultsExists()){
-
-        }
-        else{
-            makeRequestAndStoreCache();
-        }
-*/
-
-
-
-
-
-
-
+        unbinder = ButterKnife.bind(this,mView);
 
         return mView;
     }
@@ -132,6 +101,7 @@ public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArr
         super.onDestroy();
         if (mContext != null){
             mContext = null;
+            unbinder.unbind();
 
         }
     }
@@ -139,6 +109,11 @@ public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArr
     @Override
     public void onStart() {
         super.onStart();
+        if (mDataHandler == null){
+            mDataHandler = new HomePageDataHandler(getContext(),this);
+            mDataHandler.makeRequests();
+        }
+
     }
 
     @Override
@@ -149,18 +124,12 @@ public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArr
     @Override
     public void onResume() {
         super.onResume();
-
-
-
-
-
-
-
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+
     }
 
     @Override
@@ -236,7 +205,7 @@ public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArr
             NewArrivalListAdapter mAdapter = new NewArrivalListAdapter(mContext,mProductsList,this);
             mListView.setAdapter(mAdapter);
             mListView.setNestedScrollingEnabled(false);
-            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mContext, GridLayoutManager.VERTICAL);
+            RVdecorator dividerItemDecoration = new RVdecorator(ContextCompat.getDrawable(mContext,R.drawable.divider));
             mListView.addItemDecoration(dividerItemDecoration);
             mParsedProducts = mProductsList;
         }
@@ -251,16 +220,12 @@ public  class NewArrivalsFragment extends Fragment implements SwipeAdapterNewArr
 
     @Override
     public void showProduct(NewArrivalListAdapter.NewArrivalListItem item, int pos, int pid) {
-//        //First COnvert the List,
-//        //Pass it as a String to View Product Activity
-        Gson gson = new Gson();
-//
-        String productListString = gson.toJson(mParsedProducts);
-        Log.d(TAG, "showProduct: Converted Product List to String : "+productListString);
-        Intent i = new Intent(mContext, ViewProductActivity.class);
-//        //// TODO: 20/6/17 Implement Transitions
-        i.putExtra(BundleKey.ARG_PRODUCT_LIST,productListString);
-        mContext.startActivity(i);
 
+
+    }
+
+    public interface NewArrivalsInterface{
+        void showProduct(int pid,View mView);
+        void comboClicked(int comboId,View mView);
     }
 }

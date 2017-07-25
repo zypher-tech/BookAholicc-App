@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/material_redA400"
+    android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="257dp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text="Elon Musk"
+        android:textSize="22sp"
+        android:paddingRight="16dp"
+        android:id="@+id/vp_b_title"
+        android:textColor="@color/material_white"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_height="wrap_content" />
+
+    <TextSwitcher
+        android:id="@+id/tsLikesCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/vp_b_title"
+        android:layout_alignBottom="@+id/vp_b_title"
+        android:foregroundGravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:inAnimation="@anim/slide_in_likes_counter"
+        android:outAnimation="@anim/slide_out_likes_counter">
+
+        <com.bookaholicc.CustomUI.WhitenyBooksFont
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+
+            android:layout_gravity="center"
+            android:text="123"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="18sp" />
+
+        <com.bookaholicc.CustomUI.WhitenyBooksFont
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_gravity="center"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="18sp" />
+    </TextSwitcher>
+
+
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="257dp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text="Sidney Sheldon"
+        android:textSize="18sp"
+        android:paddingRight="16dp"
+        android:id="@+id/vp_author_name"
+        android:layout_below="@+id/vp_b_title"
+        android:textColor="@color/material_white"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_height="wrap_content" />
+
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="match_parent"
+        android:maxLines="2"
+        android:layout_below="@+id/vp_author_name"
+        android:ellipsize="end"
+
+        android:id="@+id/vp_b_one_liner"
+        android:text="This Has to be May Be Below 40 Words , bu tit has to be product liner"
+        android:textSize="16sp"
+        android:textColor="@color/material_white"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content" />
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:id="@+id/vp_b_rg"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_below="@+id/vp_b_one_liner"
+        android:layout_height="50dp">
+        <RadioButton
+            android:layout_width="0dp"
+            android:text="7 Days"
+            style="@style/pricing_selector"
+            android:layout_weight="1"
+           />
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="15 Days"
+            style="@style/pricing_selector"
+            />
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="30 Days"
+            style="@style/pricing_selector"
+            />
+
+    </RadioGroup>
+
+    <com.bookaholicc.CustomUI.WhitenyBooksFont
+        android:layout_width="match_parent"
+        android:layout_below="@+id/vp_b_rg"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:id="@+id/v_b_pc"
+        android:textSize="16sp"
+        android:textColor="@color/material_black"
+        android:text="499 pages,16 Hour"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/vp_b_div"
+        android:layout_below="@+id/v_b_pc"
+        android:layout_marginRight="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/bb_darkBackgroundColor"/>
+    <com.bookaholicc.CustomUI.OpenSansTextView
+        android:layout_width="wrap_content"
+        android:text="About the Book"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

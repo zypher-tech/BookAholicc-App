@@ -4,10 +4,9 @@ import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.DocumentsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.bookaholicc.Activitiy.UserAboardingActivity;
-import com.bookaholicc.Fragments.SignUpNameFragment;
+import com.bookaholicc.Adapters.ViewpagerAdapters.IntroAdapter;
 import com.bookaholicc.R;
 import com.bookaholicc.utils.ScreenUtil;
 
@@ -41,8 +39,8 @@ public class UARootFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.ua_signup_button) Button mSignUpButtton;
 
 
-    @BindView(R.id.ua_image)
-    ImageView mLogoImage;
+    @BindView(R.id.ua_pager)
+    ViewPager mPager;
 
     @BindView(R.id.ua_root)
     FrameLayout mRoot;
@@ -69,8 +67,20 @@ public class UARootFragment extends Fragment implements View.OnClickListener {
         mView = LayoutInflater.from(mContext).inflate(R.layout.ua_frag_root,container,false);
         ButterKnife.bind(this,mView);
 
+        // Set Adapter to Views
+        // Listen for Button CLick Events
+        // Fire Up the nExt Fragemnt with callbacks
 
-        startAnimation();
+        IntroAdapter mAdapter = new IntroAdapter(getContext());
+        mPager.setAdapter(mAdapter);
+        mLoginButton.setOnClickListener(this);
+        mSignUpButtton.setOnClickListener(this);
+
+
+
+
+
+//        startAnimation();
         return mView;
     }
 

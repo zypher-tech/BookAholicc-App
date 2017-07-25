@@ -7,7 +7,7 @@
 
 
     <solid
-        android:color="@color/material_grey300"/>
+        android:color="@color/material_grey500"/>
     <size
         android:height="1dp"/>
     <padding

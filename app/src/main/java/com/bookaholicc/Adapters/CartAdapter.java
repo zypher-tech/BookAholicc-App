@@ -72,6 +72,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Cartholder> {
 
 
 
+
+
+
         //prepare Adapter for Class SPinner
         DurationSpinner
                 mAdapter = new DurationSpinner(mContext,R.layout.simple_spinner,mInfo);
@@ -80,7 +83,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Cartholder> {
         holder.mDurationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
                 Log.d(TAG, "onItemSelected: New Amount for  "+mInfo.get(i).getAmount());
 
             }

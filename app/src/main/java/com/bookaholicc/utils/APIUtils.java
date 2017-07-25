@@ -90,6 +90,7 @@ public class APIUtils {
     public static final String PAYMENT = "pricing";
     public static final String WINDOW_ID = "windowId";
     public static final String COST = "cost";
+    public static final String STATUS = "status";
 
     public static String SAVE_TOKEN_API = "";
 
